@@ -99,11 +99,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
+      "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
       "projectName": "Parking",
-      "projectPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
+      "projectPath": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
       "packagesPath": "C:\\Users\\nickr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\obj\\",
+      "outputPath": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nickr\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -160,7 +160,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\nickr\\.dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
