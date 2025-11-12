@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Serilog;
+using Parking.Structs;
 
 // config. del logger
 Log.Logger = new LoggerConfiguration().WriteTo.Console().CreateLogger();
@@ -22,9 +23,10 @@ const int OpcionMenuActualizarProfesor = 10;
 const int OpcionMenuBorrarProfesor = 11;
 const int OpcionMenuSalir = 12;
 
-const int size = 10;
+const int Size = 10;
 
-
+const int Filas = 2;
+const int Columnas = 5;
 
 
 Main(args);
@@ -35,5 +37,11 @@ Console.ReadKey();
 return;
 
 void Main(string[] args) {
+    Log.Information("➡️ Iniciando el Main...");
+
+    // creación del parking
+    Vehiculo[,] parking = new Vehiculo[2, 5];
+    
+    Console.WriteLine("--- GESTIÓN PARKING IES LUIS VIVES ---");
     
 }
