@@ -42,13 +42,14 @@ void Main(string[] args) {
     int aforo = 0;
     // creación del parking
     Vehiculo?[,] parking = new Vehiculo?[2, 5];
+    // rellenamos para comenzar con algun dato ejemplificativo
     RellenarParking(parking, ref aforo);
 
     Console.WriteLine("--- GESTIÓN PARKING IES LUIS VIVES ---");
     for (int i = 0; i < parking.GetLength(0); i++) {
         for (int j = 0; j < parking.GetLength(1); j++) {
             if (parking[i, j] is null)
-                Console.Write("[⬛]");
+                Console.Write("[🔵]");
             else 
                 Console.Write("[🚗]");
         }
@@ -61,19 +62,26 @@ void Main(string[] args) {
 
 void RellenarParking(Vehiculo?[,] parking, ref int aforo) {
     
+    // creo 3 vehiculos inventados
     Vehiculo v1 = new Vehiculo {matricula = "1234CBC", marca = "Seat", modelo = "Ibiza", profesor = {nip = "AB1", nombre = "JoseLuis", email = "joseluisgs@gmail.com"}};
     Vehiculo v2 = new Vehiculo {matricula = "6382JFF", marca = "Skoda", modelo = "Octavia", profesor = {nip = "ZJ7", nombre = "Carmen", email = "carme123@gmail.com"}};
     Vehiculo v3 = new Vehiculo {matricula = "3729FPL", marca = "Citroen", modelo = "C5", profesor = {nip = "HF7", nombre = "Pepe", email = "pepecito69@gmail.com"}};
 
+    // array de vehiculos para asignarlos a una pos
     var coches = new Vehiculo[] { v1, v2, v3 };
     
+    // mientras que el aforo sea inferior al aforo inicial que se nos pide mete vehiculos (solo tenemos 3)
     while (aforo < OcupacionInicial) {
+        // generamos posiciones aleatorias
+        // getlength mostrará la medida, por ejemplo 5 en el caso de las columnas, pero el 5 no entra asi que 
+        // generara de 0-4, lo mismo con las filas
         int filaRandom = random.Next(parking.GetLength(0));
         int columnaRandom = random.Next(parking.GetLength(1));
 
+        // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
         if (parking[filaRandom, columnaRandom] is null) {
             parking[filaRandom, columnaRandom] = coches[aforo];
-            Log.Information($"✅ Coche {coches[aforo].matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
+            Log.Information($"✅  Coche {coches[aforo].matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
             aforo++;
         }
     }
