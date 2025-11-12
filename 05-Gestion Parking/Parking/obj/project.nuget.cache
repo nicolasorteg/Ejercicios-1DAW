@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dyrjqAUcXLU=",
+  "dgSpecHash": "Pv8HC9vEFww=",
   "success": true,
-  "projectFilePath": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nickr\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

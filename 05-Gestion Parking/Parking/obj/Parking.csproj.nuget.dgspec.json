@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj": {}
+    "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj": {
+    "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj",
+        "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
         "projectName": "Parking",
-        "projectPath": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj",
+        "projectPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
         "packagesPath": "C:\\Users\\nickr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\obj\\",
+        "outputPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nickr\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -42,6 +42,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "serilog": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +64,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\nickr\\.dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

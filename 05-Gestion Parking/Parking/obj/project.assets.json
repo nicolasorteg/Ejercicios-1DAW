@@ -1,11 +1,57 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "Serilog/4.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Serilog.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Serilog.targets": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Serilog/4.3.0": {
+      "sha512": "+cDryFR0GRhsGOnZSKwaDzRRl4MupvJ42FhCE4zhQRVanX0Jpg6WuCBk59OVhVDPmab1bB+nRykAnykYELA9qQ==",
+      "type": "package",
+      "path": "serilog/4.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Serilog.targets",
+        "icon.png",
+        "lib/net462/Serilog.dll",
+        "lib/net462/Serilog.xml",
+        "lib/net471/Serilog.dll",
+        "lib/net471/Serilog.xml",
+        "lib/net6.0/Serilog.dll",
+        "lib/net6.0/Serilog.xml",
+        "lib/net8.0/Serilog.dll",
+        "lib/net8.0/Serilog.xml",
+        "lib/net9.0/Serilog.dll",
+        "lib/net9.0/Serilog.xml",
+        "lib/netstandard2.0/Serilog.dll",
+        "lib/netstandard2.0/Serilog.xml",
+        "serilog.4.3.0.nupkg.sha512",
+        "serilog.nuspec"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "serilog >= 4.3.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\nickr\\.nuget\\packages\\": {}
@@ -13,11 +59,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj",
+      "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
       "projectName": "Parking",
-      "projectPath": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\Parking.csproj",
+      "projectPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
       "packagesPath": "C:\\Users\\nickr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\nickr\\Desktop\\Tragaperras-Modular\\Gestion Parking C Sharp\\Parking\\obj\\",
+      "outputPath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\nickr\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -48,6 +94,12 @@
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "serilog": {
+            "target": "Package",
+            "version": "[4.3.0, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -64,7 +116,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\nickr\\.dotnet\\sdk\\8.0.415/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.414/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
