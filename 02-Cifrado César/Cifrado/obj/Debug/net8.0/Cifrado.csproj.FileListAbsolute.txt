@@ -1,0 +1,15 @@
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\bin\Debug\net8.0\Cifrado.exe
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\bin\Debug\net8.0\Cifrado.deps.json
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\bin\Debug\net8.0\Cifrado.runtimeconfig.json
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\bin\Debug\net8.0\Cifrado.dll
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\bin\Debug\net8.0\Cifrado.pdb
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.AssemblyInfoInputs.cache
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.AssemblyInfo.cs
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.csproj.CoreCompileInputs.cache
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.sourcelink.json
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.dll
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\refint\Cifrado.dll
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.pdb
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\Cifrado.genruntimeconfig.cache
+C:\Users\nickr\Desktop\Projects\Cifrado-Cesar\Cifrado Cesar\Cifrado\obj\Debug\net8.0\ref\Cifrado.dll
