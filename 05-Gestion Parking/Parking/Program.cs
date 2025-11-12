@@ -25,9 +25,6 @@ const int OpcionMenuSalir = 12;
 
 const int Size = 10;
 
-const int Filas = 2;
-const int Columnas = 5;
-
 
 Main(args);
 
@@ -40,8 +37,21 @@ void Main(string[] args) {
     Log.Information("➡️ Iniciando el Main...");
 
     // creación del parking
-    Vehiculo[,] parking = new Vehiculo[2, 5];
-    
+    Vehiculo?[,] parking = new Vehiculo?[2, 5];
+    RellenarParking(parking);
+
+
+
     Console.WriteLine("--- GESTIÓN PARKING IES LUIS VIVES ---");
+    
+}
+
+
+void RellenarParking(Vehiculo?[,] parking) {
+    
+    Vehiculo v1 = new Vehiculo{matricula = "1234CBC", marca = "Seat", modelo = "Ibiza", profesor = {nip = "AB1", nombre = "JoseLuis", email = "joseluisgs@gmail.com"}};
+    Vehiculo v2 = new Vehiculo{matricula = "6382JFF", marca = "Skoda", modelo = "Octavia", profesor = {nip = "ZJ7", nombre = "Carmen", email = "carme123@gmail.com"}};
+    Vehiculo v3 = new Vehiculo{matricula = "3729FPL", marca = "Citroen", modelo = "C5", profesor = {nip = "HF7", nombre = "Pepe", email = "pepecito69@gmail.com"}};
+                
     
 }
