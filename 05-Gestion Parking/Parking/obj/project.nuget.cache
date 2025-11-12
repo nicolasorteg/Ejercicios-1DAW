@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Pv8HC9vEFww=",
+  "dgSpecHash": "s6d68QjQK54=",
   "success": true,
   "projectFilePath": "C:\\Users\\nickr\\Desktop\\Projects\\Ejercicios-1DAW\\05-Gestion Parking\\Parking\\Parking.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\nickr\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512"
+    "C:\\Users\\nickr\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
+    "C:\\Users\\nickr\\.nuget\\packages\\serilog.sinks.console\\6.1.1\\serilog.sinks.console.6.1.1.nupkg.sha512"
   ],
   "logs": []
 }
