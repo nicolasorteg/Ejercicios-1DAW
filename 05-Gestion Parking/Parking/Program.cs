@@ -23,7 +23,10 @@ const int OpcionMenuActualizarProfesor = 10;
 const int OpcionMenuBorrarProfesor = 11;
 const int OpcionMenuSalir = 12;
 
+const int OcupacionInicial = 3;
 const int Size = 10;
+
+var random = new Random();
 
 
 Main(args);
@@ -36,22 +39,42 @@ return;
 void Main(string[] args) {
     Log.Information("➡️ Iniciando el Main...");
 
+    int aforo = 0;
     // creación del parking
     Vehiculo?[,] parking = new Vehiculo?[2, 5];
-    RellenarParking(parking);
-
-
+    RellenarParking(parking, ref aforo);
 
     Console.WriteLine("--- GESTIÓN PARKING IES LUIS VIVES ---");
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j] is null)
+                Console.Write("[⬛]");
+            else 
+                Console.Write("[🚗]");
+        }
+        Console.WriteLine();
+    }
+
     
 }
 
 
-void RellenarParking(Vehiculo?[,] parking) {
+void RellenarParking(Vehiculo?[,] parking, ref int aforo) {
     
-    Vehiculo v1 = new Vehiculo{matricula = "1234CBC", marca = "Seat", modelo = "Ibiza", profesor = {nip = "AB1", nombre = "JoseLuis", email = "joseluisgs@gmail.com"}};
-    Vehiculo v2 = new Vehiculo{matricula = "6382JFF", marca = "Skoda", modelo = "Octavia", profesor = {nip = "ZJ7", nombre = "Carmen", email = "carme123@gmail.com"}};
-    Vehiculo v3 = new Vehiculo{matricula = "3729FPL", marca = "Citroen", modelo = "C5", profesor = {nip = "HF7", nombre = "Pepe", email = "pepecito69@gmail.com"}};
-                
+    Vehiculo v1 = new Vehiculo {matricula = "1234CBC", marca = "Seat", modelo = "Ibiza", profesor = {nip = "AB1", nombre = "JoseLuis", email = "joseluisgs@gmail.com"}};
+    Vehiculo v2 = new Vehiculo {matricula = "6382JFF", marca = "Skoda", modelo = "Octavia", profesor = {nip = "ZJ7", nombre = "Carmen", email = "carme123@gmail.com"}};
+    Vehiculo v3 = new Vehiculo {matricula = "3729FPL", marca = "Citroen", modelo = "C5", profesor = {nip = "HF7", nombre = "Pepe", email = "pepecito69@gmail.com"}};
+
+    var coches = new Vehiculo[] { v1, v2, v3 };
     
+    while (aforo < OcupacionInicial) {
+        int filaRandom = random.Next(parking.GetLength(0));
+        int columnaRandom = random.Next(parking.GetLength(1));
+
+        if (parking[filaRandom, columnaRandom] is null) {
+            parking[filaRandom, columnaRandom] = coches[aforo];
+            Log.Information($"✅ Coche {coches[aforo].matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
+            aforo++;
+        }
+    }
 }
