@@ -49,7 +49,8 @@ void Main(string[] args) {
         Console.WriteLine();
         switch (opcionElegida) {
             case (int)MenuOpcion.EntrarParking: // 1
-                SimularBarreraEntrada(parking, ref numVehiculos);
+                Posicion posicion = SimularBarreraEntrada(parking, ref numVehiculos);
+                Console.WriteLine($"Dirige el coche a la posición {posicion.Fila + 1}:{posicion.Columna + 1}");
                 break;
             case (int)MenuOpcion.AñadirVehiculo: // 2
                 //AñadirVehiculo(parking, ref numVehiculos);
@@ -140,24 +141,30 @@ void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
 
 
 
-void SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
+Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
     Console.WriteLine("🚧 Barrera de entrada.");
     string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
     var vehiculoIntroducido = new Vehiculo {Matricula = matriculaElegida};
     bool isCocheIntroducido = false;
+    int filaRandom = 0;
+    int columnaRandom = 0;
+    
     while (!isCocheIntroducido) {
         
-        int filaRandom = random.Next(parking.GetLength(0));
-        int columnaRandom = random.Next(parking.GetLength(1));
+        filaRandom = random.Next(parking.GetLength(0));
+        columnaRandom = random.Next(parking.GetLength(1));
         // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
         if (parking[filaRandom, columnaRandom] is null) {
             parking[filaRandom, columnaRandom] = vehiculoIntroducido;
+            isCocheIntroducido = true;
             Log.Information($"✅  Coche {vehiculoIntroducido.Matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
-            
             numVehiculos++;
         }
     }
-    
+    return new Posicion {
+        Fila = filaRandom,
+        Columna = columnaRandom
+    };
 }
 
 
