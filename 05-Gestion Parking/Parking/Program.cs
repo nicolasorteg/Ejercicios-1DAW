@@ -50,10 +50,11 @@ void Main(string[] args) {
         switch (opcionElegida) {
             case (int)MenuOpcion.EntrarParking: // 1
                 Posicion posicion = SimularBarreraEntrada(parking, ref numVehiculos);
-                Console.WriteLine($"Dirige el coche a la posición {posicion.Fila + 1}:{posicion.Columna + 1}");
+                if (posicion.Fila != -1 && posicion.Columna != -1)
+                    Console.WriteLine($"Dirige el coche a la posición {posicion.Fila + 1}:{posicion.Columna + 1}");
                 break;
             case (int)MenuOpcion.AñadirVehiculo: // 2
-                //AñadirVehiculo(parking, ref numVehiculos);
+                AñadirVehiculo(parking, ref numVehiculos);
                 break;
             case (int)MenuOpcion.VerParking: // 3
                 MostrarParking(parking);
@@ -142,29 +143,60 @@ void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
 
 
 Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
-    Console.WriteLine("🚧 Barrera de entrada.");
-    string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
-    var vehiculoIntroducido = new Vehiculo {Matricula = matriculaElegida};
-    bool isCocheIntroducido = false;
-    int filaRandom = 0;
-    int columnaRandom = 0;
     
-    while (!isCocheIntroducido) {
+    Console.WriteLine("🚧 Barrera de entrada.");
+    
+    string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+    bool encontrado = false;
+    
+    Log.Debug($"🔵 Buscando vehículo con matrícula {matriculaElegida}");
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j]?.Matricula == matriculaElegida) {
+                Log.Warning($"⚠️ Vehículo con matrícula {matriculaElegida} encontrado en posición {i + 1}:{j + 1}.");
+                encontrado = true;
+            }
+        }
+    }
+    
+    int filaRandom = -1;
+    int columnaRandom = -1;
+    
+    if (encontrado) {
+        Console.WriteLine($"❌  Ya existe un vehículo con matrícula {matriculaElegida}");
+    } else {
+        var vehiculoIntroducido = new Vehiculo {Matricula = matriculaElegida};
+        bool isCocheIntroducido = false;
+    
+        while (!isCocheIntroducido) {
         
-        filaRandom = random.Next(parking.GetLength(0));
-        columnaRandom = random.Next(parking.GetLength(1));
-        // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
-        if (parking[filaRandom, columnaRandom] is null) {
-            parking[filaRandom, columnaRandom] = vehiculoIntroducido;
-            isCocheIntroducido = true;
-            Log.Information($"✅  Coche {vehiculoIntroducido.Matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
-            numVehiculos++;
+            filaRandom = random.Next(parking.GetLength(0));
+            columnaRandom = random.Next(parking.GetLength(1));
+            // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
+            if (parking[filaRandom, columnaRandom] is null) {
+                parking[filaRandom, columnaRandom] = vehiculoIntroducido;
+                isCocheIntroducido = true;
+                Log.Information($"✅  Coche {vehiculoIntroducido.Matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
+                numVehiculos++;
+            }
         }
     }
     return new Posicion {
         Fila = filaRandom,
         Columna = columnaRandom
     };
+}
+
+
+void AñadirVehiculo(Vehiculo?[,] parking, ref int numVehiculos) {
+    Posicion posicion = ValidarPosicion("Posición: ");
+    
+    if (parking[posicion.Fila, posicion.Columna] != null) {
+        Console.WriteLine($"❌ Ya existe un vehículo para la posición {posicion.Fila}:{posicion.Columna}");
+        Log.Warning($"⚠️ Vehículo encontrado en {posicion.Fila}:{posicion.Columna}");
+    } else {
+        string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+    }
 }
 
 
