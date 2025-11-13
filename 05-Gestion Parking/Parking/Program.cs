@@ -64,10 +64,10 @@ void Main(string[] args) {
                 BuscarPorNip(parking);
                 break;
             case (int)MenuOpcion.BusquedaMatricula: // 6
-                //BuscarPorMatricula(parking);
+                BuscarPorMatricula(parking);
                 break;
             case (int)MenuOpcion.ListaMatricula: // 7
-                //MostrarPorMatriculaAsc(parking);
+                MostrarPorMatriculaAsc(parking);
                 break;
             case (int)MenuOpcion.ListaProfesoresConVehiculo: // 8
                 //MostrarProfesores(parking);
@@ -177,6 +177,8 @@ void LeerInformacionPlaza(Vehiculo?[,] parking) {
         Console.WriteLine($"❌ No existe ningún vehículo para la posición {posicion.Fila}:{posicion.Columna}");
         Log.Warning($"⚠️ Vehículo  para la posición {posicion.Fila}:{posicion.Columna} no encontrado.");
     } else {
+        Log.Information($"✅  Vehículo en {posicion.Fila}:{posicion.Columna} encontrado.");
+        
         Vehiculo? vehiculoElegido = parking[posicion.Fila, posicion.Columna];
         
         Console.WriteLine();
@@ -194,18 +196,20 @@ void LeerInformacionPlaza(Vehiculo?[,] parking) {
 
 
 void BuscarPorNip(Vehiculo?[,] parking) {
-    string nipElegido = ValidarNip("Nip: ");
+    string nipElegido = ValidarNip("Nip: "); // extraemos el nip introducido
 
     Log.Debug($"🔵 Buscando profesor de NIP {nipElegido}");
+    // recorremos el parking en busca del nip
     for (int i = 0; i < parking.GetLength(0); i++) {
         for (int j = 0; j < parking.GetLength(1); j++) {
             
+            // si encontramos el nip imprimimos la info
             if (parking[i, j]?.Profesor.Nip == nipElegido) {
-
+                Log.Information($"✅  Profesor de Nip {nipElegido} encontrado.");
+                
                 Profesor? profesorElegido = parking[i, j]?.Profesor;
                 Vehiculo? vehiculoProfesor = parking[i, j];
-
-                Log.Information($"✅  Profesor de Nip {nipElegido} encontrado.");
+                
                 Console.WriteLine();
                 Console.WriteLine("-- 👨‍🏫 Información del propietario --");
                 Console.WriteLine($"- NIP: {profesorElegido?.Nip}");
@@ -221,14 +225,85 @@ void BuscarPorNip(Vehiculo?[,] parking) {
             }
         }
     }
+    // si no hemos encontrado el bucle finalizara y mostramos la derrota
     Console.WriteLine($"❌ No se encontró ningún profesor con NIP {nipElegido}.");
     Log.Warning($"⚠️ Profesor con NIP {nipElegido} no encontrado.");
 }
 
 
+void BuscarPorMatricula(Vehiculo?[,] parking) {
+    string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+
+    Log.Debug($"🔵 Buscando vehículo con matrícula {matriculaElegida}");
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            
+            if (parking[i, j]?.Matricula == matriculaElegida) {
+                Log.Information($"✅ Vehículo con matrícula {matriculaElegida} encontrado en posición {i + 1}:{j + 1}.");
+                
+                var vehiculo = parking[i, j];
+                Console.WriteLine();
+                Console.WriteLine("-- 🚗 Información del vehículo --");
+                Console.WriteLine($"- Matrícula: {vehiculo?.Matricula}");
+                Console.WriteLine($"- Marca:     {vehiculo?.Marca}");
+                Console.WriteLine($"- Modelo:    {vehiculo?.Modelo}");
+                Console.WriteLine("-- 👨‍🏫 Información del propietario --");
+                Console.WriteLine($"- NIP:    {vehiculo?.Profesor.Nip}");
+                Console.WriteLine($"- Nombre: {vehiculo?.Profesor.Nombre}");
+                Console.WriteLine($"- Email:  {vehiculo?.Profesor.Email}");
+                Console.WriteLine($"-- 📍 Plaza: {i + 1}:{j + 1} --");
+                return;
+            }
+        }
+    }
+    
+    Console.WriteLine($"❌  No se encontró ningún vehículo con matrícula {matriculaElegida}.");
+    Log.Warning($"⚠️  Vehículo con matrícula {matriculaElegida} no encontrado.");
+
+}
 
 
 
+
+void MostrarPorMatriculaAsc(Vehiculo?[,] parking) {
+    Log.Debug("🔵 Mostrando vehículos ordenados por matrícula...");
+    
+    // para determinar el tamaño del vector de vehiculos necesitamos saber cuantos hay actualmente en el parking
+    int numCoches = 0;
+    // recorremos el parking para ver cuantos coches hay
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j] is not null)
+                numCoches++;
+        }
+    }
+    if (numCoches == 0) {
+        Console.WriteLine("❌ No hay vehículos en el parking.");
+        Log.Warning("⚠️ No hay vehículos para mostrar.");
+        return;
+    }
+    Vehiculo[] vehiculosExistentes = new Vehiculo[numCoches];
+    
+    // ponemos a los vehiculos en el vector de vehiculos
+    int indice = 0;
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j] is not null) {
+                vehiculosExistentes[indice] = parking[i, j].Value;
+                indice++;
+            }
+        }
+    }
+
+    // ordenamos el array
+    Log.Debug($"🔵 Ordenando por matrícula...");
+    OrdenarVehiculosBurbuja(vehiculosExistentes);
+    
+    // mostramos los datos por pantalla
+    Log.Debug($"🔵 Mostrando los datos...");
+    Console.WriteLine();
+    ImprimirDatos(vehiculosExistentes);
+}
 
 
 
@@ -317,4 +392,73 @@ string ValidarNip(string msg) {
     } while (!isNipOk);
 
     return nip;
+}
+
+string ValidarMatricula(string msg)
+{
+    string matricula = "";
+    bool isMatriculaOk = false;
+    var regexMatricula = new Regex(@"^\d{4}[B-DF-HJ-NP-TV-Z]{3}$");
+    do
+    {
+        Console.WriteLine(msg);
+        var input = Console.ReadLine()?.Trim().ToUpper() ?? "";
+        Log.Debug($"🔵  Validando matrícula {input}...");
+
+        if (regexMatricula.IsMatch(input)) {
+            matricula = input;
+            Log.Information($"✅  Matrícula {matricula} leída correctamente.");
+            isMatriculaOk = true;
+        } else
+        {
+            Console.WriteLine("🔴 Matrícula introducida no válida. Formato esperado: 1234ABC");
+            Log.Information("🔴  Matrícula introducida no válida.");
+        }
+    } while (!isMatriculaOk);
+
+    return matricula;
+}
+
+void OrdenarVehiculosBurbuja(Vehiculo[] vehiculosExistentes) {
+    // ordenamos usando el metodo de la burbuja
+    for (int i = 0; i < vehiculosExistentes.Length - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < vehiculosExistentes.Length - i - 1; j++) {
+            
+            // comparacion de los numeros de la matricla
+            int matriculaActual = Convert.ToInt32(vehiculosExistentes[j].Matricula.Substring(0, 4));
+            int matriculaSiguiente = Convert.ToInt32(vehiculosExistentes[j + 1].Matricula.Substring(0, 4));
+
+            // si la siguiente matricula es menor se pone en la posicion actual
+            if (matriculaActual > matriculaSiguiente) {
+                // swap
+                SwapVehiculos(vehiculosExistentes, j, j + 1);
+                swapped = true;
+            }
+        }
+        // si no hubo intercambio el array está ordenado asc en base a su matricula
+        if (!swapped) break;
+    }
+}
+
+void SwapVehiculos(Vehiculo[] vehiculos, int i, int j) {
+    Vehiculo temp = vehiculos[i];
+    vehiculos[i] = vehiculos[j];
+    vehiculos[j] = temp;
+}
+
+void ImprimirDatos(Vehiculo[] vehiculos) {
+    
+    Console.WriteLine("-- 🚗 Listado de vehículos por matrícula (ascendente) --");
+    foreach (Vehiculo vehiculo in vehiculos) {
+        Console.WriteLine("-- 🚗 Información del vehículo --");
+        Console.WriteLine($"- Matrícula: {vehiculo.Matricula}");
+        Console.WriteLine($"- Marca: {vehiculo.Marca}");
+        Console.WriteLine($"- Modelo: {vehiculo.Modelo}");
+        Console.WriteLine("-- 👨‍🏫 Información del propietario --");
+        Console.WriteLine($"- NIP: {vehiculo.Profesor.Nip}");
+        Console.WriteLine($"- Nombre: {vehiculo.Profesor.Nombre}");
+        Console.WriteLine($"- Email: {vehiculo.Profesor.Email}");
+        Console.WriteLine("---------------------------------");
+    }
 }
