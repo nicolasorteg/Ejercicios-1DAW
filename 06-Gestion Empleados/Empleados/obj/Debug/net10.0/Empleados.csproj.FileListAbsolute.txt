@@ -1,0 +1,15 @@
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Empleados.exe
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Empleados.deps.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Empleados.runtimeconfig.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Empleados.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Empleados.pdb
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.AssemblyInfoInputs.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.AssemblyInfo.cs
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.csproj.CoreCompileInputs.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.sourcelink.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\refint\Empleados.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.pdb
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.genruntimeconfig.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\ref\Empleados.dll

@@ -28,8 +28,6 @@ Console.ReadKey();
 return;
 
 
-
-
 void Main(string[] args) {
     Log.Debug("➡️ Iniciando el Main...");
     Console.WriteLine("😊 Bienvenid@ al programa de gestión del Parking del Luis Vives.");
