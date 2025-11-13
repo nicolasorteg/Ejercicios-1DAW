@@ -46,7 +46,6 @@ void Main(string[] args) {
         opcionElegida = ValidarOpcion("Introduzca una opción:");
 
         Log.Debug($"🔵 Asignando acción para la opción {opcionElegida}");
-        Console.WriteLine();
         switch (opcionElegida) {
             case (int)MenuOpcion.EntrarParking: // 1
                 Posicion posicion = SimularBarreraEntrada(parking, ref numVehiculos);
@@ -74,16 +73,13 @@ void Main(string[] args) {
             case (int)MenuOpcion.ListaProfesoresConVehiculo: // 8
                 MostrarProfesores(parking);
                 break;
-            case (int)MenuOpcion.ActualizarVehiculo: // 9
-                //ActualizarVehiculo(parking);
+            case (int)MenuOpcion.ActualizarDatos: // 9
+                ActualizarVehiculo(parking);
                 break;
-            case (int)MenuOpcion.ActualizarProfesor: // 10
-                //ActualizarProfesor(parking);
-                break;
-            case (int)MenuOpcion.BorrarVehiculo: // 11
+            case (int)MenuOpcion.BorrarVehiculo: // 10
                 BorrarVehiculo(parking, ref numVehiculos);
                 break;
-            case (int)MenuOpcion.Salir: // 12
+            case (int)MenuOpcion.Salir: // 11
                 Console.WriteLine("😊 Ha sido un placer...");
                 break;
             default: // no deberia poder llegar aqui ya que 'ValidarOpcion' solo puede devolver un numero valido
@@ -104,8 +100,7 @@ void ImprimirMenu() {
     Console.WriteLine($"{(int)MenuOpcion.BusquedaMatricula}.- Buscar por matrícula.");
     Console.WriteLine($"{(int)MenuOpcion.ListaMatricula}.- Listado de coches por matrícula.");
     Console.WriteLine($"{(int)MenuOpcion.ListaProfesoresConVehiculo}.- Listado profesores y sus coches.");
-    Console.WriteLine($"{(int)MenuOpcion.ActualizarVehiculo}.- Actualizar datos de un vehículo.");
-    Console.WriteLine($"{(int)MenuOpcion.ActualizarProfesor}.- Actualizar datos de un profesor.");
+    Console.WriteLine($"{(int)MenuOpcion.ActualizarDatos}.- Actualizar datos de un vehículo.");
     Console.WriteLine($"{(int)MenuOpcion.BorrarVehiculo}.- Borrar vehículo.");
     Console.WriteLine($"{(int)MenuOpcion.Salir}.- Salir.");
     Console.WriteLine("------------------------------------");
@@ -147,8 +142,9 @@ Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
     Console.WriteLine("🚧 Barrera de entrada.");
     
     string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+
+    // buscamos is existe ya un coche con la matricula dada
     bool encontrado = false;
-    
     Log.Debug($"🔵 Buscando vehículo con matrícula {matriculaElegida}");
     for (int i = 0; i < parking.GetLength(0); i++) {
         for (int j = 0; j < parking.GetLength(1); j++) {
@@ -162,7 +158,7 @@ Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
     int filaRandom = -1;
     int columnaRandom = -1;
     
-    if (encontrado) {
+    if (encontrado) { // si lo encuentra no sigue
         Console.WriteLine($"❌  Ya existe un vehículo con matrícula {matriculaElegida}");
     } else {
         var vehiculoIntroducido = new Vehiculo {Matricula = matriculaElegida};
@@ -181,6 +177,7 @@ Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
             }
         }
     }
+    // devolvemos la posicion
     return new Posicion {
         Fila = filaRandom,
         Columna = columnaRandom
@@ -191,11 +188,56 @@ Posicion SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
 void AñadirVehiculo(Vehiculo?[,] parking, ref int numVehiculos) {
     Posicion posicion = ValidarPosicion("Posición: ");
     
+    // si hay un coche no se puede añadir
     if (parking[posicion.Fila, posicion.Columna] != null) {
-        Console.WriteLine($"❌ Ya existe un vehículo para la posición {posicion.Fila}:{posicion.Columna}");
+        Console.WriteLine($"❌ Ya existe un vehículo para la posición {posicion.Fila + 1}:{posicion.Columna + 1}");
         Log.Warning($"⚠️ Vehículo encontrado en {posicion.Fila}:{posicion.Columna}");
     } else {
         string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+        bool encontrado = false;
+        // recorremos el parkig para ver si existe ya un coche con la matrícula dada
+        for (int i = 0; i < parking.GetLength(0); i++) {
+            for (int j = 0; j < parking.GetLength(1); j++) {
+                if (parking[i, j]?.Matricula == matriculaElegida) {
+                    Log.Warning($"⚠️ Vehículo con matrícula {matriculaElegida} encontrado en posición {i + 1}:{j + 1}.");
+                    encontrado = true;
+                }
+            }
+        }
+    
+        if (encontrado) { // si o encuenta no se sigue
+            Console.WriteLine($"❌  Ya existe un vehículo con matrícula {matriculaElegida}");
+        } else {
+            Log.Debug("🔵 Preguntando datos...");
+            // preguntas para añadir, solo nip y nombre obligatorios
+            string nombreElegido;
+            Console.WriteLine("-- INTRO PARA SALTAR DATO --");
+            Console.WriteLine("Introduce la Marca:");
+            var marcaElegida = Console.ReadLine()?.Trim() ?? "No introducida";
+            Console.WriteLine("Modelo: ");
+            var modeloElegido = Console.ReadLine()?.Trim() ?? "No introducida";
+            var nipElegido = ValidarNip("Introduce el Nip del profesor: ");
+            do {
+                Console.WriteLine("Nombre");
+                nombreElegido = Console.ReadLine()?.Trim() ?? "No introducida";
+                if (nombreElegido.Length < 3)
+                    Console.WriteLine("❌ Nombre menor a 3 caracteres.");
+            } while (nombreElegido.Length < 3);
+            var emailElegido = ValidarEmail("Email: ");
+
+            var vehiculoIntroducido = new Vehiculo {
+                Matricula = matriculaElegida, 
+                Marca = marcaElegida, 
+                Modelo = modeloElegido, 
+                Profesor = {
+                    Nip = nipElegido, 
+                    Nombre = nombreElegido, 
+                    Email = emailElegido
+                }
+            };
+            parking[posicion.Fila, posicion.Columna] = vehiculoIntroducido;
+            Log.Information($"✅ Vehículo registrado correctamente en {posicion.Fila}:{posicion.Columna}");
+        }
     }
 }
 
@@ -349,6 +391,52 @@ void MostrarProfesores(Vehiculo?[,] parking) {
 }
 
 
+
+void ActualizarVehiculo(Vehiculo?[,] parking) {
+    Posicion posicion = ValidarPosicion("Posición del coche a actualizar: ");
+    if (parking[posicion.Fila, posicion.Columna] is null) {
+        Console.WriteLine($"🔴  No existe ningún coche en {posicion.Fila + 1}:{posicion.Columna + 1}");
+        Log.Warning($"⚠️  Vehículo no encontrado en {posicion.Fila}:{posicion.Columna}");
+    } else {
+
+        var vehiculoModificado = parking[posicion.Fila, posicion.Columna];
+        
+        
+        Log.Debug("🔵 Preguntando datos...");
+        // preguntas para añadir, solo nip y nombre obligatorios
+        string nombreElegido;
+        Console.WriteLine("Donde no quieras modificar introduce el dato actual.");
+        string matriculaElegida = ValidarMatricula($"Introduce la matrícula (Actual: {vehiculoModificado?.Matricula}): ");
+        Console.WriteLine($"Introduce la Marca (Actual: {vehiculoModificado?.Marca}):");
+        var marcaElegida = Console.ReadLine()?.Trim() ?? "No introducida";
+        Console.WriteLine($"Modelo (Actual: {vehiculoModificado?.Modelo}): ");
+        var modeloElegido = Console.ReadLine()?.Trim() ?? "No introducida";
+        var nipElegido = ValidarNip($"Introduce el Nip del profesor (Actual: {vehiculoModificado?.Profesor.Nip}): ");
+        do {
+            Console.WriteLine($"Nombre (Actual: {vehiculoModificado?.Profesor.Nombre}): ");
+            nombreElegido = Console.ReadLine()?.Trim() ?? "No introducida";
+            if (nombreElegido.Length < 3)
+                Console.WriteLine("❌ Nombre menor a 3 caracteres.");
+        } while (nombreElegido.Length < 3);
+        var emailElegido = ValidarEmail($"Email (Actual: {vehiculoModificado?.Profesor.Email}): ");
+
+        vehiculoModificado = new Vehiculo {
+            Matricula = matriculaElegida, 
+            Marca = marcaElegida, 
+            Modelo = modeloElegido, 
+            Profesor = {
+                Nip = nipElegido, 
+                Nombre = nombreElegido, 
+                Email = emailElegido
+            }
+        };
+        parking[posicion.Fila, posicion.Columna] = vehiculoModificado;
+        Log.Information($"✅ Vehículo modificado correctamente en {posicion.Fila}:{posicion.Columna}");
+    }
+}
+
+
+
 void BorrarVehiculo(Vehiculo?[,] parking, ref int numVehiculos) {
     Log.Debug("🔵 Comenzando el proceso de eliminación...");
     string matriculaElegida = ValidarMatricula("Introduce la matrícula del vehículo a borrar (Ej: 1234CBC): ");
@@ -454,8 +542,7 @@ string ValidarNip(string msg) {
     return nip;
 }
 
-string ValidarMatricula(string msg)
-{
+string ValidarMatricula(string msg) {
     string matricula = "";
     bool isMatriculaOk = false;
     var regexMatricula = new Regex(@"^\d{4}[B-DF-HJ-NP-TV-Z]{3}$");
@@ -463,7 +550,7 @@ string ValidarMatricula(string msg)
     {
         Console.WriteLine(msg);
         var input = Console.ReadLine()?.Trim().ToUpper() ?? "";
-        Log.Debug($"🔵  Validando matrícula {input}...");
+        Log.Debug($"🔵 Validando matrícula {input}...");
 
         if (regexMatricula.IsMatch(input)) {
             matricula = input;
@@ -477,6 +564,35 @@ string ValidarMatricula(string msg)
     } while (!isMatriculaOk);
 
     return matricula;
+}
+
+
+
+string ValidarEmail(string msg) {
+    string email = "";
+    bool isEmailOk = false;
+    var regexEmail = new Regex(@"^\w{1,20}@\w{1,15}\.\w{1,4}$");
+    do
+    {
+        Console.WriteLine(msg);
+        var input = Console.ReadLine()?.Trim() ?? "";
+        Log.Debug($"🔵 Validando email {input}...");
+
+        if (regexEmail.IsMatch(input)) {
+            email = input;
+            Log.Information($"✅  Email {email} leído correctamente.");
+            isEmailOk = true;
+        } else {
+
+            if (input == "") {
+                return email;
+            }
+            Console.WriteLine("🔴 Email introducido no válido. Formato esperado: xxxx@xxx.xx");
+            Log.Information("🔴  Email introducido no válido.");
+        }
+    } while (!isEmailOk);
+
+    return email;
 }
 
 void OrdenarVehiculosBurbuja(Vehiculo[] vehiculosExistentes) {
@@ -540,7 +656,6 @@ Vehiculo[] CrearArrayVehiculos(Vehiculo?[,] parking) {
         Log.Warning("⚠️ No hay vehículos para mostrar.");
         return vehiculosExistentes;
     }
-    
     // ponemos a los vehiculos en el vector de vehiculos
     int indice = 0;
     for (int i = 0; i < parking.GetLength(0); i++) {
@@ -551,6 +666,5 @@ Vehiculo[] CrearArrayVehiculos(Vehiculo?[,] parking) {
             }
         }
     }
-
     return vehiculosExistentes;
 }

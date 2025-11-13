@@ -9,8 +9,7 @@ public enum MenuOpcion {
     BusquedaMatricula = 6,             // R
     ListaMatricula = 7,                // R
     ListaProfesoresConVehiculo = 8,    // R
-    ActualizarVehiculo = 9,            // U
-    ActualizarProfesor = 10,           // U
-    BorrarVehiculo = 11,               // D 
-    Salir = 12,                        // Salir :)
+    ActualizarDatos = 9,
+    BorrarVehiculo = 10,               // D 
+    Salir = 11,                        // Salir :)
 }
