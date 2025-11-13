@@ -221,7 +221,7 @@ void AñadirVehiculo(Vehiculo?[,] parking, ref int numVehiculos) {
                 Console.WriteLine("Nombre");
                 nombreElegido = Console.ReadLine()?.Trim() ?? "No introducida";
                 if (nombreElegido.Length < 3)
-                    Console.WriteLine("❌ Nombre menor a 3 caracteres.");
+                    Console.WriteLine("❌  Nombre menor a 3 caracteres.");
             } while (nombreElegido.Length < 3);
             var emailElegido = ValidarEmail("Email: ");
 
@@ -416,7 +416,7 @@ void ActualizarVehiculo(Vehiculo?[,] parking) {
             Console.WriteLine($"Nombre (Actual: {vehiculoModificado?.Profesor.Nombre}): ");
             nombreElegido = Console.ReadLine()?.Trim() ?? "No introducida";
             if (nombreElegido.Length < 3)
-                Console.WriteLine("❌ Nombre menor a 3 caracteres.");
+                Console.WriteLine("❌  Nombre menor a 3 caracteres.");
         } while (nombreElegido.Length < 3);
         var emailElegido = ValidarEmail($"Email (Actual: {vehiculoModificado?.Profesor.Email}): ");
 
@@ -526,7 +526,7 @@ string ValidarNip(string msg) {
     var regexPosicion = new Regex (@"^[A-Z]{2}\d$");
     do {
         Console.WriteLine(msg);
-        var input = Console.ReadLine()?.Trim() ?? "-1";
+        var input = Console.ReadLine()?.Trim().ToUpper() ?? "-1";
         Log.Debug("🔵 Validando posicion...");
         
         if (regexPosicion.IsMatch(input)) {
