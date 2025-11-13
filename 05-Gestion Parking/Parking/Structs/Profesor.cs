@@ -1,7 +1,7 @@
 ﻿namespace Parking.Structs;
 
 internal struct Profesor {
-    public string nip;
-    public string nombre;
-    public string email;
+    public string Nip;
+    public string Nombre;
+    public string Email;
 }
