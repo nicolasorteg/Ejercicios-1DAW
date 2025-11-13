@@ -70,7 +70,7 @@ void Main(string[] args) {
                 MostrarPorMatriculaAsc(parking);
                 break;
             case (int)MenuOpcion.ListaProfesoresConVehiculo: // 8
-                //MostrarProfesores(parking);
+                MostrarProfesores(parking);
                 break;
             case (int)MenuOpcion.ActualizarVehiculo: // 9
                 //ActualizarVehiculo(parking);
@@ -194,7 +194,6 @@ void LeerInformacionPlaza(Vehiculo?[,] parking) {
 }
 
 
-
 void BuscarPorNip(Vehiculo?[,] parking) {
     string nipElegido = ValidarNip("Nip: "); // extraemos el nip introducido
 
@@ -263,37 +262,11 @@ void BuscarPorMatricula(Vehiculo?[,] parking) {
 }
 
 
-
-
 void MostrarPorMatriculaAsc(Vehiculo?[,] parking) {
     Log.Debug("🔵 Mostrando vehículos ordenados por matrícula...");
     
-    // para determinar el tamaño del vector de vehiculos necesitamos saber cuantos hay actualmente en el parking
-    int numCoches = 0;
-    // recorremos el parking para ver cuantos coches hay
-    for (int i = 0; i < parking.GetLength(0); i++) {
-        for (int j = 0; j < parking.GetLength(1); j++) {
-            if (parking[i, j] is not null)
-                numCoches++;
-        }
-    }
-    if (numCoches == 0) {
-        Console.WriteLine("❌ No hay vehículos en el parking.");
-        Log.Warning("⚠️ No hay vehículos para mostrar.");
-        return;
-    }
-    Vehiculo[] vehiculosExistentes = new Vehiculo[numCoches];
-    
-    // ponemos a los vehiculos en el vector de vehiculos
-    int indice = 0;
-    for (int i = 0; i < parking.GetLength(0); i++) {
-        for (int j = 0; j < parking.GetLength(1); j++) {
-            if (parking[i, j] is not null) {
-                vehiculosExistentes[indice] = parking[i, j].Value;
-                indice++;
-            }
-        }
-    }
+    // creamos un array donde se almacenaran los coches que hay actualmente en el parking
+    var vehiculosExistentes = CrearArrayVehiculos(parking);
 
     // ordenamos el array
     Log.Debug($"🔵 Ordenando por matrícula...");
@@ -304,6 +277,19 @@ void MostrarPorMatriculaAsc(Vehiculo?[,] parking) {
     Console.WriteLine();
     ImprimirDatos(vehiculosExistentes);
 }
+
+
+void MostrarProfesores(Vehiculo?[,] parking) {
+    Log.Debug("🔵 Mostrando vehículos ordenados por matrícula...");
+
+    var vehiculosExistentes = CrearArrayVehiculos(parking);
+    
+    // mostramos los datos por pantalla
+    Log.Debug($"🔵 Mostrando los datos...");
+    Console.WriteLine();
+    ImprimirDatos(vehiculosExistentes);
+}
+
 
 
 
@@ -461,4 +447,36 @@ void ImprimirDatos(Vehiculo[] vehiculos) {
         Console.WriteLine($"- Email: {vehiculo.Profesor.Email}");
         Console.WriteLine("---------------------------------");
     }
+}
+
+Vehiculo[] CrearArrayVehiculos(Vehiculo?[,] parking) {
+    // para determinar el tamaño del vector de vehiculos necesitamos saber cuantos hay actualmente en el parking
+    int numCoches = 0;
+    
+    // recorremos el parking para ver cuantos coches hay
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j] is not null)
+                numCoches++;
+        }
+    }
+    Vehiculo[] vehiculosExistentes = new Vehiculo[numCoches];
+    if (numCoches == 0) {
+        Console.WriteLine("❌ No hay vehículos en el parking.");
+        Log.Warning("⚠️ No hay vehículos para mostrar.");
+        return vehiculosExistentes;
+    }
+    
+    // ponemos a los vehiculos en el vector de vehiculos
+    int indice = 0;
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (parking[i, j] is not null) {
+                vehiculosExistentes[indice] = parking[i, j].Value;
+                indice++;
+            }
+        }
+    }
+
+    return vehiculosExistentes;
 }
