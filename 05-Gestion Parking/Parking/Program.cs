@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.Design;
-using System.Text;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 using Parking.Enums;
 using Serilog;
 using Parking.Structs;
 
 // zona de constantes
-
 const int OcupacionInicial = 3;
 const int Size = 10;
 
@@ -59,7 +58,7 @@ void Main(string[] args) {
                 MostrarParking(parking);
                 break;
             case (int)MenuOpcion.InfPlaza: // 4
-                //LeerInformacionPlaza(parking);
+                LeerInformacionPlaza(parking);
                 break;
             case (int)MenuOpcion.BusquedaNip: // 5
                 //BuscarPorNip(parking);
@@ -117,9 +116,9 @@ void ImprimirMenu() {
 void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
     Log.Debug("🔵 Creando vehículos ejemplficativos...");
     // creo 3 vehiculos con sus profesores inventados
-    Vehiculo v1 = new Vehiculo {matricula = "1234CBC", marca = "Seat", modelo = "Ibiza", profesor = {nip = "AB1", nombre = "JoseLuis", email = "joseluisgs@gmail.com"}};
-    Vehiculo v2 = new Vehiculo {matricula = "6382JFF", marca = "Skoda", modelo = "Octavia", profesor = {nip = "ZJ7", nombre = "Carmen", email = "carme123@gmail.com"}};
-    Vehiculo v3 = new Vehiculo {matricula = "3729FPL", marca = "Citroen", modelo = "C5", profesor = {nip = "HF7", nombre = "Pepe", email = "pepecito69@gmail.com"}};
+    Vehiculo v1 = new Vehiculo {Matricula = "1234CBC", Marca = "Seat", Modelo = "Ibiza", Profesor = {Nip = "AB1", Nombre = "JoseLuis", Email = "joseluisgs@gmail.com"}};
+    Vehiculo v2 = new Vehiculo {Matricula = "6382JFF", Marca = "Skoda", Modelo = "Octavia", Profesor = {Nip = "ZJ7", Nombre = "Carmen", Email = "carme123@gmail.com"}};
+    Vehiculo v3 = new Vehiculo {Matricula = "3729FPL", Marca = "Citroen", Modelo = "C5", Profesor = {Nip = "HF7", Nombre = "Pepe", Email = "pepecito69@gmail.com"}};
 
     // array de vehiculos para asignarlos a una pos
     var coches = new Vehiculo[] { v1, v2, v3 };
@@ -135,16 +134,17 @@ void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
         // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
         if (parking[filaRandom, columnaRandom] is null) {
             parking[filaRandom, columnaRandom] = coches[numVehiculos];
-            Log.Information($"✅  Coche {coches[numVehiculos].matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
+            Log.Information($"✅  Coche {coches[numVehiculos].Matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
             numVehiculos++;
         }
     }
 }
 
-
+// ------------------------ FUNCIONES CRUD ------------------------
 
 void MostrarParking(Vehiculo?[,] parking) {
 
+    Log.Debug("🔵 Mostrando el parking...");
     Console.WriteLine("------ PARKING IES LUIS VIVES ------");
     Console.WriteLine();
     
@@ -172,6 +172,25 @@ void MostrarParking(Vehiculo?[,] parking) {
 
 
 
+void LeerInformacionPlaza(Vehiculo?[,] parking) {
+    Posicion posicion = ValidarPosicion("Posición: ");
+
+    if (parking[posicion.Fila, posicion.Columna] == null) {
+        Console.WriteLine($"❌ No existe ningún vehículo para la posición {posicion.Fila}:{posicion.Columna}");
+    } else {
+        Vehiculo? vehiculoElegido = parking[posicion.Fila, posicion.Columna];
+        
+        Console.WriteLine();
+        Console.WriteLine("-- 🚗 Información del vehículo --");
+        Console.WriteLine($"- Matrícula: {vehiculoElegido?.Matricula}");
+        Console.WriteLine($"- Marca: {vehiculoElegido?.Marca}");
+        Console.WriteLine($"- Modelo: {vehiculoElegido?.Modelo}");
+        Console.WriteLine("-- 👨‍🏫 Información del propietario --");
+        Console.WriteLine($"- NIP: {vehiculoElegido?.Profesor.Nip}");
+        Console.WriteLine($"- Nombre: {vehiculoElegido?.Profesor.Nombre}");
+        Console.WriteLine($"- Email: {vehiculoElegido?.Profesor.Email}");
+    }
+}
 
 
 
@@ -182,7 +201,10 @@ void MostrarParking(Vehiculo?[,] parking) {
 
 
 
-// ----------------------- FUNCIONES AUXILIARES ----------------------------
+
+
+
+// ----------------------- FUNCIONES AUXILIARES -----------------------
 
 int ValidarOpcion(string msg) {
 
@@ -207,4 +229,36 @@ int ValidarOpcion(string msg) {
         }
     } while (!isOpcionOk);
     return opcionElegida;
+}
+
+
+
+Posicion ValidarPosicion(string msg) {
+
+    int filaElegida = 0;
+    int columnaElegida = 0;
+    bool isPosicionOk = false;
+    var regexPosicion = new Regex (@"^[1-2]:[1-5]$");
+    do {
+        Console.WriteLine(msg);
+        var input = Console.ReadLine()?.Trim() ?? "-1";
+        Log.Debug("🔵 Validando posicion...");
+        
+        if (regexPosicion.IsMatch(input)) {
+            var posicion = input.Split(":");
+            filaElegida = Convert.ToInt32(posicion[0]);
+            Log.Information($"✅  Fila {filaElegida} leída correctamente.");
+            columnaElegida = Convert.ToInt32(posicion[1]);
+            Log.Information($"✅  Columna {columnaElegida} leída correctamente.");
+            isPosicionOk = true;
+        } else {
+            Console.WriteLine($"🔴 Posición introducida no reconocida. Introduzca una posición existente.");
+            Log.Information($"🔴  Posición introducida no válida.");
+        }
+    } while (!isPosicionOk);
+
+    return new Posicion {
+        Fila = filaElegida - 1,
+        Columna = columnaElegida - 1
+    };
 }

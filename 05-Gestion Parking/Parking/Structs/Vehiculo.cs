@@ -1,8 +1,8 @@
 ﻿namespace Parking.Structs;
 
 internal struct Vehiculo {
-    public string matricula;
-    public string marca;
-    public string modelo;
-    public Profesor profesor;
+    public string Matricula;
+    public string Marca;
+    public string Modelo;
+    public Profesor Profesor;
 }
