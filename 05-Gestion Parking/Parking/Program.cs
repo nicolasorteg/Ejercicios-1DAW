@@ -61,7 +61,7 @@ void Main(string[] args) {
                 LeerInformacionPlaza(parking);
                 break;
             case (int)MenuOpcion.BusquedaNip: // 5
-                //BuscarPorNip(parking);
+                BuscarPorNip(parking);
                 break;
             case (int)MenuOpcion.BusquedaMatricula: // 6
                 //BuscarPorMatricula(parking);
@@ -170,13 +170,12 @@ void MostrarParking(Vehiculo?[,] parking) {
 }
 
 
-
-
 void LeerInformacionPlaza(Vehiculo?[,] parking) {
     Posicion posicion = ValidarPosicion("Posición: ");
 
     if (parking[posicion.Fila, posicion.Columna] == null) {
         Console.WriteLine($"❌ No existe ningún vehículo para la posición {posicion.Fila}:{posicion.Columna}");
+        Log.Warning($"⚠️ Vehículo  para la posición {posicion.Fila}:{posicion.Columna} no encontrado.");
     } else {
         Vehiculo? vehiculoElegido = parking[posicion.Fila, posicion.Columna];
         
@@ -190,6 +189,40 @@ void LeerInformacionPlaza(Vehiculo?[,] parking) {
         Console.WriteLine($"- Nombre: {vehiculoElegido?.Profesor.Nombre}");
         Console.WriteLine($"- Email: {vehiculoElegido?.Profesor.Email}");
     }
+}
+
+
+
+void BuscarPorNip(Vehiculo?[,] parking) {
+    string nipElegido = ValidarNip("Nip: ");
+
+    Log.Debug($"🔵 Buscando profesor de NIP {nipElegido}");
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            
+            if (parking[i, j]?.Profesor.Nip == nipElegido) {
+
+                Profesor? profesorElegido = parking[i, j]?.Profesor;
+                Vehiculo? vehiculoProfesor = parking[i, j];
+
+                Log.Information($"✅  Profesor de Nip {nipElegido} encontrado.");
+                Console.WriteLine();
+                Console.WriteLine("-- 👨‍🏫 Información del propietario --");
+                Console.WriteLine($"- NIP: {profesorElegido?.Nip}");
+                Console.WriteLine($"- Nombre: {profesorElegido?.Nombre}");
+                Console.WriteLine($"- Email: {profesorElegido?.Email}");
+                Console.WriteLine("-- 🚗 Información del vehículo --");
+                Console.WriteLine($"- Matrícula: {vehiculoProfesor?.Matricula}");
+                Console.WriteLine($"- Marca: {vehiculoProfesor?.Marca}");
+                Console.WriteLine($"- Modelo: {vehiculoProfesor?.Modelo}");
+                Console.WriteLine($"-- 📍 Plaza: {i + 1}:{j + 1} --");
+                Console.WriteLine();
+                return;
+            }
+        }
+    }
+    Console.WriteLine($"❌ No se encontró ningún profesor con NIP {nipElegido}.");
+    Log.Warning($"⚠️ Profesor con NIP {nipElegido} no encontrado.");
 }
 
 
@@ -261,4 +294,27 @@ Posicion ValidarPosicion(string msg) {
         Fila = filaElegida - 1,
         Columna = columnaElegida - 1
     };
+}
+
+
+string ValidarNip(string msg) {
+    string nip = "";
+    bool isNipOk = false;
+    var regexPosicion = new Regex (@"^[A-Z]{2}\d$");
+    do {
+        Console.WriteLine(msg);
+        var input = Console.ReadLine()?.Trim() ?? "-1";
+        Log.Debug("🔵 Validando posicion...");
+        
+        if (regexPosicion.IsMatch(input)) {
+            nip = input;
+            Log.Information($"✅  Nip {nip} leído correctamente.");
+            isNipOk = true;
+        } else {
+            Console.WriteLine($"🔴 Nip introducido no reconocida. Introduzca un Nip válido (LLN).");
+            Log.Information($"🔴  Nip introducido no válido.");
+        }
+    } while (!isNipOk);
+
+    return nip;
 }
