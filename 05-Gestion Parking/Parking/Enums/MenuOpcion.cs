@@ -11,7 +11,6 @@ public enum MenuOpcion {
     ListaProfesoresConVehiculo = 8,    // R
     ActualizarVehiculo = 9,            // U
     ActualizarProfesor = 10,           // U
-    BorrarProfesor = 11,               // D
-    BorrarVehiculo = 12,               // D 
-    Salir = 13,                        // Salir :)
+    BorrarVehiculo = 11,               // D 
+    Salir = 12,                        // Salir :)
 }

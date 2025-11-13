@@ -49,10 +49,10 @@ void Main(string[] args) {
         Console.WriteLine();
         switch (opcionElegida) {
             case (int)MenuOpcion.EntrarParking: // 1
-                //SimularBarreraEntrada(parking, numVehiculos);
+                SimularBarreraEntrada(parking, ref numVehiculos);
                 break;
             case (int)MenuOpcion.AñadirVehiculo: // 2
-                //AñadirVehiculo(parking, numVehiculos);
+                //AñadirVehiculo(parking, ref numVehiculos);
                 break;
             case (int)MenuOpcion.VerParking: // 3
                 MostrarParking(parking);
@@ -78,13 +78,10 @@ void Main(string[] args) {
             case (int)MenuOpcion.ActualizarProfesor: // 10
                 //ActualizarProfesor(parking);
                 break;
-            case (int)MenuOpcion.BorrarProfesor: // 11
-                //BorrarProfesor(parking);
+            case (int)MenuOpcion.BorrarVehiculo: // 11
+                BorrarVehiculo(parking, ref numVehiculos);
                 break;
-            case (int)MenuOpcion.BorrarVehiculo: // 12
-                //BorrarVehiculo(parking);
-                break;
-            case (int)MenuOpcion.Salir: // 13
+            case (int)MenuOpcion.Salir: // 12
                 Console.WriteLine("😊 Ha sido un placer...");
                 break;
             default: // no deberia poder llegar aqui ya que 'ValidarOpcion' solo puede devolver un numero valido
@@ -107,7 +104,6 @@ void ImprimirMenu() {
     Console.WriteLine($"{(int)MenuOpcion.ListaProfesoresConVehiculo}.- Listado profesores y sus coches.");
     Console.WriteLine($"{(int)MenuOpcion.ActualizarVehiculo}.- Actualizar datos de un vehículo.");
     Console.WriteLine($"{(int)MenuOpcion.ActualizarProfesor}.- Actualizar datos de un profesor.");
-    Console.WriteLine($"{(int)MenuOpcion.BorrarProfesor}.- Borrar profesor.");
     Console.WriteLine($"{(int)MenuOpcion.BorrarVehiculo}.- Borrar vehículo.");
     Console.WriteLine($"{(int)MenuOpcion.Salir}.- Salir.");
     Console.WriteLine("------------------------------------");
@@ -141,6 +137,29 @@ void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
 }
 
 // ------------------------ FUNCIONES CRUD ------------------------
+
+
+
+void SimularBarreraEntrada(Vehiculo?[,] parking, ref int numVehiculos) {
+    Console.WriteLine("🚧 Barrera de entrada.");
+    string matriculaElegida = ValidarMatricula("Introduce la matrícula (Ej: 1234CBC): ");
+    var vehiculoIntroducido = new Vehiculo {Matricula = matriculaElegida};
+    bool isCocheIntroducido = false;
+    while (!isCocheIntroducido) {
+        
+        int filaRandom = random.Next(parking.GetLength(0));
+        int columnaRandom = random.Next(parking.GetLength(1));
+        // si esta vacia se mete el coche extraido del array de coches y se incrementa el aforo actual
+        if (parking[filaRandom, columnaRandom] is null) {
+            parking[filaRandom, columnaRandom] = vehiculoIntroducido;
+            Log.Information($"✅  Coche {vehiculoIntroducido.Matricula} asignado a la posición {filaRandom}:{columnaRandom} correctamente.");
+            
+            numVehiculos++;
+        }
+    }
+    
+}
+
 
 void MostrarParking(Vehiculo?[,] parking) {
 
@@ -291,7 +310,23 @@ void MostrarProfesores(Vehiculo?[,] parking) {
 }
 
 
-
+void BorrarVehiculo(Vehiculo?[,] parking, ref int numVehiculos) {
+    Log.Debug("🔵 Comenzando el proceso de eliminación...");
+    string matriculaElegida = ValidarMatricula("Introduce la matrícula del vehículo a borrar (Ej: 1234CBC): ");
+    
+    Log.Debug($"🔵 Buscando vehículo con matrícula {matriculaElegida}");
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            
+            if (parking[i, j]?.Matricula == matriculaElegida) {
+                parking[i, j] = null;
+                numVehiculos--;
+                Log.Information($"✅ Vehículo con matrícula {matriculaElegida} encontrado y borrado.");
+                Console.WriteLine("✅  Vehículo borrado con éxito");
+            }
+        }
+    }
+}
 
 
 
