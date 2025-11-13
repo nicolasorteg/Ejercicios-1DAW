@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Parking
-build_property.ProjectDir = C:\Users\nickr\Desktop\Projects\Ejercicios-1DAW\05-Gestion Parking\Parking\
+build_property.ProjectDir = C:\Users\nickr\Desktop\Ejercicios-1DAW\05-Gestion Parking\Parking\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
