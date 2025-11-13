@@ -33,6 +33,7 @@ return;
 
 void Main(string[] args) {
     Log.Debug("➡️ Iniciando el Main...");
+    Console.WriteLine("😊 Bienvenid@ al programa de gestión del Parking del Luis Vives.");
 
     int numVehiculos = 0;
     // creación del parking
@@ -41,10 +42,12 @@ void Main(string[] args) {
     RellenarParking(parking, ref numVehiculos);
     int opcionElegida = 0;
     do {
+        Console.WriteLine();
         ImprimirMenu();
         opcionElegida = ValidarOpcion("Introduzca una opción:");
 
         Log.Debug($"🔵 Asignando acción para la opción {opcionElegida}");
+        Console.WriteLine();
         switch (opcionElegida) {
             case (int)MenuOpcion.EntrarParking: // 1
                 //SimularBarreraEntrada(parking, numVehiculos);
@@ -53,7 +56,7 @@ void Main(string[] args) {
                 //AñadirVehiculo(parking, numVehiculos);
                 break;
             case (int)MenuOpcion.VerParking: // 3
-                //MostrarParking(parking);
+                MostrarParking(parking);
                 break;
             case (int)MenuOpcion.InfPlaza: // 4
                 //LeerInformacionPlaza(parking);
@@ -91,15 +94,6 @@ void Main(string[] args) {
         }
     } while (opcionElegida != (int)MenuOpcion.Salir);
     
-    for (int i = 0; i < parking.GetLength(0); i++) {
-        for (int j = 0; j < parking.GetLength(1); j++) {
-            if (parking[i, j] is null)
-                Console.Write("[🔵]");
-            else 
-                Console.Write("[🚗]");
-        }
-        Console.WriteLine();
-    }
 }
 
 void ImprimirMenu() {
@@ -146,6 +140,49 @@ void RellenarParking(Vehiculo?[,] parking, ref int numVehiculos) {
         }
     }
 }
+
+
+
+void MostrarParking(Vehiculo?[,] parking) {
+
+    Console.WriteLine("------ PARKING IES LUIS VIVES ------");
+    Console.WriteLine();
+    
+    // cabecera
+    Console.Write("   ");
+    for (int i = 0; i < parking.GetLength(1); i++) {
+        Console.Write((i + 1) + "   ");
+    }
+    Console.WriteLine();
+        
+    for (int i = 0; i < parking.GetLength(0); i++) {
+        for (int j = 0; j < parking.GetLength(1); j++) {
+            if (j == 0) { // indices filas
+                Console.Write((i + 1) + " ");
+            }
+            if (parking[i, j] is null)
+                Console.Write("[🔵]");
+            else 
+                Console.Write("[🚗]");
+        }
+        Console.WriteLine();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ----------------------- FUNCIONES AUXILIARES ----------------------------
 
 int ValidarOpcion(string msg) {
 
