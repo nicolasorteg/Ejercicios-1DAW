@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RWQonqM6yLM=",
+  "dgSpecHash": "iCB1Oz4vw3E=",
   "success": true,
   "projectFilePath": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\06-Gestion Empleados\\Empleados\\Empleados.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\nickr\\.nuget\\packages\\serilog\\4.3.0\\serilog.4.3.0.nupkg.sha512",
+    "C:\\Users\\nickr\\.nuget\\packages\\serilog.sinks.console\\6.1.1\\serilog.sinks.console.6.1.1.nupkg.sha512"
+  ],
   "logs": []
 }
