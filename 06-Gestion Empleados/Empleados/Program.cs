@@ -2,11 +2,12 @@
 
 using System.Text;
 using Serilog;
+using Empleados.Structs;
 
 // zona de constantes
-
-const int EmpleadosIniciales = 15;
-const int EmpleadosMaximos = 50;
+const int EmpleadosIniciales = 5;
+const int TamañoInicial = 10;
+const int EmpleadosMaximos = 25;
 
 var random = Random.Shared;
 
@@ -26,7 +27,14 @@ Console.WriteLine("👋 Presiona una tecla para salir...");
 Console.ReadKey();
 return;
 
+// main daws template
 void Main(string[] args) {
     Log.Debug("🔵 Iniciando el Main...");
-    Console.WriteLine("Diego's template configurada");
+    Console.WriteLine("👷 Bienvenido al Sistema de Gestión de Empleados");
+
+    int numEmpleados = 0;
+
+    Empleado?[] plantilla= new Empleado?[EmpleadosIniciales];
+    //AsignarDatos(plantilla, ref numEmpleados);
+
 }

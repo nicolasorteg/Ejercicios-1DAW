@@ -13,3 +13,7 @@ C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\
 C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.pdb
 C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.genruntimeconfig.cache
 C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\ref\Empleados.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Serilog.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\bin\Debug\net10.0\Serilog.Sinks.Console.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.csproj.AssemblyReference.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\06-Gestion Empleados\Empleados\obj\Debug\net10.0\Empleados.csproj.Up2Date
