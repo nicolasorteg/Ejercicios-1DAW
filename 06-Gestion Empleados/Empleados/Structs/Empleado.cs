@@ -6,5 +6,5 @@ internal struct Empleado {
     public string nombre;
     public int Edad;
     public string Email;
-    public Cargo cargo;
+    public Cargo Cargo;
 }
