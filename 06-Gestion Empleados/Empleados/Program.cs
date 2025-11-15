@@ -15,7 +15,7 @@ var random = Random.Shared;
 // config. del logger
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().CreateLogger();
 
-// titulo de la terminal 
+// título de la terminal 
 Console.Title = "Gestión Empleados";
 // emojis en terminal
 Console.OutputEncoding = Encoding.UTF8;
@@ -35,43 +35,46 @@ void Main(string[] args) {
 
     int numEmpleados = 0;
 
+    // creación vector que almacena plantilla + asignacion de datos
     Empleado?[] plantilla= new Empleado?[TamañoInicial];
     AsignarDatos(plantilla, ref numEmpleados);
 
-    int opcionElegida = 0;
+    int opcionElegida = 0; // inicializada para garantizar una entrada segura
     do {
         ImprimirMenu();
-        opcionElegida = ValidarOpcion();
-
+        opcionElegida = ValidarOpcion("- Opción elegida: ");
+        Console.WriteLine(); // salto de línea
+        
+        // asignacion de la opcion elegida
         switch (opcionElegida) {
-            case (int)MenuPrincipal.CrearEmpleado:
+            case (int)MenuPrincipal.CrearEmpleado: // 1
                 CrearEmpleado(ref plantilla, ref numEmpleados);
                 break;
-            case (int)MenuPrincipal.VerEmpleados:
+            case (int)MenuPrincipal.VerEmpleados: // 2
                 VerEmpleado(plantilla);
                 break;
-            case (int)MenuPrincipal.ListarEmpleadosNip:
+            case (int)MenuPrincipal.ListarEmpleadosNip: // 3
                 ListarEmpleadosNip(plantilla);
                 break;
-            case (int)MenuPrincipal.MostrarPorCargo:
+            case (int)MenuPrincipal.MostrarPorCargo: // 4
                 MostrarPorCargo(plantilla);
                 break;
-            case (int)MenuPrincipal.ActualizarEmpleado:
+            case (int)MenuPrincipal.ActualizarEmpleado: // 5
                 ActualizarEmpleado(plantilla);
                 break;
-            case (int)MenuPrincipal.BorrarEmpleado:
+            case (int)MenuPrincipal.BorrarEmpleado: // 6
                 BorrarEmpleado(ref plantilla, ref numEmpleados);
                 break;
-            case (int)MenuPrincipal.Salir:
+            case (int)MenuPrincipal.Salir: // 0
                 Console.WriteLine("Saliendo del programa...");
                 break;
-            default:
+            default: // no deberia pasar nunca ya que ValidarOpcion se asegura de quela opcion exista en el menu
                 Log.Error("🔴  El programa ha fallado en 'ValidarOpcion' y no ha podido reconocer la opción introducida");
                 Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
                 break;
         }
 
-    } while (opcionElegida != (int)MenuPrincipal.Salir);
+    } while (opcionElegida != (int)MenuPrincipal.Salir); // mientras la opcion no sea salir se seguirá repitiendo el menú
 }
 
 // --------------------------- FUNCIONES CRUD
@@ -133,12 +136,24 @@ void AsignarDatos(Empleado?[] plantilla, ref int empleados) {
     }
 }
 
-
+/*
+ * Procedimiento encargado de imprimir el Menú Principal del programa
+ * haciendo uso del enum MenuPrincipal para mostras las posibles opciones
+ */
 void ImprimirMenu() {
-    throw new NotImplementedException();
+    Console.WriteLine();
+    Console.WriteLine("----👷‍♂️MENÚ PRINCIPAL👷‍♂️----");
+    Console.WriteLine($"{(int)MenuPrincipal.CrearEmpleado}.- Crear Empleado.");
+    Console.WriteLine($"{(int)MenuPrincipal.VerEmpleados}.- Ver listado Empleados.");
+    Console.WriteLine($"{(int)MenuPrincipal.ListarEmpleadosNip}.- Listar Empleados por Nip.");
+    Console.WriteLine($"{(int)MenuPrincipal.MostrarPorCargo}.- Listar por Cargo.");
+    Console.WriteLine($"{(int)MenuPrincipal.ActualizarEmpleado}.- Actualizar datos Empleado.");
+    Console.WriteLine($"{(int)MenuPrincipal.BorrarEmpleado}.- Borrar Empleado.");
+    Console.WriteLine($"{(int)MenuPrincipal.Salir}.- Salir.");
+    Console.WriteLine("-------------------------------");
 }
 
 
-int ValidarOpcion() {
+int ValidarOpcion(string prompt) {
     throw new NotImplementedException();
 }
