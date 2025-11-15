@@ -47,19 +47,26 @@ void Main(string[] args) {
  * iniciar la gestión con datos ejemplificativos
  */
 void AsignarDatos(Empleado?[] plantilla, ref int empleados) {
-
+    
+    Log.Debug("🔵 Empezando la asignación de datos...");
     // creamos 5 empleados con datos inventados
     var e1 = new Empleado { Nip = "AA1", nombre = "José Luis", Edad = 18, Email = "joseluisgs@gmail.com", Cargo = Cargo.Director };
     var e2 = new Empleado { Nip = "BB2", nombre = "Rafa", Edad = 20, Email = "rafa123@gmail.com", Cargo = Cargo.Operario };
     var e3 = new Empleado { Nip = "CC3", nombre = "Aitor", Edad = 40, Email = "aitorcrack69@gmail.com", Cargo = Cargo.Operario };
     var e4 = new Empleado { Nip = "DD4", nombre = "Nicolás", Edad = 20, Email = "nicolas33@gmail.com", Cargo = Cargo.Supervisor };
     var e5 = new Empleado { Nip = "EE5", nombre = "Carlos", Edad = 25, Email = "carlitosalcaraz@gmail.com", Cargo = Cargo.Tecnico };
+    var trabajadores = new Empleado[] { e1, e2, e3, e4, e5 };
     
     // sorteamos su posición en la plantilla
     int posicion = 0;
 
+    Log.Debug("🔵 Comenzando el sorteo de posición...");
     while (empleados < EmpleadosIniciales) {
         posicion = random.Next(plantilla.Length); // de 0-9 en este caso
+        if (plantilla[posicion] == null) {
+            plantilla[posicion] = trabajadores[empleados];
+            Log.Information($"✅  Empleado {trabajadores[empleados].Nip} asignado a la posición {posicion} correctamente.");
+            empleados++;
+        }
     }
-
 }
