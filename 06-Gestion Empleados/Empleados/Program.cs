@@ -8,7 +8,7 @@ using Empleados.Structs;
 // zona de constantes
 const int EmpleadosIniciales = 5;
 const int TamañoInicial = 10;
-const int EmpleadosMaximos = 25;
+//const int EmpleadosMaximos = 25;
 
 var random = Random.Shared;
 
@@ -38,7 +38,69 @@ void Main(string[] args) {
     Empleado?[] plantilla= new Empleado?[TamañoInicial];
     AsignarDatos(plantilla, ref numEmpleados);
 
+    int opcionElegida = 0;
+    do {
+        ImprimirMenu();
+        opcionElegida = ValidarOpcion();
+
+        switch (opcionElegida) {
+            case (int)MenuPrincipal.CrearEmpleado:
+                CrearEmpleado(ref plantilla, ref numEmpleados);
+                break;
+            case (int)MenuPrincipal.VerEmpleados:
+                VerEmpleado(plantilla);
+                break;
+            case (int)MenuPrincipal.ListarEmpleadosNip:
+                ListarEmpleadosNip(plantilla);
+                break;
+            case (int)MenuPrincipal.MostrarPorCargo:
+                MostrarPorCargo(plantilla);
+                break;
+            case (int)MenuPrincipal.ActualizarEmpleado:
+                ActualizarEmpleado(plantilla);
+                break;
+            case (int)MenuPrincipal.BorrarEmpleado:
+                BorrarEmpleado(ref plantilla, ref numEmpleados);
+                break;
+            case (int)MenuPrincipal.Salir:
+                Console.WriteLine("Saliendo del programa...");
+                break;
+            default:
+                Log.Error("🔴  El programa ha fallado en 'ValidarOpcion' y no ha podido reconocer la opción introducida");
+                Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
+                break;
+        }
+
+    } while (opcionElegida != (int)MenuPrincipal.Salir);
 }
+
+// --------------------------- FUNCIONES CRUD
+
+void CrearEmpleado(ref Empleado?[] empleado, ref int i) {
+    throw new NotImplementedException();
+}
+
+void VerEmpleado(Empleado?[] empleado) {
+    throw new NotImplementedException();
+}
+
+void ListarEmpleadosNip(Empleado?[] empleado) {
+    throw new NotImplementedException();
+}
+
+void MostrarPorCargo(Empleado?[] empleado) {
+    throw new NotImplementedException();
+}
+
+void ActualizarEmpleado(Empleado?[] empleado) {
+    throw new NotImplementedException();
+}
+
+void BorrarEmpleado(ref Empleado?[] empleado, ref int i) {
+    throw new NotImplementedException();
+}
+
+
 
 // --------------------------- FUNCIONES AUXILIARES
 
@@ -69,4 +131,14 @@ void AsignarDatos(Empleado?[] plantilla, ref int empleados) {
             empleados++;
         }
     }
+}
+
+
+void ImprimirMenu() {
+    throw new NotImplementedException();
+}
+
+
+int ValidarOpcion() {
+    throw new NotImplementedException();
 }
