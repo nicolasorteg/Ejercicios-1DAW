@@ -467,3 +467,75 @@
 2025-11-16 14:14:57.402 +01:00 [WRN] ⚠️ aa2 no es un dato válido para este campo.
 2025-11-16 14:14:58.851 +01:00 [INF] ✅ Dato leído correctamente.
 2025-11-16 14:15:00.802 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-16 14:21:51.132 +01:00 [DBG] - 🔵 Iniciando el Main...
+2025-11-16 14:21:51.287 +01:00 [DBG] 🔵 Empezando la asignación de datos...
+2025-11-16 14:21:51.287 +01:00 [DBG] 🔵 Comenzando el sorteo de posición...
+2025-11-16 14:21:51.288 +01:00 [INF] ✅  Empleado AA1 asignado a la posición 6 correctamente.
+2025-11-16 14:21:51.288 +01:00 [INF] ✅  Empleado BB2 asignado a la posición 5 correctamente.
+2025-11-16 14:21:51.288 +01:00 [INF] ✅  Empleado CC3 asignado a la posición 7 correctamente.
+2025-11-16 14:21:51.288 +01:00 [INF] ✅  Empleado DD4 asignado a la posición 8 correctamente.
+2025-11-16 14:21:51.288 +01:00 [INF] ✅  Empleado EE5 asignado a la posición 1 correctamente.
+2025-11-16 14:21:53.671 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:29:32.996 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-16 14:29:36.824 +01:00 [DBG] - 🔵 Iniciando el Main...
+2025-11-16 14:29:36.952 +01:00 [DBG] 🔵 Empezando la asignación de datos...
+2025-11-16 14:29:36.953 +01:00 [DBG] 🔵 Comenzando el sorteo de posición...
+2025-11-16 14:29:36.953 +01:00 [INF] ✅  Empleado AA1 asignado a la posición 4 correctamente.
+2025-11-16 14:29:36.953 +01:00 [INF] ✅  Empleado BB2 asignado a la posición 6 correctamente.
+2025-11-16 14:29:36.953 +01:00 [INF] ✅  Empleado CC3 asignado a la posición 3 correctamente.
+2025-11-16 14:29:36.953 +01:00 [INF] ✅  Empleado DD4 asignado a la posición 1 correctamente.
+2025-11-16 14:29:36.953 +01:00 [INF] ✅  Empleado EE5 asignado a la posición 2 correctamente.
+2025-11-16 14:29:39.790 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:29:39.793 +01:00 [DBG] 🔵 Empezando el borrado de un empleado.
+2025-11-16 14:29:40.959 +01:00 [WRN] ⚠️ aa1 no es un dato válido para este campo.
+2025-11-16 14:29:43.260 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:29:43.260 +01:00 [INF] ✅ Empleado AA1 despedido.
+2025-11-16 14:29:45.859 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:29:45.860 +01:00 [DBG] 🔵 Iniciando la vista de la plantilla...
+2025-11-16 14:41:48.750 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-16 14:41:55.666 +01:00 [DBG] - 🔵 Iniciando el Main...
+2025-11-16 14:41:56.139 +01:00 [DBG] 🔵 Empezando la asignación de datos...
+2025-11-16 14:41:56.139 +01:00 [DBG] 🔵 Comenzando el sorteo de posición...
+2025-11-16 14:41:56.140 +01:00 [INF] ✅  Empleado AA1 asignado a la posición 8 correctamente.
+2025-11-16 14:41:56.140 +01:00 [INF] ✅  Empleado BB2 asignado a la posición 7 correctamente.
+2025-11-16 14:41:56.140 +01:00 [INF] ✅  Empleado CC3 asignado a la posición 2 correctamente.
+2025-11-16 14:41:56.140 +01:00 [INF] ✅  Empleado DD4 asignado a la posición 9 correctamente.
+2025-11-16 14:41:56.140 +01:00 [INF] ✅  Empleado EE5 asignado a la posición 4 correctamente.
+2025-11-16 14:42:01.019 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:42:01.021 +01:00 [DBG] 🔵 Empezando el borrado de un empleado.
+2025-11-16 14:42:02.742 +01:00 [WRN] ⚠️ aa1 no es un dato válido para este campo.
+2025-11-16 14:42:05.300 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:42:05.301 +01:00 [WRN] ⚠️ El empleado AA4 no existe, volviendo al menú principal
+2025-11-16 14:42:12.027 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:42:12.028 +01:00 [DBG] 🔵 Empezando el borrado de un empleado.
+2025-11-16 14:42:13.605 +01:00 [WRN] ⚠️ aa1 no es un dato válido para este campo.
+2025-11-16 14:42:14.946 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:42:14.946 +01:00 [INF] ✅ Empleado AA1 despedido.
+2025-11-16 14:42:14.946 +01:00 [DBG] 🔵 Redimensionando para evitar puestos nulos...
+2025-11-16 14:42:17.803 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:42:17.804 +01:00 [DBG] 🔵 Iniciando la vista de la plantilla...
+2025-11-16 14:42:17.804 +01:00 [INF] ✅ Empleado DD4 asignado.
+2025-11-16 14:44:36.806 +01:00 [DBG] - 🔵 Iniciando el Main...
+2025-11-16 14:44:36.959 +01:00 [DBG] 🔵 Empezando la asignación de datos...
+2025-11-16 14:44:36.959 +01:00 [DBG] 🔵 Comenzando el sorteo de posición...
+2025-11-16 14:44:36.959 +01:00 [INF] ✅  Empleado AA1 asignado a la posición 7 correctamente.
+2025-11-16 14:44:36.959 +01:00 [INF] ✅  Empleado BB2 asignado a la posición 2 correctamente.
+2025-11-16 14:44:36.959 +01:00 [INF] ✅  Empleado CC3 asignado a la posición 6 correctamente.
+2025-11-16 14:44:36.959 +01:00 [INF] ✅  Empleado DD4 asignado a la posición 4 correctamente.
+2025-11-16 14:44:36.959 +01:00 [INF] ✅  Empleado EE5 asignado a la posición 5 correctamente.
+2025-11-16 14:44:39.077 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:44:39.078 +01:00 [DBG] 🔵 Iniciando la vista de la plantilla...
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Empleado BB2 asignado.
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Empleado DD4 asignado.
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Empleado EE5 asignado.
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Empleado CC3 asignado.
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Empleado AA1 asignado.
+2025-11-16 14:44:39.079 +01:00 [INF] ✅ Plantilla ordenada por Nip.
+2025-11-16 14:44:41.670 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:44:41.672 +01:00 [DBG] 🔵 Empezando el borrado de un empleado.
+2025-11-16 14:44:42.809 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:44:42.809 +01:00 [INF] ✅ Empleado AA1 despedido.
+2025-11-16 14:44:42.809 +01:00 [DBG] 🔵 Redimensionando para evitar puestos nulos...
+2025-11-16 14:44:43.871 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 14:44:43.871 +01:00 [DBG] 🔵 Iniciando la vista de la plantilla...
+2025-11-16 14:44:43.871 +01:00 [INF] ✅ Empleado CC3 asignado.
