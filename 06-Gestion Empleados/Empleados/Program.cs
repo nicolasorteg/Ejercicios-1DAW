@@ -1,6 +1,6 @@
 ﻿// ._.
-
 using System.Text;
+using System.Text.RegularExpressions;
 using Empleados.Enums;
 using Serilog;
 using Empleados.Structs;
@@ -36,7 +36,7 @@ void Main(string[] args) {
     int numEmpleados = 0;
 
     // creación vector que almacena plantilla + asignacion de datos
-    Empleado?[] plantilla= new Empleado?[TamañoInicial];
+    var plantilla= new Empleado?[TamañoInicial];
     AsignarDatos(plantilla, ref numEmpleados);
 
     int opcionElegida = 0; // inicializada para garantizar una entrada segura
@@ -51,7 +51,7 @@ void Main(string[] args) {
                 CrearEmpleado(ref plantilla, ref numEmpleados);
                 break;
             case (int)MenuPrincipal.VerEmpleados: // 2
-                VerEmpleado(plantilla);
+                VerEmpleados(plantilla, numEmpleados);
                 break;
             case (int)MenuPrincipal.ListarEmpleadosNip: // 3
                 ListarEmpleadosNip(plantilla);
@@ -73,7 +73,6 @@ void Main(string[] args) {
                 Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
                 break;
         }
-
     } while (opcionElegida != (int)MenuPrincipal.Salir); // mientras la opcion no sea salir se seguirá repitiendo el menú
 }
 
@@ -83,7 +82,7 @@ void CrearEmpleado(ref Empleado?[] empleado, ref int i) {
     throw new NotImplementedException();
 }
 
-void VerEmpleado(Empleado?[] empleado) {
+void VerEmpleados(Empleado?[] plantilla, int numEmpleados) {
     throw new NotImplementedException();
 }
 
@@ -115,11 +114,11 @@ void AsignarDatos(Empleado?[] plantilla, ref int empleados) {
     
     Log.Debug("🔵 Empezando la asignación de datos...");
     // creamos 5 empleados con datos inventados
-    var e1 = new Empleado { Nip = "AA1", nombre = "José Luis", Edad = 18, Email = "joseluisgs@gmail.com", Cargo = Cargo.Director };
-    var e2 = new Empleado { Nip = "BB2", nombre = "Rafa", Edad = 20, Email = "rafa123@gmail.com", Cargo = Cargo.Operario };
-    var e3 = new Empleado { Nip = "CC3", nombre = "Aitor", Edad = 40, Email = "aitorcrack69@gmail.com", Cargo = Cargo.Operario };
-    var e4 = new Empleado { Nip = "DD4", nombre = "Nicolás", Edad = 20, Email = "nicolas33@gmail.com", Cargo = Cargo.Supervisor };
-    var e5 = new Empleado { Nip = "EE5", nombre = "Carlos", Edad = 25, Email = "carlitosalcaraz@gmail.com", Cargo = Cargo.Tecnico };
+    var e1 = new Empleado { Nip = "AA1", Nombre = "José Luis", Edad = 18, Email = "joseluisgs@gmail.com", Cargo = Cargo.Director };
+    var e2 = new Empleado { Nip = "BB2", Nombre = "Rafa", Edad = 20, Email = "rafa123@gmail.com", Cargo = Cargo.Operario };
+    var e3 = new Empleado { Nip = "CC3", Nombre = "Aitor", Edad = 40, Email = "aitorcrack69@gmail.com", Cargo = Cargo.Operario };
+    var e4 = new Empleado { Nip = "DD4", Nombre = "Nicolás", Edad = 20, Email = "nicolas33@gmail.com", Cargo = Cargo.Supervisor };
+    var e5 = new Empleado { Nip = "EE5", Nombre = "Carlos", Edad = 25, Email = "carlitosalcaraz@gmail.com", Cargo = Cargo.Tecnico };
     var trabajadores = new Empleado[] { e1, e2, e3, e4, e5 };
     
     // sorteamos su posición en la plantilla
@@ -155,5 +154,20 @@ void ImprimirMenu() {
 
 
 int ValidarOpcion(string prompt) {
-    throw new NotImplementedException();
+    var isOpcionOk = false;
+    string input;
+    var regexOpcion = new Regex(@$"^[0-{MenuPrincipal.BorrarEmpleado}]$");
+
+    do {
+        Console.WriteLine(prompt);
+        input = Console.ReadLine()?.Trim() ?? "-1";
+        if (regexOpcion.IsMatch(input)) {
+            Log.Information($"✅ Opción {input} leída correctamente.");
+            isOpcionOk = true;
+        } else {
+            Log.Warning($"⚠️ La opción {input}");
+            Console.WriteLine("⚠️ Opción introducida no reconocida. Introduzca el número de una opción existente.");
+        }
+    } while (!isOpcionOk);
+    return Convert.ToInt32(input);
 }

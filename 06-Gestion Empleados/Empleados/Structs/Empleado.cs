@@ -3,7 +3,7 @@ using Empleados.Enums;
 
 internal struct Empleado {
     public string Nip;
-    public string nombre;
+    public string Nombre;
     public int Edad;
     public string Email;
     public Cargo Cargo;
