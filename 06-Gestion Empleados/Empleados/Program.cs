@@ -8,7 +8,16 @@ using Empleados.Structs;
 // zona de constantes
 const int EmpleadosIniciales = 5;
 const int TamañoInicial = 10;
-//const int EmpleadosMaximos = 25;
+const int IncrementoPlantilla = 5;
+
+const string RegexNip = @"^\w{2}\d$";
+const string RegexNombre = @"^\w{3,}$";
+const string RegexEdad = @"^\d{2,}$";
+const string RegexEmail = @"^\w{3,}@\w{3,}.{1,}$";
+const string RegexCargo = @"^\w{6,}$";
+const string RegexOpcion = @"^[0-6]$";
+
+const int EmpleadosMaximos = 25;
 
 var random = Random.Shared;
 
@@ -42,7 +51,7 @@ void Main(string[] args) {
     int opcionElegida = 0; // inicializada para garantizar una entrada segura
     do {
         ImprimirMenu();
-        opcionElegida = ValidarOpcion("- Opción elegida: ");
+        opcionElegida = Convert.ToInt32(ValidarDatos("- Opción elegida: ", RegexOpcion));
         Console.WriteLine(); // salto de línea
         
         // asignacion de la opcion elegida
@@ -79,8 +88,28 @@ void Main(string[] args) {
 
 // --------------------------- FUNCIONES CRUD
 
-void CrearEmpleado(ref Empleado?[] empleado, ref int i) {
-    throw new NotImplementedException();
+void CrearEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
+    
+    if (plantilla.Length >= EmpleadosMaximos) {
+        Log.Warning("⚠️ No se puede acceder a la creación de un empleado, plantila llena.");
+        Console.WriteLine("🔴  Plantilla llena. Para añadir un empleado deberás despedir a alguien antes. ");
+        return;
+    }
+    Log.Debug("🔵 Empezando la creación de empleado...");
+    Empleado newEmpleado;
+    
+    // si es necesario se añaden plazas
+    if (numEmpleados == plantilla.Length) plantilla = RedimensionarPlantilla(plantilla, numEmpleados);
+    Console.WriteLine("--- 👷 CREACIÓN EMPLEADO 👷 ---");
+    newEmpleado = PreguntarDatos(); // preguntamos los datos
+    for (var i = 0; i < plantilla.Length; i++) { // buscamos un hueco vacio y metemos al nuevo empleado
+        if (plantilla[i] is null) {
+            plantilla[i] = newEmpleado;
+            Console.WriteLine($"✅  Empleado {newEmpleado.Nip} introducido en la plantilla.");
+            Log.Information($"✅ Empleado {newEmpleado.Nip} introducido en la plantilla.");
+            return;
+        }
+    }
 }
 
 void VerEmpleados(Empleado?[] plantilla) {
@@ -93,19 +122,19 @@ void VerEmpleados(Empleado?[] plantilla) {
     }
 }
 
-void ListarEmpleadosNip(Empleado?[] empleado) {
+void ListarEmpleadosNip(Empleado?[] plantilla) {
     throw new NotImplementedException();
 }
 
-void MostrarPorCargo(Empleado?[] empleado) {
+void MostrarPorCargo(Empleado?[] plantilla) {
     throw new NotImplementedException();
 }
 
-void ActualizarEmpleado(Empleado?[] empleado) {
+void ActualizarEmpleado(Empleado?[] plantilla) {
     throw new NotImplementedException();
 }
 
-void BorrarEmpleado(ref Empleado?[] empleado, ref int i) {
+void BorrarEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
     throw new NotImplementedException();
 }
 
@@ -159,22 +188,52 @@ void ImprimirMenu() {
     Console.WriteLine("---------------------------------");
 }
 
-
-int ValidarOpcion(string prompt) {
-    var isOpcionOk = false;
-    string input;
-    var regexOpcion = new Regex(@$"^[0-{MenuPrincipal.BorrarEmpleado}]$");
-
-    do {
-        Console.WriteLine(prompt);
-        input = Console.ReadLine()?.Trim() ?? "-1";
-        if (regexOpcion.IsMatch(input)) {
-            Log.Information($"✅ Opción {input} leída correctamente.");
-            isOpcionOk = true;
-        } else {
-            Log.Warning($"⚠️ La opción {input}");
-            Console.WriteLine("⚠️ Opción introducida no reconocida. Introduzca el número de una opción existente.");
+Empleado?[] RedimensionarPlantilla(Empleado?[] plantilla, int numEmpleados) {
+    var newPlantilla = new Empleado?[numEmpleados + IncrementoPlantilla];
+    int index = 0;
+    for (var i = 0; i < plantilla.Length; i++) { // recorremos plantilla para poner los empleados en el nuevo vector
+        if (plantilla[i] is { } empleadoValido) { // si es un empleado entra
+            newPlantilla[index] = empleadoValido;
         }
-    } while (!isOpcionOk);
-    return Convert.ToInt32(input);
+    }
+    return newPlantilla;
+}
+
+Empleado PreguntarDatos() {
+    
+    var nip = ValidarDatos("NIP = ", RegexNip);
+    var nombre = ValidarDatos("Nombre = ", RegexNombre);
+    var edad = ValidarDatos("Edad = ", RegexEdad);
+    var email = ValidarDatos("Email = ", RegexEmail);
+    var cargo = ValidarDatos("Cargo (Director/Operario/Supervisor/Tecnico) = ", RegexCargo);
+    
+    if (!Enum.TryParse(cargo, out Cargo cargoFinal)) {
+        Console.WriteLine("❌ Ese cargo no existe. Se asignará 'Operario' por defecto.");
+        cargoFinal = Cargo.Operario;
+    }
+    return new Empleado {
+        Nip = nip,
+        Nombre = nombre,
+        Edad = int.Parse(edad),
+        Email = email,
+        Cargo = cargoFinal
+    };
+}
+
+string ValidarDatos(string msg, string rgx) {
+    string input;
+    var isDatoOk = false;
+    var regex = new Regex(rgx);
+    do {
+        Console.WriteLine(msg);
+        input = Console.ReadLine()?.Trim() ?? "-1";
+        if (regex.IsMatch(input)) {
+            Log.Information("✅ Dato leído correctamente.");
+            isDatoOk = true;
+        } else {
+            Log.Warning($"⚠️ {input} no es un dato válido para este campo.");
+            Console.WriteLine("🔴  Dato introducido inválido.");
+        }
+    } while (!isDatoOk);
+    return input;
 }
