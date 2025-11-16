@@ -16,6 +16,7 @@ const string RegexEdad = @"^\d{2,}$";
 const string RegexEmail = @"^\w{3,}@\w{3,}.{1,}$";
 const string RegexCargo = @"^\w{6,}$";
 const string RegexOpcion = @"^[0-6]$";
+const string RegexOpcionActualizar = @"^[0-5]$";
 
 const int EmpleadosMaximos = 25;
 
@@ -48,7 +49,7 @@ void Main(string[] args) {
     var plantilla= new Empleado?[TamañoInicial];
     AsignarDatos(plantilla, ref numEmpleados);
 
-    int opcionElegida = 0; // inicializada para garantizar una entrada segura
+    int opcionElegida;
     do {
         ImprimirMenu();
         opcionElegida = Convert.ToInt32(ValidarDatos("- Opción elegida: ", RegexOpcion));
@@ -77,8 +78,8 @@ void Main(string[] args) {
             case (int)MenuPrincipal.Salir: // 0
                 Console.WriteLine("Saliendo del programa...");
                 break;
-            default: // no deberia pasar nunca ya que ValidarOpcion se asegura de quela opcion exista en el menu
-                Log.Error("🔴  El programa ha fallado en 'ValidarOpcion' y no ha podido reconocer la opción introducida");
+            default: // no deberia pasar nunca ya que ValidarDatos se asegura de que la opcion exista en el menu
+                Log.Error("🔴  El programa ha fallado en 'ValidarDatos' y no ha podido reconocer la opción introducida");
                 Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
                 break;
         }
@@ -180,7 +181,7 @@ void MostrarPorCargo(Empleado?[] plantilla) {
             }
         }
     }
-    Console.WriteLine("-- Operarios:");
+    Console.WriteLine("-- OPERARIOS:");
     for (var i = 0; i < plantilla.Length; i++) {
         if (plantilla[i] is { } empleadoValido) {
             if (plantilla[i]?.Cargo == Cargo.Operario) {
@@ -191,8 +192,45 @@ void MostrarPorCargo(Empleado?[] plantilla) {
 }
 
 void ActualizarEmpleado(Empleado?[] plantilla) {
-    throw new NotImplementedException();
-}
+    Log.Debug("🔵 Comenzando la actualización de datos...");
+    string? nip = ValidarDatos("¿Qúe empleado desea actualizar?(NIP) = ", RegexNip);
+    for (var i = 0; i < plantilla.Length; i++) {
+        if (plantilla[i]?.Nip == nip) {
+            Log.Information($"✅ Empleado {nip} encontrado.");
+            ImprimirMenuActualizar();
+            int opcionElegida = Convert.ToInt32(ValidarDatos("Opción elegida: ", RegexOpcionActualizar));
+            var empleadoActualizado = plantilla[i]!.Value;
+            switch (opcionElegida) {
+                case (int)MenuUpdate.Nip: 
+                    empleadoActualizado.Nip = ValidarDatos("NIP = ", RegexNip);
+                    break;
+                case (int)MenuUpdate.Nombre: 
+                    empleadoActualizado.Nombre = ValidarDatos("NIP = ", RegexNombre);
+                    break;
+                case (int)MenuUpdate.Edad: 
+                    empleadoActualizado.Edad = Convert.ToInt32(ValidarDatos("NIP = ", RegexEdad));
+                    break;
+                case (int)MenuUpdate.Email: 
+                    empleadoActualizado.Email = ValidarDatos("NIP = ", RegexEmail);
+                    break;
+                case (int)MenuUpdate.Cargo: 
+                    var cargo = ValidarDatos("NIP = ", RegexCargo);
+                    if (!Enum.TryParse(cargo, out Cargo cargoFinal)) {
+                        Console.WriteLine("❌ Ese cargo no existe. Se asignará 'Operario' por defecto.");
+                        cargoFinal = Cargo.Operario;
+                    }
+                    empleadoActualizado.Cargo = cargoFinal;
+                    break;
+                default: // no deberia pasar nunca ya que ValidarDatos se asegura de que la opcion exista en el menu
+                    Log.Error("🔴  El programa ha fallado en 'ValidarDatos' y no ha podido reconocer la opción introducida");
+                    Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
+                    break;
+            }
+            plantilla[i] = empleadoActualizado;
+            Log.Information("✅ Empleado actualizado.");
+        }
+    }
+}  
 
 void BorrarEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
     Log.Debug("🔵 Empezando el borrado de un empleado.");
@@ -206,7 +244,7 @@ void BorrarEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
             Console.WriteLine($"✅ Empleado {nip} despedido.");
             numEmpleados--;
         }
-        if (Convert.ToDouble(plantilla.Length - (IncrementoPlantilla)) > numEmpleados) { // ej valido: plantilla 10 empleados 4
+        if (Convert.ToDouble(plantilla.Length - (IncrementoPlantilla)) > numEmpleados) { // ejemplo válido: plantilla 10 empleados 4
             Log.Debug("🔵 Redimensionando para evitar puestos nulos...");
             plantilla = RedimensionarPlantilla(plantilla, numEmpleados);
         }
@@ -280,6 +318,10 @@ Empleado?[] RedimensionarPlantilla(Empleado?[] plantilla, int numEmpleados) {
     return newPlantilla;
 }
 
+/*
+ * Pregunta al usuario los datos para la funcion Create.
+ * Devuelve al empleado que será introducido en la plantilla.
+ */
 Empleado PreguntarDatos() {
     
     var nip = ValidarDatos("NIP = ", RegexNip);
@@ -300,7 +342,9 @@ Empleado PreguntarDatos() {
         Cargo = cargoFinal
     };
 }
-
+/*
+ * Valida la entrada de datos por teclado haciendo uso de la Expresion Regular pasada por parametro.
+ */
 string ValidarDatos(string msg, string rgx) {
     string input;
     var isDatoOk = false;
@@ -319,6 +363,9 @@ string ValidarDatos(string msg, string rgx) {
     return input;
 }
 
+/*
+ * Asigna los empleados de plantilla a plantillaSinNulos
+ */
 void QuitarNulos(Empleado[] plantillaSinNulos, Empleado?[] plantilla) {
     var index = 0;
     for (int i = 0; i < plantilla.Length; i++) {
@@ -330,13 +377,17 @@ void QuitarNulos(Empleado[] plantillaSinNulos, Empleado?[] plantilla) {
     }
 }
 
+/*
+ * Ordenacion burbuja para ordenar a los empleados por Nip ascedente
+ */
 void OrdenarPorNip(Empleado[] plantilla) {
     for (int i = 0; i < plantilla.Length - 1; i++) {
         bool swapped = false;
         for (int j = 0; j < plantilla.Length - i - 1; j++) {
             if (plantilla[j] is { } empleadoValido) {
+                
                 // datos a comparar
-                var nipActual = plantilla[j].Nip;
+                var nipActual = empleadoValido.Nip;
                 char primeraLetraNipActual = Convert.ToChar(nipActual[0]);
                 char segundaLetraNipActual = Convert.ToChar(nipActual[1]);
                 int numNipActual = Convert.ToInt32((nipActual[2]));
@@ -373,4 +424,16 @@ void SwapEmpleados(Empleado[] plantilla, int i, int j) {
     Empleado temp = plantilla[i];
     plantilla[i] = plantilla[j];
     plantilla[j] = temp;
+}
+
+/*
+ * Imprime el menu de la funcion Update
+ */
+void ImprimirMenuActualizar() {
+    Console.WriteLine("- ¿Qúe dato deseas actualizar? -");
+    Console.WriteLine($"{MenuUpdate.Nip}.- NIP.");
+    Console.WriteLine($"{MenuUpdate.Nombre}.- Nombre.");
+    Console.WriteLine($"{MenuUpdate.Edad}.- Edad.");
+    Console.WriteLine($"{MenuUpdate.Email}.- Email.");
+    Console.WriteLine($"{MenuUpdate.Cargo}.- Cargo.");
 }
