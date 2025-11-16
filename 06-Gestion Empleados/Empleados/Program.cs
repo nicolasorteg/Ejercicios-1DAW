@@ -13,7 +13,7 @@ const int TamañoInicial = 10;
 var random = Random.Shared;
 
 // config. del logger
-Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.Console().CreateLogger();
+Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day).CreateLogger();
 
 // título de la terminal 
 Console.Title = "Gestión Empleados";
@@ -30,7 +30,7 @@ return;
 
 // main daws template
 void Main(string[] args) {
-    Log.Debug("🔵 Iniciando el Main...");
+    Log.Debug("- 🔵 Iniciando el Main...");
     Console.WriteLine("👷 Bienvenido al Sistema de Gestión de Empleados");
 
     int numEmpleados = 0;
@@ -51,7 +51,7 @@ void Main(string[] args) {
                 CrearEmpleado(ref plantilla, ref numEmpleados);
                 break;
             case (int)MenuPrincipal.VerEmpleados: // 2
-                VerEmpleados(plantilla, numEmpleados);
+                VerEmpleados(plantilla);
                 break;
             case (int)MenuPrincipal.ListarEmpleadosNip: // 3
                 ListarEmpleadosNip(plantilla);
@@ -74,6 +74,7 @@ void Main(string[] args) {
                 break;
         }
     } while (opcionElegida != (int)MenuPrincipal.Salir); // mientras la opcion no sea salir se seguirá repitiendo el menú
+    Log.Debug("- 🔵 Fin del programa");
 }
 
 // --------------------------- FUNCIONES CRUD
@@ -82,8 +83,14 @@ void CrearEmpleado(ref Empleado?[] empleado, ref int i) {
     throw new NotImplementedException();
 }
 
-void VerEmpleados(Empleado?[] plantilla, int numEmpleados) {
-    throw new NotImplementedException();
+void VerEmpleados(Empleado?[] plantilla) {
+    Log.Debug("🔵 Iniciando la vista de la plantilla...");
+    Console.WriteLine("---- 👷 LISTADO EMPLEADOS 👷 ----");
+    for (var i = 0; i < plantilla.Length; i++) { // recorremos y vamos imprimiendo uno a uno
+        if (plantilla[i] is { } empleadoValido) { // si es un empleado imprime sus datos
+            Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
+        }
+    }
 }
 
 void ListarEmpleadosNip(Empleado?[] empleado) {
@@ -149,7 +156,7 @@ void ImprimirMenu() {
     Console.WriteLine($"{(int)MenuPrincipal.ActualizarEmpleado}.- Actualizar datos Empleado.");
     Console.WriteLine($"{(int)MenuPrincipal.BorrarEmpleado}.- Borrar Empleado.");
     Console.WriteLine($"{(int)MenuPrincipal.Salir}.- Salir.");
-    Console.WriteLine("-------------------------------");
+    Console.WriteLine("---------------------------------");
 }
 
 
