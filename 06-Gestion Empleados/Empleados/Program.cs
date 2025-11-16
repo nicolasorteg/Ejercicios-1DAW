@@ -1,4 +1,6 @@
 ﻿// ._.
+
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using Empleados.Enums;
@@ -8,13 +10,14 @@ using Empleados.Structs;
 // zona de constantes
 const int EmpleadosIniciales = 5;
 const int TamañoInicial = 10;
+const int TamañoMinimo = 5;
 const int IncrementoPlantilla = 5;
 
 const string RegexNip = @"^[A-Z]{2}\d$";
 const string RegexNombre = @"^\w{3,}$";
 const string RegexEdad = @"^\d{2,}$";
-const string RegexEmail = @"^\w{3,}@\w{3,}.{1,}$";
-const string RegexCargo = @"^\w{6,}$";
+const string RegexEmail = @"^\w{3,}@\w{3,}\.\w{2,}$";
+const string RegexCargo = @"^(Director|Subdirector|Manager|Tecnico|Supervisor|Operario)$";
 const string RegexOpcion = @"^[0-6]$";
 const string RegexOpcionActualizar = @"^[0-5]$";
 
@@ -91,7 +94,7 @@ void Main(string[] args) {
 
 void CrearEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
     
-    if (plantilla.Length >= EmpleadosMaximos) {
+    if (numEmpleados >= EmpleadosMaximos) {
         Log.Warning("⚠️ No se puede acceder a la creación de un empleado, plantila llena.");
         Console.WriteLine("🔴  Plantilla llena. Para añadir un empleado deberás despedir a alguien antes. ");
         return;
@@ -103,6 +106,13 @@ void CrearEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
     if (numEmpleados == plantilla.Length) plantilla = RedimensionarPlantilla(plantilla, numEmpleados);
     Console.WriteLine("--- 👷 CREACIÓN EMPLEADO 👷 ---");
     newEmpleado = PreguntarDatos(); // preguntamos los datos
+    for (var i = 0; i < plantilla.Length; i++) { // buscamos un hueco vacio y metemos al nuevo empleado
+        if (newEmpleado.Nip == plantilla[i]?.Nip) {
+            Log.Warning($"El empleado {newEmpleado.Nip} ya existe.");
+            Console.WriteLine($"🔴  El empleado {newEmpleado.Nip} ya existe. Introduzca otro NIP.");
+            return;
+        }
+    }
     for (var i = 0; i < plantilla.Length; i++) { // buscamos un hueco vacio y metemos al nuevo empleado
         if (plantilla[i] is null) {
             plantilla[i] = newEmpleado;
@@ -140,60 +150,15 @@ void ListarEmpleadosNip(Empleado?[] plantilla, int numEmpleados) {
 }
 
 void MostrarPorCargo(Empleado?[] plantilla) {
-    Log.Debug("🔵 Empezando a imprimir según Cargo...");
-    Console.WriteLine("-- DIRECTORES:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Director) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
-    }
-    Console.WriteLine("-- SUBDIRECTORES:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Subdirector) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
-    }
-    Console.WriteLine("-- MANAGERS:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Manager) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
-    }
-    Console.WriteLine("-- TECNICOS:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Tecnico) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
-    }
-    Console.WriteLine("-- SUPERVISORES:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Supervisor) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
-    }
-    Console.WriteLine("-- OPERARIOS:");
-    for (var i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] is { } empleadoValido) {
-            if (plantilla[i]?.Cargo == Cargo.Operario) {
-                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-            }
-        }
+    string[] cargos = new[] { "Director", "Subdirector", "Manager", "Tecnico", "Supervisor", "Operario" };
+    foreach (var cargo in cargos) {
+        ImprimirEmpleadosPorCargo(plantilla, cargo);
     }
 }
 
 void ActualizarEmpleado(Empleado?[] plantilla) {
     Log.Debug("🔵 Comenzando la actualización de datos...");
-    string? nip = ValidarDatos("¿Qúe empleado desea actualizar?(NIP) = ", RegexNip);
+    string nip = ValidarDatos("¿Qúe empleado desea actualizar?(NIP) = ", RegexNip);
     for (var i = 0; i < plantilla.Length; i++) {
         if (plantilla[i]?.Nip == nip) {
             Log.Information($"✅ Empleado {nip} encontrado.");
@@ -202,19 +167,27 @@ void ActualizarEmpleado(Empleado?[] plantilla) {
             var empleadoActualizado = plantilla[i]!.Value;
             switch (opcionElegida) {
                 case (int)MenuUpdate.Nip: 
-                    empleadoActualizado.Nip = ValidarDatos("NIP = ", RegexNip);
+                    nip = ValidarDatos("NIP = ", RegexNip);
+                    // comprobar duplicado
+                    for (int j = 0; j < plantilla.Length; j++) {
+                        if (j != i && plantilla[j]?.Nip == nip) {
+                            Console.WriteLine($"🔴 El empleado {nip} ya existe. ");
+                            return;
+                        }
+                    }
+                    empleadoActualizado.Nip = nip;
                     break;
                 case (int)MenuUpdate.Nombre: 
-                    empleadoActualizado.Nombre = ValidarDatos("NIP = ", RegexNombre);
+                    empleadoActualizado.Nombre = ValidarDatos("Nombre = ", RegexNombre);
                     break;
                 case (int)MenuUpdate.Edad: 
-                    empleadoActualizado.Edad = Convert.ToInt32(ValidarDatos("NIP = ", RegexEdad));
+                    empleadoActualizado.Edad = Convert.ToInt32(ValidarDatos("Edad = ", RegexEdad));
                     break;
                 case (int)MenuUpdate.Email: 
-                    empleadoActualizado.Email = ValidarDatos("NIP = ", RegexEmail);
+                    empleadoActualizado.Email = ValidarDatos("Email = ", RegexEmail);
                     break;
                 case (int)MenuUpdate.Cargo: 
-                    var cargo = ValidarDatos("NIP = ", RegexCargo);
+                    var cargo = ValidarDatos("Cargo = ", RegexCargo);
                     if (!Enum.TryParse(cargo, out Cargo cargoFinal)) {
                         Console.WriteLine("❌ Ese cargo no existe. Se asignará 'Operario' por defecto.");
                         cargoFinal = Cargo.Operario;
@@ -228,8 +201,11 @@ void ActualizarEmpleado(Empleado?[] plantilla) {
             }
             plantilla[i] = empleadoActualizado;
             Log.Information("✅ Empleado actualizado.");
+            return;
         }
     }
+    Console.WriteLine($"🔴  El empleado {nip} no trabaja aquí.");
+    Log.Warning($"El empleado {nip} no ha sido encontrado.");
 }  
 
 void BorrarEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
@@ -243,10 +219,6 @@ void BorrarEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
             Log.Information($"✅ Empleado {nip} despedido.");
             Console.WriteLine($"✅ Empleado {nip} despedido.");
             numEmpleados--;
-        }
-        if (Convert.ToDouble(plantilla.Length - (IncrementoPlantilla)) > numEmpleados) { // ejemplo válido: plantilla 10 empleados 4
-            Log.Debug("🔵 Redimensionando para evitar puestos nulos...");
-            plantilla = RedimensionarPlantilla(plantilla, numEmpleados);
         }
     }
     if (numEmpleadosIniciales == numEmpleados) {
@@ -276,7 +248,7 @@ void AsignarDatos(Empleado?[] plantilla, ref int empleados) {
     var trabajadores = new Empleado[] { e1, e2, e3, e4, e5 };
     
     // sorteamos su posición en la plantilla
-    int posicion = 0;
+    int posicion;
 
     Log.Debug("🔵 Comenzando el sorteo de posición...");
     while (empleados < EmpleadosIniciales) {
@@ -307,10 +279,24 @@ void ImprimirMenu() {
 }
 
 Empleado?[] RedimensionarPlantilla(Empleado?[] plantilla, int numEmpleados) {
-    var newPlantilla = new Empleado?[numEmpleados + IncrementoPlantilla];
+    int tamañoActual = plantilla.Length;
+    if (numEmpleados == tamañoActual) {
+        int nuevoTamaño = tamañoActual + IncrementoPlantilla;
+        return CopiarANuevoVector(plantilla, nuevoTamaño);
+    }
+    if (numEmpleados < tamañoActual / 2 && (tamañoActual - IncrementoPlantilla) >= TamañoMinimo)
+    {
+        int nuevoTamaño = tamañoActual - IncrementoPlantilla;
+        return CopiarANuevoVector(plantilla, nuevoTamaño);
+    }
+    return plantilla;
+}
+Empleado?[] CopiarANuevoVector(Empleado?[] plantilla, int nuevoTamaño) {
+    var newPlantilla = new Empleado?[nuevoTamaño];
     int index = 0;
-    for (var i = 0; i < plantilla.Length; i++) { // recorremos plantilla para poner los empleados en el nuevo vector
-        if (plantilla[i] is { } empleadoValido) { // si es un empleado entra
+    foreach (var empleado in plantilla) {
+        // recorremos plantilla para poner los empleados en el nuevo vector
+        if (empleado is { } empleadoValido) { // si es un empleado entra
             newPlantilla[index] = empleadoValido;
             index++;
         }
@@ -328,7 +314,7 @@ Empleado PreguntarDatos() {
     var nombre = ValidarDatos("Nombre = ", RegexNombre);
     var edad = ValidarDatos("Edad = ", RegexEdad);
     var email = ValidarDatos("Email = ", RegexEmail);
-    var cargo = ValidarDatos("Cargo (Director/Operario/Supervisor/Tecnico) = ", RegexCargo);
+    var cargo = ValidarDatos("Cargo (Director/Subdirector/Manager/Tecnico/Supervisor/Operario) =\n= ", RegexCargo);
     
     if (!Enum.TryParse(cargo, out Cargo cargoFinal)) {
         Console.WriteLine("❌ Ese cargo no existe. Se asignará 'Operario' por defecto.");
@@ -388,13 +374,13 @@ void OrdenarPorNip(Empleado[] plantilla) {
                 
                 // datos a comparar
                 var nipActual = empleadoValido.Nip;
-                char primeraLetraNipActual = Convert.ToChar(nipActual[0]);
-                char segundaLetraNipActual = Convert.ToChar(nipActual[1]);
+                char primeraLetraNipActual = nipActual[0];
+                char segundaLetraNipActual = nipActual[1];
                 int numNipActual = Convert.ToInt32((nipActual[2]));
             
                 var nipSiguiente = plantilla[j + 1].Nip;
-                char primeraLetraNipSiguiente = Convert.ToChar(nipSiguiente[0]);
-                char segundaLetraNipSiguiente = Convert.ToChar(nipSiguiente[1]);
+                char primeraLetraNipSiguiente = nipSiguiente[0];
+                char segundaLetraNipSiguiente = nipSiguiente[1];
                 int numNipSiguiente = Convert.ToInt32((nipSiguiente[2]));
 
                 // si el siguiente nip es menor se pone en la posicion actual
@@ -431,9 +417,24 @@ void SwapEmpleados(Empleado[] plantilla, int i, int j) {
  */
 void ImprimirMenuActualizar() {
     Console.WriteLine("- ¿Qúe dato deseas actualizar? -");
-    Console.WriteLine($"{MenuUpdate.Nip}.- NIP.");
-    Console.WriteLine($"{MenuUpdate.Nombre}.- Nombre.");
-    Console.WriteLine($"{MenuUpdate.Edad}.- Edad.");
-    Console.WriteLine($"{MenuUpdate.Email}.- Email.");
-    Console.WriteLine($"{MenuUpdate.Cargo}.- Cargo.");
+    Console.WriteLine($"{(int)MenuUpdate.Nip}.- NIP.");
+    Console.WriteLine($"{(int)MenuUpdate.Nombre}.- Nombre.");
+    Console.WriteLine($"{(int)MenuUpdate.Edad}.- Edad.");
+    Console.WriteLine($"{(int)MenuUpdate.Email}.- Email.");
+    Console.WriteLine($"{(int)MenuUpdate.Cargo}.- Cargo.");
+}
+
+void ImprimirEmpleadosPorCargo(Empleado?[] plantilla, string cargo) {
+
+    bool isCargoOk = Enum.TryParse(cargo, out Cargo cargoFinal);
+    Console.WriteLine($"-- {cargo}"); 
+    // solo imprime si el cargoFinal es igual al cargo que tiene
+    for (var i = 0; i < plantilla.Length; i++) {
+        if (plantilla[i] is { } empleadoValido) {
+            if (empleadoValido.Cargo == cargoFinal) {
+                Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
+                Log.Information($"✅ Impreso el empleado {empleadoValido.Nip} con cargo {cargo}."); 
+            }
+        }
+    }
 }

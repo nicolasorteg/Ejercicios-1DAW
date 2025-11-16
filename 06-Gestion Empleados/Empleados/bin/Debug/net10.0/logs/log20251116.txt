@@ -637,3 +637,17 @@
 2025-11-16 19:03:54.222 +01:00 [INF] ✅ Dato leído correctamente.
 2025-11-16 19:03:54.223 +01:00 [DBG] 🔵 Empezando a imprimir según Cargo...
 2025-11-16 19:04:15.829 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-16 20:02:23.673 +01:00 [DBG] - 🔵 Iniciando el Main...
+2025-11-16 20:02:23.729 +01:00 [DBG] 🔵 Empezando la asignación de datos...
+2025-11-16 20:02:23.729 +01:00 [DBG] 🔵 Comenzando el sorteo de posición...
+2025-11-16 20:02:23.730 +01:00 [INF] ✅  Empleado AA1 asignado a la posición 9 correctamente.
+2025-11-16 20:02:23.730 +01:00 [INF] ✅  Empleado BB2 asignado a la posición 7 correctamente.
+2025-11-16 20:02:23.730 +01:00 [INF] ✅  Empleado CC3 asignado a la posición 0 correctamente.
+2025-11-16 20:02:23.730 +01:00 [INF] ✅  Empleado DD4 asignado a la posición 1 correctamente.
+2025-11-16 20:02:23.730 +01:00 [INF] ✅  Empleado EE5 asignado a la posición 5 correctamente.
+2025-11-16 20:02:28.672 +01:00 [INF] ✅ Dato leído correctamente.
+2025-11-16 20:02:28.690 +01:00 [INF] Imprimiendo empleado AA1 con cargo Director.
+2025-11-16 20:02:28.692 +01:00 [INF] Imprimiendo empleado EE5 con cargo Tecnico.
+2025-11-16 20:02:28.692 +01:00 [INF] Imprimiendo empleado DD4 con cargo Supervisor.
+2025-11-16 20:02:28.692 +01:00 [INF] Imprimiendo empleado CC3 con cargo Operario.
+2025-11-16 20:02:28.692 +01:00 [INF] Imprimiendo empleado BB2 con cargo Operario.
