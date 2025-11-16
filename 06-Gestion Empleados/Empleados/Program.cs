@@ -10,7 +10,7 @@ const int EmpleadosIniciales = 5;
 const int TamañoInicial = 10;
 const int IncrementoPlantilla = 5;
 
-const string RegexNip = @"^\w{2}\d$";
+const string RegexNip = @"^[A-Z]{2}\d$";
 const string RegexNombre = @"^\w{3,}$";
 const string RegexEdad = @"^\d{2,}$";
 const string RegexEmail = @"^\w{3,}@\w{3,}.{1,}$";
@@ -63,7 +63,7 @@ void Main(string[] args) {
                 VerEmpleados(plantilla);
                 break;
             case (int)MenuPrincipal.ListarEmpleadosNip: // 3
-                ListarEmpleadosNip(plantilla);
+                ListarEmpleadosNip(plantilla, numEmpleados);
                 break;
             case (int)MenuPrincipal.MostrarPorCargo: // 4
                 MostrarPorCargo(plantilla);
@@ -107,6 +107,7 @@ void CrearEmpleado(ref Empleado?[] plantilla, ref int numEmpleados) {
             plantilla[i] = newEmpleado;
             Console.WriteLine($"✅  Empleado {newEmpleado.Nip} introducido en la plantilla.");
             Log.Information($"✅ Empleado {newEmpleado.Nip} introducido en la plantilla.");
+            numEmpleados++;
             return;
         }
     }
@@ -122,8 +123,19 @@ void VerEmpleados(Empleado?[] plantilla) {
     }
 }
 
-void ListarEmpleadosNip(Empleado?[] plantilla) {
-    throw new NotImplementedException();
+void ListarEmpleadosNip(Empleado?[] plantilla, int numEmpleados) {
+    Log.Debug("🔵 Iniciando la vista de la plantilla...");
+    var plantillaSinNulos = new Empleado[numEmpleados];
+    
+    QuitarNulos(plantillaSinNulos, plantilla);
+    OrdenarPorNip(plantillaSinNulos);
+    
+    Console.WriteLine("---- 👷 LISTADO EMPLEADOS 👷 ----");
+    for (var i = 0; i < plantillaSinNulos.Length; i++) { // recorremos y vamos imprimiendo uno a uno
+        if (plantillaSinNulos[i] is { } empleadoValido) { // si es un empleado imprime sus datos
+            Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
+        }
+    }
 }
 
 void MostrarPorCargo(Empleado?[] plantilla) {
@@ -236,4 +248,57 @@ string ValidarDatos(string msg, string rgx) {
         }
     } while (!isDatoOk);
     return input;
+}
+
+void QuitarNulos(Empleado[] plantillaSinNulos, Empleado?[] plantilla) {
+    var index = 0;
+    for (int i = 0; i < plantilla.Length; i++) {
+        if (plantilla[i] is { } empleadoValido) {
+            plantillaSinNulos[index] = empleadoValido;
+            index++;
+        }
+    }
+}
+
+void OrdenarPorNip(Empleado[] plantilla) {
+    for (int i = 0; i < plantilla.Length - 1; i++) {
+        bool swapped = false;
+        for (int j = 0; j < plantilla.Length - i - 1; j++) {
+            // datos a comparar
+            var nipActual = plantilla[j].Nip;
+            char primeraLetraNipActual = Convert.ToChar(nipActual[0]);
+            char segundaLetraNipActual = Convert.ToChar(nipActual[1]);
+            int numNipActual = Convert.ToInt32((nipActual[2]));
+            
+            var nipSiguiente = plantilla[j + 1].Nip;
+            char primeraLetraNipSiguiente = Convert.ToChar(nipSiguiente[0]);
+            char segundaLetraNipSiguiente = Convert.ToChar(nipSiguiente[1]);
+            int numNipSiguiente = Convert.ToInt32((nipSiguiente[2]));
+
+            // si el siguiente nip es menor se pone en la posicion actual
+            if (primeraLetraNipActual == primeraLetraNipSiguiente) { // si las primeras letras son iguales comprobamos las 2
+                if (segundaLetraNipActual == segundaLetraNipSiguiente) { // si tambien son iguales, pasamos a los numeros
+                    if (numNipActual > numNipSiguiente) {
+                        // swap
+                        SwapEmpleados(plantilla, j, j + 1);
+                        swapped = true;
+                    }
+                } else if (segundaLetraNipActual > segundaLetraNipSiguiente) {
+                    SwapEmpleados(plantilla, j, j + 1);
+                    swapped = true;
+                }
+            } else if (primeraLetraNipActual > primeraLetraNipSiguiente) {
+                // swap
+                SwapEmpleados(plantilla, j, j + 1);
+                swapped = true;
+            }
+        }
+        // si no hubo intercambio el array está ordenado asc en base a su nip
+        if (!swapped) break;
+    }
+}
+void SwapEmpleados(Empleado[] plantilla, int i, int j) {
+    Empleado temp = plantilla[i];
+    plantilla[i] = plantilla[j];
+    plantilla[j] = temp;
 }
