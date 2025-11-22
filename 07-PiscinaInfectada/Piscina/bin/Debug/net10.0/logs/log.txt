@@ -1,0 +1,142 @@
+2025-11-22 21:21:21.307 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:28:44.489 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:28:57.530 +01:00 [ERR] 🔴 No se han introducido todos los datos. Se simulará con los valores por defecto.
+2025-11-22 21:30:17.560 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:30:17.616 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:30:46.248 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:30:46.294 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:30:46.297 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:31:07.661 +01:00 [ERR] 🔴 No se han introducido todos los datos. Se simulará con los valores por defecto.
+2025-11-22 21:31:27.598 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:31:27.632 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:31:27.632 +01:00 [INF] ✅ Simulando con 1 infectados.
+2025-11-22 21:31:27.632 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 21:31:27.632 +01:00 [INF] ✅ La simulación durará 50s
+2025-11-22 21:32:56.675 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:32:56.724 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:32:56.724 +01:00 [INF] ✅ Simulando con 1 infectados.
+2025-11-22 21:32:56.724 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 21:32:56.726 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:33:27.830 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:33:27.870 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:33:27.870 +01:00 [INF] ✅ Simulando con 1 infectados.
+2025-11-22 21:33:27.870 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 21:33:27.870 +01:00 [INF] ✅ La simulación durará 1s
+2025-11-22 21:36:18.371 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:36:18.415 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:36:18.415 +01:00 [INF] ✅ Simulando con 1 infectados.
+2025-11-22 21:36:18.415 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 21:36:18.415 +01:00 [INF] ✅ La simulación durará 1s
+2025-11-22 21:36:56.023 +01:00 [ERR] 🔴 No se han introducido todos los datos. Se simulará con los valores por defecto.
+2025-11-22 21:36:56.092 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 21:36:56.092 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 21:36:56.101 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los valores por defecto.
+2025-11-22 21:36:56.101 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 21:36:56.101 +01:00 [INF] ✅ La simulación durará 1s
+2025-11-22 22:36:55.376 +01:00 [ERR] 🔴 No se han introducido todos los datos. Se simulará con los valores por defecto.
+2025-11-22 22:36:55.431 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 22:36:55.431 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 22:36:55.431 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:36:55.431 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 22:36:55.431 +01:00 [INF] ✅ La simulación durará 1s
+2025-11-22 22:39:35.063 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 22:39:35.134 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 22:39:35.171 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:39:35.171 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 22:39:35.177 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:39:35.177 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:44:56.862 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 22:44:56.940 +01:00 [INF] ✅ Simulando con un bebé con 1 vidas.
+2025-11-22 22:44:56.948 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:44:56.949 +01:00 [INF] ✅ Simulando con 12 infectados.
+2025-11-22 22:44:56.951 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:44:56.951 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:45:13.095 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 22:45:13.146 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 22:45:13.146 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:45:13.147 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con los infectados por defecto.
+2025-11-22 22:45:13.147 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:45:13.147 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:45:24.196 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 22:45:24.236 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 22:45:24.236 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:45:24.236 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con los infectados por defecto.
+2025-11-22 22:45:24.237 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:45:24.237 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:46:16.194 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 22:46:16.233 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 22:46:16.234 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:46:16.234 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con los infectados por defecto.
+2025-11-22 22:46:16.234 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:46:16.234 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:47:27.610 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 22:47:27.662 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 22:47:27.666 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:47:27.669 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con los infectados por defecto.
+2025-11-22 22:47:27.677 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 22:47:27.678 +01:00 [INF] ✅ La simulación durará 0s
+2025-11-22 22:58:35.770 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 22:58:35.821 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 22:58:35.824 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 22:58:35.825 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con los infectados por defecto.
+2025-11-22 22:58:35.826 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 23:00:18.062 +01:00 [ERR] 🔴 Dimension introducida incorrectamente. Se simulará con las dimensiones por defecto.
+2025-11-22 23:00:18.125 +01:00 [ERR] 🔴 Vidas introducidas incorrectamente. Se simulará con las vidas por defecto.
+2025-11-22 23:00:18.130 +01:00 [ERR] 🔴 Sanos introducidos incorrectamente. Se simulará con los sanos por defecto.
+2025-11-22 23:00:18.135 +01:00 [ERR] 🔴 Infectados introducidos incorrectamente. Se simulará con las bacterias por defecto.
+2025-11-22 23:00:18.139 +01:00 [ERR] 🔴 Tiempo introducido incorrectamente. Se simulará con los segundos por defecto.
+2025-11-22 23:00:58.899 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:00:58.949 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:00:58.949 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:00:58.949 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:00:58.949 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:08:18.027 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:08:18.105 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:08:18.138 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:08:18.138 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:08:18.138 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:08:18.138 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:08:18.138 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:10:42.794 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:10:42.904 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:10:42.956 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:10:42.956 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:10:42.956 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:10:42.956 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:10:42.956 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:11:24.134 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:11:24.328 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:11:24.351 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:11:24.351 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:11:24.351 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:11:24.351 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:11:24.351 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:12:24.018 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:12:24.104 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:12:24.139 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:12:24.140 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:12:24.140 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:12:24.140 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:12:24.140 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:12:39.814 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:12:39.883 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:12:39.907 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:12:39.908 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:12:39.908 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:12:39.908 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:12:39.908 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:12:52.847 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:12:52.941 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:12:52.965 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:12:52.965 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:12:52.965 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:12:52.965 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:12:52.965 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:16:26.153 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-22 23:16:26.228 +01:00 [INF] ✅ Config default creada.
+2025-11-22 23:16:26.254 +01:00 [INF] ✅ Simulando con una piscina 50x50
+2025-11-22 23:16:26.255 +01:00 [INF] ✅ Simulando con un bebé con 2 vidas.
+2025-11-22 23:16:26.255 +01:00 [INF] ✅ Simulando con 15 infectados.
+2025-11-22 23:16:26.255 +01:00 [INF] ✅ Simulando con 50 infectados.
+2025-11-22 23:16:26.255 +01:00 [INF] ✅ La simulación durará 120s
+2025-11-22 23:16:26.255 +01:00 [DBG] 🔵 Imprimiendo config...

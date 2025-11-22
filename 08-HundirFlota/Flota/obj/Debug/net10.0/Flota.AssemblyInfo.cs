@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Piscina")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Flota")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+db0534a2d21b11908e3ed80a6914d484c2333dd8")]
-[assembly: System.Reflection.AssemblyProductAttribute("Piscina")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Piscina")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4563a020d6b54e7b50a3b7422a03d0dc7eef819b")]
+[assembly: System.Reflection.AssemblyProductAttribute("Flota")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Flota")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
