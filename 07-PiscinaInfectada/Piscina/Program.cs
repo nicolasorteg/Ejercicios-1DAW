@@ -1,6 +1,7 @@
 ﻿// ._.
 using System.Globalization;
 using System.Text;
+using Piscina.Enums;
 using Piscina.Structs;
 using Serilog;
 using static System.Console;
@@ -11,7 +12,7 @@ const int VidasDefault = 2;
 const int SanosDefault = 10;
 const int BacteriasDefault = 30;
 const int TiempoDefault = 60;
-const int ProbMatar = 90;
+const int ProbMatar = 25;
 
 var random = Random.Shared;
 Log.Logger = new LoggerConfiguration().WriteTo.File("logs/log.txt").MinimumLevel.Debug().CreateLogger();
@@ -34,10 +35,92 @@ void Main(string[] args) {
     var configuracion = ValidarArgs(args);
     ImprimirConfig(configuracion);
     
-    // creacion piscina y variables para informe final
-    // ...
+    // creacion piscina y colocamos al socorrista
+    var piscinaFront = new TipoCelda[configuracion.Dimension, configuracion.Dimension];
+    var piscinaBack = new TipoCelda[configuracion.Dimension, configuracion.Dimension];
+    InicializarDatos(piscinaFront, configuracion);
     
+    // coloca a nizar el socorrista
+    var posicionInicialSocorrista = new Posicion {
+        Fila = random.Next(piscinaFront.GetLength(0)),
+        Columna = random.Next(piscinaFront.GetLength(1))
+    };
+    piscinaFront[posicionInicialSocorrista.Fila, posicionInicialSocorrista.Columna] = TipoCelda.Nizar;
+    
+    // creamos el informe
+    var informe = new Informe {
+        TiempoTranscurrido = 0,
+        BebesInfectados = 0,
+        BebesRescatados = 0,
+        NumBacterias = configuracion.NumBacterias,
+        NumBebes = configuracion.NumSanos,
+        PosicionNizar = posicionInicialSocorrista
+    };
+    
+    // comienza la simulación
+    Simular(piscinaFront, piscinaBack, informe, configuracion);
 }
+
+void Simular(TipoCelda[,] piscinaFront, TipoCelda[,] piscinaBack, Informe informe, Configuracion configuracion) {
+    Log.Debug("🔵 Comenzando simulación...");
+    var isSimulacionActiva = false;
+
+    do {
+        Clear();
+        WriteLine($"---------- 🦠 Tiempo: {informe.TiempoTranscurrido}s 🦠 ----------");
+        WriteLine();
+
+        // muestra el tablero
+        ImprimirPiscina(piscinaFront);
+
+
+        
+
+        isSimulacionActiva = true;
+    } while (!isSimulacionActiva);
+}
+
+void ImprimirPiscina(TipoCelda[,] piscinaFront) {
+    for (int i = 0; i < piscinaFront.GetLength(0); i++) {
+        Write("| ");
+        for (int j = 0; j < piscinaFront.GetLength(1); j++) {
+            if (piscinaFront[i, j] == TipoCelda.Agua)
+                Write("💧");
+            else if (piscinaFront[i, j] == TipoCelda.Bebé)
+                Write("👶");
+            else if (piscinaFront[i, j] == TipoCelda.Bacteria)
+                Write("🦠");
+            else
+                Write("🛟");
+        }
+        Write("   |");
+        WriteLine();
+    }
+}
+
+void InicializarDatos(TipoCelda[,] piscinaFront, Configuracion configuracion) {
+    Log.Debug("🔵 Colocando bebés y bacterias...");
+    // coloca los bebés y las bacetrias
+    int numBebes = configuracion.NumSanos;
+    int numBacterias = configuracion.NumBacterias;
+    while (numBebes > 0 || numBacterias > 0) {
+        // si hay bebés por colocar coloca, sino pasa a colocar las bacterias
+        if (numBebes > 0) {
+            int filaRandom = random.Next(piscinaFront.GetLength(0));
+            int columnaRandom = random.Next(piscinaFront.GetLength(1));
+            piscinaFront[filaRandom, columnaRandom] = TipoCelda.Bebé;
+            numBebes--;
+            Log.Information($"✅ Bebé colocado en {filaRandom}:{columnaRandom}");
+        } else {
+            int filaRandom = random.Next(piscinaFront.GetLength(0));
+            int columnaRandom = random.Next(piscinaFront.GetLength(1));
+            piscinaFront[filaRandom, columnaRandom] = TipoCelda.Bacteria;
+            numBacterias--;
+            Log.Information($"✅ Bactera colocada en {filaRandom}:{columnaRandom}");
+        }
+    }
+}
+
 void ImprimirConfig(Configuracion config) {
     Log.Debug("🔵 Imprimiendo config...");
     WriteLine($"⬛  Dimensiones -> {config.Dimension}x{config.Dimension}");
