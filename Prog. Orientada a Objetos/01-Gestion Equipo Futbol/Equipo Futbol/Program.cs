@@ -15,13 +15,13 @@ Console.Title = "Gestor Plantilla";
 Console.OutputEncoding = Encoding.UTF8;
 Console.Clear();
 
-Main(args); // daw's template
+Main(); // daw's template sin args ya que en este programa no se requieren
 
 Console.WriteLine("🖖 Pulse cualquier tecla para salir.");
 Console.ReadKey();
 return;
 
-void Main(string[] args) {
+void Main() {
     Log.Debug("🔵 Iniciando Main...");
 
     // creacion array contenedor de jugadores
@@ -35,7 +35,6 @@ void Main(string[] args) {
         ImprimirMenu();
         opcionElegida = int.Parse(ValidarDato("- Opción elegida ->", RegexOpcionMenu));
         AsignarAccion(opcionElegida, plantilla, numJugadores);
-        Console.WriteLine();
     } while (opcionElegida != (int)OpcionMenu.Salir);
     Log.Debug("🔵 Saliendo del Main...");
 }
@@ -47,7 +46,10 @@ void CrearJugador(ref Jugador?[] plantilla, ref int numJugadores) {
 }
 
 void ImprimirPlantilla(Jugador?[] plantilla, int numJugadores) {
-    
+    Log.Debug("🔵 Imprimiendo Plantilla...");
+    Console.WriteLine("-- PLANTILLA CD LEGANÉS 🥒");
+    for (int i = 0; i < plantilla.Length; i++) 
+        if (plantilla[i] is { } jugadorValido) Console.WriteLine($"{i+1}.- {jugadorValido.ToString()}"); 
 }
 
 void OrdenarPorGoles(Jugador?[] plantilla) {
@@ -130,7 +132,7 @@ void AsignarAccion(int opcion, Jugador?[] plantilla, int numJugadores ) {
 }
 
 
-String ValidarDato(string msg, string rgx) {
+string ValidarDato(string msg, string rgx) {
     string input;
     var isDatoOk = false;
     var regex = new Regex(rgx);
