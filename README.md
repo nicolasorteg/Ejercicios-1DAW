@@ -1,7 +1,12 @@
 # ✏️ Ejercicios-1DAW
-Este repositorio almacena una serie de ejercicios de la asignatura **Programación** de 1º de DAW.
+Este repositorio almacena una colección de ejercicios realizados durante **1º DAW**.
+## 🛠️ Tecnologías usadas
+- **C#** (.NET) -> Lenguaje principal de los ejercicios.
+- Git/Github -> Control de versiones y organización del trabajo.
 
-En este primer curso solo se resuelven los ejercicios haciendo uso de **C#**, por lo que este repo es al 100% C#.
+Último ejercicio [aquí](https://github.com/nicolasorteg/Ejercicios-1DAW/tree/feature-bj/07-Blackjack).
+## 📩 Contacto
 
-Los ejercicios se crean en el main y se resuelven en una rama auxiliar en la que solo se modifica un ejercicio. Una vez este ejercicio llegue a una versión funcional que resuelve el enunciado se mergea a main.
-- Actualmente trabajando en [este ejercicio](https://github.com/nicolasorteg/Ejercicios-1DAW/tree/feature-bj/07-Blackjack).
+Si quieres comentar ideas, proponr mejoras o charlar sobre programación:
+📧 nicolasortegaf22@gmail.com
+🌐 [LinkedIn](https://www.linkedin.com/in/nicol%C3%A1s-ortega-fern%C3%A1ndez-a5682930a/)
