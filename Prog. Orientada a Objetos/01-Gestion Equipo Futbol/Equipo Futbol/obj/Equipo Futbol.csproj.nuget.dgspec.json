@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nickr\\Desktop\\git\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj": {}
+    "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nickr\\Desktop\\git\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj": {
+    "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nickr\\Desktop\\git\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj",
+        "projectUniqueName": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj",
         "projectName": "Equipo Futbol",
-        "projectPath": "C:\\Users\\nickr\\Desktop\\git\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj",
+        "projectPath": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\Equipo Futbol.csproj",
         "packagesPath": "C:\\Users\\nickr\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nickr\\Desktop\\git\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\obj\\",
+        "outputPath": "C:\\Users\\nickr\\Desktop\\Ejercicios-1DAW\\Prog. Orientada a Objetos\\01-Gestion Equipo Futbol\\Equipo Futbol\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nickr\\AppData\\Roaming\\NuGet\\NuGet.Config"
