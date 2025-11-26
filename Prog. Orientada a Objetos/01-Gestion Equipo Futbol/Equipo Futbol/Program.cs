@@ -1,3 +1,22 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// ._.
+using System.Text;
+using Serilog;
 
-Console.WriteLine("Hello, World!");
+// constantes globales
+
+
+// config inicial
+Log.Logger = new LoggerConfiguration().WriteTo.File("Logs/logs.txt").MinimumLevel.Debug().CreateLogger();
+Console.Title = "Gestor Plantilla";
+Console.OutputEncoding = Encoding.UTF8;
+Console.Clear();
+
+Main(args); // daw's template
+
+Console.WriteLine("🖖 Pulse cualquier tecla para salir.");
+Console.ReadKey();
+return;
+
+void Main(string[] args) {
+    Log.Debug("🔵 Iniciando Main...");
+}
