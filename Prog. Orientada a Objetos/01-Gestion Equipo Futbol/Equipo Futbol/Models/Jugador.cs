@@ -10,9 +10,10 @@ public class Jugador {
     private int _dorsal;
     private PosicionJugador _posicion;
     private int _goles;
+    private int _asistencias;
     
     // constructor que obliga a que estén todos los datos
-    public Jugador(string dni, string nombre, int edad, int dorsal, PosicionJugador posicion, int goles) {
+    public Jugador(string dni, string nombre, int edad, int dorsal, PosicionJugador posicion, int goles, int asistencias) {
         var posicionInt = (int)posicion; // para usar el setter
         if (!IsDniValido(dni)) throw new ArgumentException("DNI inválido.");
         _dni = dni;
@@ -22,6 +23,7 @@ public class Jugador {
         SetDorsal(dorsal);
         SetPosicion(posicionInt); 
         SetGoles(goles);
+        SetAsistencias(asistencias);
     }
 
     // getters
@@ -43,44 +45,74 @@ public class Jugador {
     public int GetGoles() {
         return _goles;
     }
+
+    public int GetAsistencias() {
+        return _asistencias;
+    }
     
     // setters
-    public void SetDni(string dni) {
+    public bool SetDni(string dni) {
         if (!IsDniValido(dni)) {
             Log.Warning("⚠️ El DNI introducido es inválido.");
             Console.WriteLine("🔴  DNI inválido. Introduzca un DNI válido.");
-        } else _dni = dni;
+            return false;
+        }
+        _dni = dni;
+        return true;
     }
-
-    public void SetNombre(string nombre) {
+    public bool SetNombre(string nombre) {
         if (!IsNombreValido(nombre)) {
             Log.Warning("⚠️ El nombre introducido es inválido.");
             Console.WriteLine("🔴  Nombre inválido. Introduzca un nombre de al menos 3 letras.");
-        } else _nombre = nombre;
+            return false;
+        }
+        _nombre = nombre;
+        return true;
     }
-    public void SetEdad(int edad) {
+    public bool SetEdad(int edad) {
         if (!IsEdadValida(edad)) {
             Log.Warning("⚠️ La edad introducida es inválida. ");
             Console.WriteLine("🔴  Edad inválida. El jugador debe tener al menos 12 años.");
-        } else _edad = edad;
+            return false;
+        } 
+        _edad = edad;
+        return true;
     }
-    public void SetDorsal(int dorsal) {
+    public bool SetDorsal(int dorsal) {
         if (!IsDorsalValido(dorsal)) {
             Log.Warning("⚠️ El dorsal introducido es inválido.");
             Console.WriteLine("🔴  Dorsal inválido. Introduzca un dorsal del 1-99");
-        } else _dorsal = dorsal;
+            return false;
+        }
+        _dorsal = dorsal;
+        return true;
     }
-    public void SetPosicion(int posicion) {
+    public bool SetPosicion(int posicion) {
         if (!IsPosicionValida(posicion)) {
             Log.Warning("⚠️ La posición introducida es inválida.");
             Console.WriteLine("🔴  Posición inválida. Introduzca una de las 4 posiciones disponibles.");
-        } else _posicion = (PosicionJugador)posicion;// ...
+            return false;
+        }
+        _posicion = (PosicionJugador)posicion;
+        return true;
     }
-    public void SetGoles(int goles) {
-        if (!IsGolesValidos(goles)) {
+    public bool SetGoles(int goles) {
+        if (!IsParticipacionesGolValidas(goles)) {
             Log.Warning("⚠️ El nº de goles introducido es inválido.");
             Console.WriteLine("🔴  Goles inválidos. Introduzca un número de goles superior o igual a 0.");
-        } else _goles = goles;
+            return false;
+        }
+        _goles = goles;
+        return true;
+    }
+    public bool SetAsistencias(int asistencias) {
+        if (!IsParticipacionesGolValidas(asistencias)) {
+            Log.Warning("⚠️ El nº de asistencias introducido es inválido.");
+            Console.WriteLine("🔴  Asistencias inválidos. Introduzca un número de asistencias superior o igual a 0.");
+            return false;
+        }
+        _asistencias = asistencias;
+        return true;
     }
     
     // métodos de validación 
@@ -99,14 +131,14 @@ public class Jugador {
         return dorsal >= 1 && dorsal <= 99; // dorsal 1-99
     }
     private bool IsPosicionValida(int posicion) {
-        return posicion >= 1 && posicion <= 4; // posicion entre Portero, Defensa, MedioCentro y Delantero
+        return posicion >= 0 && posicion <= 3; // posicion entre Portero, Defensa, MedioCentro y Delantero
     }
-    private bool IsGolesValidos(int goles) {
+    private bool IsParticipacionesGolValidas(int goles) {
         return goles >= 0; // goles positivos
     }
     
     // imprime la información del jugador
     public override string ToString() {
-        return $"DNI: {_dni}, Nombre: {_nombre}, Edad: {_edad}, Dorsal: {_dorsal}, Posición: {_posicion}, Goles: {_goles}";
+        return $"DNI: {_dni}, Nombre: {_nombre}, Edad: {_edad}, Dorsal: {_dorsal}, Posición: {_posicion}, Goles: {_goles}, Asistencias {_asistencias}";
     }
 }
