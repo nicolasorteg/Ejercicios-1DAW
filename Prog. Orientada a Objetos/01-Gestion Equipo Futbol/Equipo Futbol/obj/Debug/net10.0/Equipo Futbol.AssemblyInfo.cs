@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Flota")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Equipo Futbol")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4563a020d6b54e7b50a3b7422a03d0dc7eef819b")]
-[assembly: System.Reflection.AssemblyProductAttribute("Flota")]
-[assembly: System.Reflection.AssemblyTitleAttribute("Flota")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c770e2691803ca78dfb2f8ba13c83430029c1a3f")]
+[assembly: System.Reflection.AssemblyProductAttribute("Equipo Futbol")]
+[assembly: System.Reflection.AssemblyTitleAttribute("Equipo Futbol")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.
