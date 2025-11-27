@@ -18,3 +18,23 @@ C:\Users\nickr\Desktop\git\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion 
 C:\Users\nickr\Desktop\git\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.pdb
 C:\Users\nickr\Desktop\git\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.genruntimeconfig.cache
 C:\Users\nickr\Desktop\git\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\ref\Equipo Futbol.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.csproj.AssemblyReference.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.AssemblyInfoInputs.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.AssemblyInfo.cs
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.csproj.CoreCompileInputs.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.sourcelink.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\refint\Equipo Futbol.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.pdb
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Equipo Futbol.exe
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Equipo Futbol.deps.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Equipo Futbol.runtimeconfig.json
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Equipo Futbol.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Equipo Futbol.pdb
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Serilog.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Serilog.Sinks.Console.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\bin\Debug\net10.0\Serilog.Sinks.File.dll
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo F.BEEBD730.Up2Date
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\Equipo Futbol.genruntimeconfig.cache
+C:\Users\nickr\Desktop\Ejercicios-1DAW\Prog. Orientada a Objetos\01-Gestion Equipo Futbol\Equipo Futbol\obj\Debug\net10.0\ref\Equipo Futbol.dll
