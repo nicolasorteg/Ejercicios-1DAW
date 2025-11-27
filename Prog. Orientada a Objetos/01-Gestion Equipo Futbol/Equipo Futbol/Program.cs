@@ -45,11 +45,11 @@ void CrearJugador(ref Jugador?[] plantilla, ref int numJugadores) {
     throw new NotImplementedException();
 }
 
-void ImprimirPlantilla(Jugador?[] plantilla, int numJugadores) {
+void ImprimirPlantilla(Jugador?[] plantilla) {
     Log.Debug("🔵 Imprimiendo Plantilla...");
     Console.WriteLine("-- PLANTILLA CD LEGANÉS 🥒");
     for (var i = 0; i < plantilla.Length; i++) 
-        if (plantilla[i] is { } jugadorValido) Console.WriteLine($"{i+1}.- {jugadorValido.ToString()}"); 
+        if (plantilla[i] is { } jugadorValido) Console.WriteLine($"{i+1}.- {jugadorValido}"); // si hay un jugador imprime los datos con ToString
 }
 
 void OrdenarPorGoles(Jugador?[] plantilla) {
@@ -90,7 +90,7 @@ void InicializarJugadoresIniciales(Jugador?[] jugadores) {
 
 void ImprimirMenu() {
     Console.WriteLine();
-    Console.WriteLine("---------- ⚽ GESTÓN CD LEGANÉS ⚽ ----------");
+    Console.WriteLine("---------- ⚽ GESTIÓN CD LEGANÉS ⚽ ----------");
     Console.WriteLine($"{(int)OpcionMenu.CrearJugador}.- Fichar Jugador.");
     Console.WriteLine($"{(int)OpcionMenu.VerPlantilla}.- Ver plantilla.");
     Console.WriteLine($"{(int)OpcionMenu.OrdenarPorGoles}.- Ordenar por Goles.");
@@ -110,7 +110,7 @@ void AsignarAccion(int opcion, Jugador?[] plantilla, int numJugadores ) {
             CrearJugador(ref plantilla, ref numJugadores);
             break;
         case (int)OpcionMenu.VerPlantilla:
-            ImprimirPlantilla(plantilla, numJugadores);
+            ImprimirPlantilla(plantilla);
             break;
         case (int)OpcionMenu.OrdenarPorGoles:
             OrdenarPorGoles(plantilla);
