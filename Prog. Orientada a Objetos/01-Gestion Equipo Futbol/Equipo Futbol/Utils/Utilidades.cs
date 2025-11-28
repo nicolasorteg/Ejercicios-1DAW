@@ -104,4 +104,43 @@ public static class Utilidades {
         }
         Console.WriteLine();
     }
+
+    public static void GuardarJugadorEnPlantilla(Jugador nuevoJugador, ref Jugador?[] plantilla) {
+        var index = -1;
+        for (var i = 0; i < plantilla.Length; i++) {
+            if (plantilla[i] == null) {
+                index = i;
+                break;
+            }
+        }
+        if (index != -1) {
+            plantilla[index] = nuevoJugador;
+            Log.Information($"✅ Jugador {nuevoJugador.Dni} guardado.");
+            Console.WriteLine($"✅ Jugador {nuevoJugador.Dni} guardado correctamente. Es el {index + 1}º Jugador de la plantilla.");
+        } else {
+            var nuevaPlantilla = new Jugador?[plantilla.Length + 1];
+            Array.Copy(plantilla, nuevaPlantilla, plantilla.Length);
+            nuevaPlantilla[nuevaPlantilla.Length - 1] = nuevoJugador;
+            plantilla = nuevaPlantilla; 
+            Log.Information($"✅ Jugador {nuevoJugador.Dni} guardado en la posición {plantilla.Length}");
+            Console.WriteLine($"✅  Jugador guardado correctamente. Es el {plantilla.Length}º Jugador de la plantilla.");
+        }
+        Console.WriteLine();
+    }
+
+    public static void ImprimirMenuActualizar() {
+        Console.WriteLine($"{(int)OpcionActualizar.Nombre}.- Nombre.");
+        Console.WriteLine($"{(int)OpcionActualizar.Edad}.- Edad.");
+        Console.WriteLine($"{(int)OpcionActualizar.Dorsal}.- Dorsal.");
+        Console.WriteLine($"{(int)OpcionActualizar.Posicion}.- Posicion.");
+        Console.WriteLine($"{(int)OpcionActualizar.Goles}.- Goles.");
+        Console.WriteLine($"{(int)OpcionActualizar.Asistencias}.- Asistencias.");
+        Console.WriteLine($"{(int)OpcionActualizar.Salir}.- Salir.");
+    }
+
+    public static void MostrarConfirmacionActualizacion(Jugador jugadorValido) {
+        Console.WriteLine("✅  Jugador actualizado.");
+        Console.WriteLine(jugadorValido);
+        Console.WriteLine();
+    }
 }

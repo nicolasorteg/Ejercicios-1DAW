@@ -1,6 +1,4 @@
 ﻿// ._.
-
-using System.Runtime.CompilerServices;
 using System.Text;
 using Equipo_Futbol.Enums;
 using Equipo_Futbol.Models;
@@ -11,13 +9,14 @@ using Equipo_Futbol.Utils;
 const int JugadoresIniciales = 5;
 const int EdadMinima = 12;
 
-const string RegexOpcionMenu = @"^[0-6]$";
+const string RegexOpcionMenu = @"^[0-6]$"; // si se creasen más opciones o se ampliasen los campos de jugador habria que crear RegexOpcionMenuActualizar
 const string RegexOpcionPosicion = @"^[1-4]$";
 const string RegexDni = @"[0-9]{8}[a-zA-Z]{1}$";
 const string RegexConfirmacion = @"^[SN]$";
 const string RegexNombre = @"^[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]{3,}$";
 const string RegexEdad = @"^(0|[1-9]\d?)$";
 const string RegexDorsal = @"^([1-9]\d?)$";
+const string RegexStats = @"^\d{1,5}$";
 
 // config inicial
 Log.Logger = new LoggerConfiguration().WriteTo.File("Logs/logs.txt").MinimumLevel.Debug().CreateLogger();
@@ -85,7 +84,7 @@ void AsignarAccion(int opcion, ref Jugador?[] plantilla) {
 void CrearJugador(ref Jugador?[] plantilla) {
     Log.Debug("🔵 Creando nuevo Jugador...");
     var nuevoJugador = new Jugador();
-    var isDniOk = false;
+    bool isDniOk;
     var isEdadOk = false;
     
     // 1. dni
@@ -133,27 +132,8 @@ void CrearJugador(ref Jugador?[] plantilla) {
     Console.WriteLine(nuevoJugador);
     var opcion = Utilidades.ValidarDato("- ¿Desea guardarlo? (s/n): ", RegexConfirmacion);
     if (opcion != "S") return;
-    
-    
-    int indiceInsercion = -1;
-    for (int i = 0; i < plantilla.Length; i++) {
-        if (plantilla[i] == null) {
-            indiceInsercion = i;
-            break;
-        }
-    }
-    if (indiceInsercion != -1) {
-        plantilla[indiceInsercion] = nuevoJugador;
-        Log.Information($"✅ Jugador {nuevoJugador.Dni} guardado.");
-        Console.WriteLine($"✅ Jugador {nuevoJugador.Dni} guardado correctamente. Es el {indiceInsercion + 1}º Jugador de la plantilla.");
-    } else {
-        var nuevaPlantilla = new Jugador?[plantilla.Length + 1];
-        Array.Copy(plantilla, nuevaPlantilla, plantilla.Length);
-        nuevaPlantilla[nuevaPlantilla.Length - 1] = nuevoJugador;
-        plantilla = nuevaPlantilla; 
-        Log.Information($"✅ Jugador {nuevoJugador.Dni} guardado en la posición {plantilla.Length}");
-        Console.WriteLine($"✅  Jugador guardado correctamente. Es el {plantilla.Length}º Jugador de la plantilla.");
-    }
+
+    Utilidades.GuardarJugadorEnPlantilla(nuevoJugador, ref plantilla);
 }
 
 void ImprimirPlantilla(Jugador?[] plantilla) {
@@ -196,7 +176,76 @@ void ListarPorPosicion(Jugador?[] plantilla) {
 }
 
 void ActualizarJugador(Jugador?[] plantilla) {
-    throw new NotImplementedException();
+    Log.Debug("🔵 Actualizando Jugador...");
+
+    var dni = Utilidades.ValidarDato("- Introduzca el DNI del Jugador a actualizar:", RegexDni);
+    foreach (var jugador in plantilla) {
+        if (jugador is { } jugadorValido) {
+            if (jugadorValido.Dni == dni) {
+                Console.WriteLine("✅  Jugador encontrado:");
+                Console.WriteLine(jugadorValido);
+                Console.WriteLine();
+                Console.WriteLine("-- Dato a actualizar --");
+                Utilidades.ImprimirMenuActualizar();
+                var opcionElegida = int.Parse(Utilidades.ValidarDato("- N.º de Dato elegido ->", RegexOpcionMenu));
+                switch (opcionElegida) {
+                    case (int)OpcionActualizar.Nombre:
+                        var nombre = Utilidades.ValidarDato("- Introduce el Nombre: ", RegexNombre);
+                        jugadorValido.Nombre = nombre;
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Edad:
+                        var edad = int.Parse(Utilidades.ValidarDato("- Introduce la Edad:", RegexEdad));
+                        if (edad < EdadMinima) {
+                            Console.WriteLine($"🔴  La edad mínima es de {EdadMinima} años.");
+                            continue;
+                        }
+                        jugadorValido.Edad = edad;
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Dorsal:
+                        var dorsal = int.Parse(Utilidades.ValidarDato("- Introduce el Dorsal:", RegexDorsal));   
+                        jugadorValido.Dorsal = dorsal;
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Posicion:
+                        Utilidades.ImprimirMenuPosicion();
+                        var opcion = int.Parse(Utilidades.ValidarDato("- Introduce el número de la posición: ", RegexOpcionPosicion));
+                        jugadorValido.Posicion = (Jugador.Posiciones)(opcion - 1);
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Goles:
+                        var goles = int.Parse(Utilidades.ValidarDato("- Introduce los Goles:", RegexStats));
+                        jugadorValido.Goles = goles;
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Asistencias:
+                        var asistencias = int.Parse(Utilidades.ValidarDato("- Introduce las Asistencias:", RegexStats));
+                        jugadorValido.Goles = asistencias;
+                        Utilidades.MostrarConfirmacionActualizacion(jugadorValido);
+                        break;
+                    
+                    case (int)OpcionActualizar.Salir:
+                        Log.Debug("🔵 Volviendo al menú...");
+                        break;
+                    
+                    default: // no deberia pasar nunca ya que ValidarDato se asegura de que la opcion exista en el menu
+                        Log.Error("🔴  El programa ha fallado en 'ValidarDato' y no ha podido reconocer la opción introducida");
+                        Console.WriteLine("❌  Opción no reconocida. Introduzca una opción de las que se muestran en el menú.");
+                        break;
+                }
+                return;
+            } 
+        }
+    }
+    Console.WriteLine($"🔴  No existe el Jugador {dni}");
+    Console.WriteLine();
+    return;
 }
 
 void BorrarJugador(ref Jugador?[] plantilla) {
