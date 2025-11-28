@@ -1,5 +1,4 @@
-﻿using System.Text.RegularExpressions;
-using Equipo_Futbol.Enums;
+﻿using System.Text.RegularExpressions; 
 namespace Equipo_Futbol.Models;
 
 public class Jugador {
@@ -22,7 +21,7 @@ public class Jugador {
         get;
         set => field = value < 1 || value > 99? throw new ArgumentOutOfRangeException(nameof(value), "El Dorsal introducido es inválido.") : value;
     }
-    public PosicionJugador Posicion { get; set; }
+    public Posiciones Posicion { get; set; }
     public int Goles {
         get;
         set => field = value < 0 ? throw new ArgumentOutOfRangeException(nameof(value), "El N.º de Goles introducido es inválido.") : value;
@@ -32,8 +31,16 @@ public class Jugador {
         set => field = value < 0 ? throw new ArgumentOutOfRangeException(nameof(value), "El N.º de Asistencias introducido es inválido.") : value;
     }
     
+    
+    public enum Posiciones {
+        Portero,
+        Defensa,
+        Mediocentro,
+        Delantero
+    }
+    
     // constructores
-    public Jugador(string dni, string nombre, int edad, int dorsal, PosicionJugador posicion, int goles, int asistencias) {
+    public Jugador(string dni, string nombre, int edad, int dorsal, Posiciones posicion, int goles, int asistencias) {
         this.Dni = dni;
         this.Nombre = nombre;
         this.Edad = edad;

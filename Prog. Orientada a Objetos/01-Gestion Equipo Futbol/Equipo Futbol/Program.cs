@@ -1,6 +1,5 @@
 ﻿// ._.
 using System.Text;
-using System.Text.RegularExpressions;
 using Equipo_Futbol.Enums;
 using Equipo_Futbol.Models;
 using Serilog;
@@ -30,25 +29,24 @@ void Main() {
     // creacion array contenedor de jugadores
     var plantilla = new Jugador?[JugadoresIniciales]; // ahora mismo lleno de nulos
     Utilidades.InicializarJugadoresIniciales(plantilla);
-    var numJugadores = JugadoresIniciales;
 
     // gestion menú
     int opcionElegida;
     do {
         Utilidades.ImprimirMenu();
         opcionElegida = int.Parse(Utilidades.ValidarDato("- Opción elegida ->", RegexOpcionMenu));
-        AsignarAccion(opcionElegida, plantilla, numJugadores);
+        AsignarAccion(opcionElegida, plantilla);
     } while (opcionElegida != (int)OpcionMenu.Salir);
     Log.Debug("🔵 Saliendo del Main...");
 }
 
-void AsignarAccion(int opcion, Jugador?[] plantilla, int numJugadores ) {
+void AsignarAccion(int opcion, Jugador?[] plantilla) {
     switch (opcion) {
         case (int)OpcionMenu.Salir:
             Console.WriteLine("🤗 Ha sido un placer!");
             break;
         case (int)OpcionMenu.CrearJugador:
-            CrearJugador(ref plantilla, ref numJugadores);
+            CrearJugador(ref plantilla);
             break;
         case (int)OpcionMenu.VerPlantilla:
             ImprimirPlantilla(plantilla);
@@ -63,7 +61,7 @@ void AsignarAccion(int opcion, Jugador?[] plantilla, int numJugadores ) {
             ActualizarJugador(plantilla);
             break;
         case (int)OpcionMenu.BorrarJugador:
-            BorrarJugador(ref plantilla, ref numJugadores);
+            BorrarJugador(ref plantilla);
             break;
         default: // no deberia pasar nunca ya que ValidarDato se asegura de que la opcion exista en el menu
             Log.Error("🔴  El programa ha fallado en 'ValidarDato' y no ha podido reconocer la opción introducida");
@@ -76,7 +74,7 @@ void AsignarAccion(int opcion, Jugador?[] plantilla, int numJugadores ) {
 
 // funciones CRUD
 
-void CrearJugador(ref Jugador?[] plantilla, ref int numJugadores) {
+void CrearJugador(ref Jugador?[] plantilla) {
     throw new NotImplementedException();
 }
 
@@ -99,7 +97,7 @@ void ActualizarJugador(Jugador?[] plantilla) {
     throw new NotImplementedException();
 }
 
-void BorrarJugador(ref Jugador?[] plantilla, ref int numJugadores) {
+void BorrarJugador(ref Jugador?[] plantilla) {
     Log.Debug("🔵 Borrando Jugador...");
     var dni = Utilidades.ValidarDato("- Introduzca el DNI del Jugador a eliminar:", RegexDni);
     for (var i = 0; i < plantilla.Length; i++) {

@@ -159,3 +159,11 @@
 2025-11-28 03:34:13.226 +01:00 [INF] ✅ Dato S leído correctamente.
 2025-11-28 03:34:13.226 +01:00 [INF] ✅ Jugador 12345678A eliminado.
 2025-11-28 03:34:48.629 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 03:34:49.800 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:34:49.827 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:34:49.855 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:34:51.874 +01:00 [INF] ✅ Dato 6 leído correctamente.
+2025-11-28 03:34:51.875 +01:00 [DBG] 🔵 Borrando Jugador...
+2025-11-28 03:34:54.899 +01:00 [INF] ✅ Dato 12345678A leído correctamente.
+2025-11-28 03:34:56.897 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 03:34:56.898 +01:00 [INF] ✅ Jugador 12345678A eliminado.
