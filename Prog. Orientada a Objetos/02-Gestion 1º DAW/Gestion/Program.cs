@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Gestion.Models;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("Logs/log.txt").CreateLogger();
