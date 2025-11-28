@@ -161,6 +161,7 @@ void ImprimirPlantilla(Jugador?[] plantilla) {
     Console.WriteLine("-- PLANTILLA CD LEGANÉS 🥒");
     for (var i = 0; i < plantilla.Length; i++) 
         if (plantilla[i] is { } jugadorValido) Console.WriteLine($"{i+1}.- {jugadorValido}"); // si hay un jugador imprime los datos con ToString
+    Console.WriteLine();
 }
 
 void OrdenarPorGoles(Jugador?[] plantilla) {
@@ -187,7 +188,11 @@ void OrdenarPorGoles(Jugador?[] plantilla) {
 }
 
 void ListarPorPosicion(Jugador?[] plantilla) {
-    throw new NotImplementedException();
+    Log.Debug("🔵 Imprimiendo Plantilla por posicion...");
+    Utilidades.ImprimirJugadorPorPosicion(plantilla, "Portero");
+    Utilidades.ImprimirJugadorPorPosicion(plantilla, "Defensa");
+    Utilidades.ImprimirJugadorPorPosicion(plantilla, "Mediocentro");
+    Utilidades.ImprimirJugadorPorPosicion(plantilla, "Delantero");
 }
 
 void ActualizarJugador(Jugador?[] plantilla) {
@@ -199,7 +204,7 @@ void BorrarJugador(ref Jugador?[] plantilla) {
     var dni = Utilidades.ValidarDato("- Introduzca el DNI del Jugador a eliminar:", RegexDni);
     for (var i = 0; i < plantilla.Length; i++) {
         if (plantilla[i] is { } jugadorValido) {
-            if (Utilidades.IsJugadorInPlantilla(plantilla, dni)) {
+            if (jugadorValido.Dni == dni) {
                 Console.WriteLine("Jugador encontrado:");
                 Console.WriteLine(jugadorValido);
                 var opcion = Utilidades.ValidarDato("- ¿Desea eliminarlo? (s/n): ", RegexConfirmacion);

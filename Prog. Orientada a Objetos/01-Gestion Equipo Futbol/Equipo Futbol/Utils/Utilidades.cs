@@ -92,18 +92,16 @@ public static class Utilidades {
         }
         return false;
     }
-    public static void ImprimirEmpleadosPorCargo(Jugador?[] plantilla, string posicion) {
+    public static void ImprimirJugadorPorPosicion(Jugador?[] plantilla, string posicion) {
 
-        bool isCargoOk = Enum.TryParse(cargo, out Cargo cargoFinal);
-        Console.WriteLine($"-- {cargo}"); 
-        // solo imprime si el cargoFinal es igual al cargo que tiene
-        for (var i = 0; i < plantilla.Length; i++) {
-            if (plantilla[i] is { } empleadoValido) {
-                if (empleadoValido.Cargo == cargoFinal) {
-                    Console.WriteLine($"👷 NIP: {empleadoValido.Nip} | Nombre: {empleadoValido.Nombre} | Edad: {empleadoValido.Edad} | Email: {empleadoValido.Email} | Cargo: {empleadoValido.Cargo}");
-                    Log.Information($"✅ Impreso el empleado {empleadoValido.Nip} con cargo {cargo}."); 
-                }
+        bool isCargoOk = Enum.TryParse(posicion, out Jugador.Posiciones posicionFinal);
+        Console.WriteLine($"-- {posicion}s ⚽ "); 
+        // solo imprime si el posicionFinal es igual al cargo que tiene
+        foreach (var jugador in plantilla) {
+            if (jugador is { } empleadoValido) {
+                if (empleadoValido.Posicion == posicionFinal) Console.WriteLine(empleadoValido);
             }
         }
+        Console.WriteLine();
     }
 }
