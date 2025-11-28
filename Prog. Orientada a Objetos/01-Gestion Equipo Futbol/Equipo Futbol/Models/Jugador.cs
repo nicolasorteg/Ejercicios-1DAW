@@ -5,12 +5,15 @@ namespace Equipo_Futbol.Models;
 public class Jugador {
     public string Dni {
         get;
-        set => field = !IsDniValido(value) ? throw new ArgumentException("El DNI introducido es inválido.") : value;
-    }
+        init => field = !IsDniValido(value) ? throw new ArgumentException("El DNI introducido es inválido.") : value;
+    } = string.Empty;
+
     public string Nombre {
         get;
-        set => field = !IsNombreValido(value) ? throw new ArgumentException("El Nombre introducido es inválido.") : value;
-    }
+        set => field = !IsNombreValido(value)
+            ? throw new ArgumentException("El Nombre introducido es inválido.")
+            : value;
+    } = string.Empty;
     public int Edad {
         get;
         set => field = value < 12 ? throw new ArgumentOutOfRangeException(nameof(value), "La Edad introducida es inválida.") : value;
@@ -39,10 +42,7 @@ public class Jugador {
         this.Goles = goles;
         this.Asistencias = asistencias;
     }
-    public Jugador() {
-        this.Dni = string.Empty;
-        this.Nombre = string.Empty; 
-    }
+    public Jugador() {}
     
     // métodos de validación 
     private static bool IsDniValido(string dni) {

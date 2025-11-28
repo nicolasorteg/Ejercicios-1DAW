@@ -9,6 +9,8 @@ using Equipo_Futbol.Utils;
 // constantes globales
 const int JugadoresIniciales = 5;
 const string RegexOpcionMenu = @"^[0-6]$";
+const string RegexDni = @"[0-9]{8}[a-zA-Z]{1}$";
+const string RegexConfirmacion = @"^[SN]$";
 
 // config inicial
 Log.Logger = new LoggerConfiguration().WriteTo.File("Logs/logs.txt").MinimumLevel.Debug().CreateLogger();
@@ -98,7 +100,24 @@ void ActualizarJugador(Jugador?[] plantilla) {
 }
 
 void BorrarJugador(ref Jugador?[] plantilla, ref int numJugadores) {
-    throw new NotImplementedException();
+    Log.Debug("🔵 Borrando Jugador...");
+    var dni = Utilidades.ValidarDato("- Introduzca el DNI del Jugador a eliminar:", RegexDni);
+    for (var i = 0; i < plantilla.Length; i++) {
+        if (plantilla[i] is { } jugadorValido) {
+            if (jugadorValido.Dni == dni) {
+                Console.WriteLine("Jugador encontrado:");
+                Console.WriteLine(jugadorValido);
+                var opcion = Utilidades.ValidarDato("- ¿Desea eliminarlo? (s/n): ", RegexConfirmacion);
+                if (opcion == "N") return;
+                plantilla[i] = null;
+                Log.Information($"✅ Jugador {dni} eliminado.");
+                Console.WriteLine($"✅  Jugador {dni} eliminado correctamente.");
+                Console.WriteLine();
+                return;
+            }
+        }
+    }
+    Console.WriteLine($"🔴  El jugador {dni} no existe en la plantilla.");
 }
 
 

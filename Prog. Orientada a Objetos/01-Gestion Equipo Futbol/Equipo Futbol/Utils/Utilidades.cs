@@ -23,8 +23,7 @@ public static class Utilidades {
     }
 
     public static void ImprimirMenu() {
-        Console.WriteLine();
-        Console.WriteLine("---------- ⚽ GESTIÓN CD LEGANÉS ⚽ ----------");
+        Console.WriteLine("--------- ⚽  GESTIÓN CD LEGANÉS ⚽  ---------");
         Console.WriteLine($"{(int)OpcionMenu.CrearJugador}.- Fichar Jugador.");
         Console.WriteLine($"{(int)OpcionMenu.VerPlantilla}.- Ver plantilla.");
         Console.WriteLine($"{(int)OpcionMenu.OrdenarPorGoles}.- Ordenar por Goles.");
@@ -41,7 +40,7 @@ public static class Utilidades {
         var regex = new Regex(rgx);
         do {
             Console.Write($"{msg} ");
-            input = Console.ReadLine()?.Trim() ?? "-1";
+            input = Console.ReadLine()?.Trim().ToUpper() ?? "-1";
             if (regex.IsMatch(input)) {
                 Log.Information($"✅ Dato {input} leído correctamente.");
                 isDatoOk = true;
