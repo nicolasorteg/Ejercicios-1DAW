@@ -167,3 +167,217 @@
 2025-11-28 03:34:54.899 +01:00 [INF] ✅ Dato 12345678A leído correctamente.
 2025-11-28 03:34:56.897 +01:00 [INF] ✅ Dato S leído correctamente.
 2025-11-28 03:34:56.898 +01:00 [INF] ✅ Jugador 12345678A eliminado.
+2025-11-28 03:43:31.289 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:43:31.319 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:43:31.348 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:43:33.661 +01:00 [INF] ✅ Dato 3 leído correctamente.
+2025-11-28 03:43:33.662 +01:00 [DBG] 🔵 Ordenando por Goles...
+2025-11-28 03:51:20.429 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:51:20.458 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:51:20.488 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:51:23.692 +01:00 [INF] ✅ Dato 3 leído correctamente.
+2025-11-28 03:51:23.693 +01:00 [DBG] 🔵 Ordenando por Goles...
+2025-11-28 03:52:26.616 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:52:26.646 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:52:26.672 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:52:28.704 +01:00 [INF] ✅ Dato 4 leído correctamente.
+2025-11-28 03:52:43.980 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:52:44.006 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:52:44.035 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:52:46.257 +01:00 [INF] ✅ Dato 3 leído correctamente.
+2025-11-28 03:52:46.258 +01:00 [DBG] 🔵 Ordenando por Goles...
+2025-11-28 03:54:19.114 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:54:19.146 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:54:19.176 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:54:22.365 +01:00 [INF] ✅ Dato 3 leído correctamente.
+2025-11-28 03:54:22.366 +01:00 [DBG] 🔵 Ordenando por Goles...
+2025-11-28 03:55:46.181 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 03:55:48.439 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:55:48.465 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:55:48.492 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:55:57.165 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 03:55:57.197 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 03:55:57.232 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 03:55:59.507 +01:00 [INF] ✅ Dato 3 leído correctamente.
+2025-11-28 03:55:59.509 +01:00 [DBG] 🔵 Ordenando por Goles...
+2025-11-28 04:24:49.656 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 04:24:49.686 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 04:24:49.720 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 04:24:51.428 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:24:51.430 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 04:24:53.736 +01:00 [WRN] ⚠️ 12 no es un dato válido para este campo.
+2025-11-28 04:24:56.970 +01:00 [INF] ✅ Dato 12345678H leído correctamente.
+2025-11-28 04:25:01.990 +01:00 [INF] ✅ Dato 12345678L leído correctamente.
+2025-11-28 04:25:07.012 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 04:25:09.666 +01:00 [WRN] ⚠️ A no es un dato válido para este campo.
+2025-11-28 04:25:10.313 +01:00 [WRN] ⚠️ 12 no es un dato válido para este campo.
+2025-11-28 04:25:11.458 +01:00 [INF] ✅ Dato AAA leído correctamente.
+2025-11-28 04:25:14.470 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:25:17.698 +01:00 [WRN] ⚠️ 1111 no es un dato válido para este campo.
+2025-11-28 04:25:20.199 +01:00 [WRN] ⚠️ 11 no es un dato válido para este campo.
+2025-11-28 04:26:26.740 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 04:26:28.946 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 04:26:28.974 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 04:26:29.004 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 04:26:30.228 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:26:30.229 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 04:26:34.724 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 04:26:42.734 +01:00 [WRN] ⚠️ A no es un dato válido para este campo.
+2025-11-28 04:26:44.185 +01:00 [WRN] ⚠️ AAA1 no es un dato válido para este campo.
+2025-11-28 04:26:45.694 +01:00 [INF] ✅ Dato AAA leído correctamente.
+2025-11-28 04:26:47.580 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:26:49.739 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 04:28:44.992 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 04:28:47.229 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 04:28:47.256 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 04:28:47.282 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 04:28:49.471 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:28:49.471 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 04:28:55.493 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 04:28:57.742 +01:00 [INF] ✅ Dato NODSDAS leído correctamente.
+2025-11-28 04:28:59.036 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 04:29:00.582 +01:00 [INF] ✅ Dato 0 leído correctamente.
+2025-11-28 04:29:02.200 +01:00 [INF] ✅ Dato 100000 leído correctamente.
+2025-11-28 05:02:08.565 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 05:02:14.486 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:02:14.520 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:02:14.556 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:02:22.508 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:02:22.510 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:02:26.899 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:02:28.942 +01:00 [INF] ✅ Dato NICOLAS leído correctamente.
+2025-11-28 05:02:32.531 +01:00 [INF] ✅ Dato 20 leído correctamente.
+2025-11-28 05:02:34.452 +01:00 [WRN] ⚠️ 0 no es un dato válido para este campo.
+2025-11-28 05:02:36.979 +01:00 [INF] ✅ Dato 100 leído correctamente.
+2025-11-28 05:05:40.055 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:05:40.081 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:05:40.108 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:05:43.054 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:05:43.055 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:05:47.645 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:05:49.647 +01:00 [INF] ✅ Dato NICOLAS leído correctamente.
+2025-11-28 05:05:52.552 +01:00 [WRN] ⚠️ 120 no es un dato válido para este campo.
+2025-11-28 05:05:54.603 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:05:57.180 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:05:59.313 +01:00 [WRN] ⚠️ 100 no es un dato válido para este campo.
+2025-11-28 05:06:02.092 +01:00 [WRN] ⚠️ 0 no es un dato válido para este campo.
+2025-11-28 05:06:03.114 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:06:09.062 +01:00 [WRN] ⚠️ 0 no es un dato válido para este campo.
+2025-11-28 05:06:10.836 +01:00 [WRN] ⚠️ 5 no es un dato válido para este campo.
+2025-11-28 05:06:14.508 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:06:23.568 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:07:01.232 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:07:01.262 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:07:01.290 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:07:03.188 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:07:03.189 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:07:06.979 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:07:11.155 +01:00 [INF] ✅ Dato NICONGAS leído correctamente.
+2025-11-28 05:07:12.751 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:07:13.614 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:07:14.823 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:07:16.680 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:07:16.681 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:07:25.827 +01:00 [INF] ✅ Dato 2 leído correctamente.
+2025-11-28 05:07:25.827 +01:00 [DBG] 🔵 Imprimiendo Plantilla...
+2025-11-28 05:07:39.790 +01:00 [INF] ✅ Dato 6 leído correctamente.
+2025-11-28 05:07:39.791 +01:00 [DBG] 🔵 Borrando Jugador...
+2025-11-28 05:07:44.218 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:12:03.108 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:12:03.135 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:12:03.161 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:12:05.009 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:12:05.011 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:12:08.448 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:12:10.304 +01:00 [INF] ✅ Dato NICO leído correctamente.
+2025-11-28 05:12:11.333 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:12:11.764 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:12:12.864 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:12:14.141 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:12:14.142 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:12:14.913 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:12:14.913 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:12:24.688 +01:00 [INF] ✅ Dato 54856605M leído correctamente.
+2025-11-28 05:12:28.245 +01:00 [WRN] ⚠️ DDSADSD no es un dato válido para este campo.
+2025-11-28 05:12:38.350 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:12:39.554 +01:00 [INF] ✅ Dato DSDSA leído correctamente.
+2025-11-28 05:12:40.983 +01:00 [INF] ✅ Dato 13 leído correctamente.
+2025-11-28 05:12:41.682 +01:00 [INF] ✅ Dato 13 leído correctamente.
+2025-11-28 05:12:42.599 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:12:44.067 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:12:44.067 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:12:45.068 +01:00 [INF] ✅ Dato 2 leído correctamente.
+2025-11-28 05:12:45.068 +01:00 [DBG] 🔵 Imprimiendo Plantilla...
+2025-11-28 05:21:45.040 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.
+2025-11-28 05:21:47.122 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:21:47.147 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:21:47.173 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:21:49.069 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:21:49.071 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:21:53.173 +01:00 [INF] ✅ Dato 12345678M leído correctamente.
+2025-11-28 05:21:57.301 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:21:59.091 +01:00 [INF] ✅ Dato DSADSAD leído correctamente.
+2025-11-28 05:21:59.696 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:22:00.057 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:22:00.855 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:22:02.000 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:22:02.000 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:22:03.839 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:22:03.839 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:22:08.759 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:26:26.448 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:26:26.473 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:26:26.499 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:26:28.047 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:26:28.048 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:26:31.600 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:26:34.610 +01:00 [INF] ✅ Dato NICO leído correctamente.
+2025-11-28 05:26:35.727 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:26:36.033 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:26:36.384 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:26:37.615 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:26:37.615 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:26:43.220 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:26:43.220 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:26:47.038 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:26:49.117 +01:00 [INF] ✅ Dato NICO leído correctamente.
+2025-11-28 05:26:50.029 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:26:50.751 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:26:51.133 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:26:52.210 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:26:52.210 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:26:52.688 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:26:52.688 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:26:57.304 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:26:59.554 +01:00 [INF] ✅ Dato NICOCOC leído correctamente.
+2025-11-28 05:27:00.763 +01:00 [INF] ✅ Dato 13 leído correctamente.
+2025-11-28 05:27:01.143 +01:00 [INF] ✅ Dato 13 leído correctamente.
+2025-11-28 05:27:01.530 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:27:02.520 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:27:02.521 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:27:03.018 +01:00 [INF] ✅ Dato 2 leído correctamente.
+2025-11-28 05:27:03.018 +01:00 [DBG] 🔵 Imprimiendo Plantilla...
+2025-11-28 05:28:24.487 +01:00 [DBG] 🔵 Iniciando Main...
+2025-11-28 05:28:24.513 +01:00 [DBG] 🔵 Creando jugadores ejemplificativos...
+2025-11-28 05:28:24.542 +01:00 [INF] ✅ Jugadores iniciales creados y asignados a la plantilla.
+2025-11-28 05:28:28.719 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:28:28.720 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:28:32.729 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:28:36.469 +01:00 [INF] ✅ Dato NIC leído correctamente.
+2025-11-28 05:28:37.355 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:28:37.652 +01:00 [INF] ✅ Dato 12 leído correctamente.
+2025-11-28 05:28:37.975 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:28:39.006 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:28:39.006 +01:00 [INF] ✅ Jugador 54836605M guardado en la posición 6
+2025-11-28 05:28:40.743 +01:00 [INF] ✅ Dato 2 leído correctamente.
+2025-11-28 05:28:40.743 +01:00 [DBG] 🔵 Imprimiendo Plantilla...
+2025-11-28 05:28:42.637 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:28:42.637 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:28:46.865 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:28:49.280 +01:00 [INF] ✅ Dato N leído correctamente.
+2025-11-28 05:28:50.849 +01:00 [INF] ✅ Dato 1 leído correctamente.
+2025-11-28 05:28:50.850 +01:00 [DBG] 🔵 Creando nuevo Jugador...
+2025-11-28 05:28:54.147 +01:00 [INF] ✅ Dato 54836605M leído correctamente.
+2025-11-28 05:28:54.708 +01:00 [WRN] ⚠️ 1 no es un dato válido para este campo.
+2025-11-28 05:28:55.926 +01:00 [INF] ✅ Dato S leído correctamente.
+2025-11-28 05:28:59.735 +01:00 [WRN] ⚠️ -1 no es un dato válido para este campo.

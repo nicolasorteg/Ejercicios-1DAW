@@ -4,7 +4,7 @@ namespace Equipo_Futbol.Models;
 public class Jugador {
     public string Dni {
         get;
-        init => field = !IsDniValido(value) ? throw new ArgumentException("El DNI introducido es inválido.") : value;
+        set => field = !IsDniValido(value) ? throw new ArgumentException("El DNI introducido es inválido.") : value;
     } = string.Empty;
 
     public string Nombre {
