@@ -1,4 +1,5 @@
 ﻿using Gestion.Models;
+using Gestion.Utils;
 using Serilog;
 
 namespace Gestion.Services;
@@ -48,7 +49,12 @@ public class ServicioClase {
     }
 
     public void ListarPorRol() {
-        throw new NotImplementedException();
+        Log.Debug("Listando por rol...");
+        Console.WriteLine("-- 🧑‍🏫 PROFESORES");
+        Utilidades.ImprimirDatosPorRol(_clase, Persona.TipoPersona.Profesor);
+        Console.WriteLine("\n--  🤓   ALUMNOS");
+        Utilidades.ImprimirDatosPorRol(_clase, Persona.TipoPersona.Alumno);
+        Console.WriteLine();
     }
 
     public void ActualizarPersona() {

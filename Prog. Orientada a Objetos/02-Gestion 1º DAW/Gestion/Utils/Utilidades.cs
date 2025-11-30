@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Gestion.Enums;
+using Gestion.Models;
 using Gestion.Services;
 using Serilog;
 
@@ -54,5 +55,11 @@ public static class Utilidades {
         } while (!isDatoOk);
         Console.WriteLine();
         return input;
+    }
+
+    public static void ImprimirDatosPorRol(Persona?[] clase, Persona.TipoPersona tipoPersona) {
+        foreach (var persona in clase)
+            if (persona is {} personaValida)
+                if (personaValida.Tipo == tipoPersona) Console.WriteLine($"- {personaValida}");
     }
 }
