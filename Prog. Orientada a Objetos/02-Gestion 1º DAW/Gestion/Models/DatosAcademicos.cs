@@ -5,4 +5,5 @@
 public struct DatosAcademicos {
     public int Faltas { get; set; }
     public int Retrasos { get; set; }
+    public int NotaProgramacion { get; set; }
 }

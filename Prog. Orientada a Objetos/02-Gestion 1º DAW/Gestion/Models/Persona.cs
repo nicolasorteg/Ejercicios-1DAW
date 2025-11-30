@@ -16,7 +16,7 @@ public record Persona {
 
     public override string ToString() {
         var resultado = $"Dni: {this.Dni}  |  Nombre: {this.Nombre}  |  Edad: {this.Edad}  |  Rol:  {this.Tipo}";
-        if (this.Tipo == TipoPersona.Alumno) resultado += $"  |  Faltas: {this.Datos?.Faltas}  |  Retrasos: {this.Datos?.Retrasos}";
+        if (this.Tipo == TipoPersona.Alumno) resultado += $"  |  Faltas: {this.Datos?.Faltas}  |  Retrasos: {this.Datos?.Retrasos}  |  Nota Programación: {this.Datos?.NotaProgramacion}";
         return resultado;
     }
 }

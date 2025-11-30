@@ -1,5 +1,4 @@
-﻿using System.Reflection.Metadata.Ecma335;
-using Gestion.Models;
+﻿using Gestion.Models;
 using Gestion.Utils;
 using Serilog;
 
@@ -12,16 +11,7 @@ public class ServicioClase {
     private Persona?[] _clase = new Persona?[PersonasIniciales];
     
     public ServicioClase() {
-        InicializarDatos();
-    }
-
-    private void InicializarDatos() {
-        Log.Debug("Inicializando Personas...");
-        _clase[0] = new Persona { Dni="12345678A", Nombre="Laura Martínez", Edad=18, Tipo=Persona.TipoPersona.Alumno, Datos=new DatosAcademicos{Faltas=1,Retrasos=0}};
-        _clase[1] = new Persona { Dni="98765432B", Nombre="Carlos Pérez", Edad=19, Tipo=Persona.TipoPersona.Alumno, Datos=new DatosAcademicos{Faltas=3,Retrasos=1}};
-        _clase[2] = new Persona { Dni="11223344C", Nombre="Marta Gómez", Edad=18, Tipo=Persona.TipoPersona.Alumno, Datos=new DatosAcademicos{Faltas=0,Retrasos=2}};
-        _clase[3] = new Persona { Dni="22334455D", Nombre="Sergio López", Edad=20, Tipo=Persona.TipoPersona.Alumno, Datos=new DatosAcademicos{Faltas=2,Retrasos=0}};
-        _clase[4] = new Persona { Dni="55667788E", Nombre="Jorge Ruiz", Edad=45, Tipo=Persona.TipoPersona.Profesor, Datos=null};
+        Utilidades.InicializarDatos(_clase);
     }
 
 
@@ -34,19 +24,37 @@ public class ServicioClase {
         Console.WriteLine("--- 💻 INTEGRANTES 1º DAW ");
         foreach (var persona in _clase)
             if (persona != null) Console.WriteLine($"- {persona}");
-        Console.WriteLine();
     }
 
     public void OrdenarPorNota() {
-        throw new NotImplementedException();
+        Log.Debug("Ordenando por nota.");
+        _clase = Utilidades.RedimensionarClase(ref _clase);
+        Utilidades.OrdenarClase(_clase, "Nota");
+        Console.WriteLine("-- CLASE ORDENADA POR NOTA:");
+        foreach (var persona in _clase) 
+            if (persona != null) 
+                if (persona?.Tipo != Persona.TipoPersona.Profesor)
+                    Console.WriteLine($"- {persona}");
     }
 
     public void OrdenarPorEdad() {
-        throw new NotImplementedException();
+        Log.Debug("Ordenando por edad.");
+        _clase = Utilidades.RedimensionarClase(ref _clase);
+        Utilidades.OrdenarClase(_clase, "Edad");
+        Console.WriteLine("-- CLASE ORDENADA POR EDAD:");
+        foreach (var persona in _clase) 
+            if (persona != null) Console.WriteLine($"- {persona}");
     }
 
     public void OrdenarPorFaltas() {
-        throw new NotImplementedException();
+        Log.Debug("Ordenando por faltas.");
+        _clase = Utilidades.RedimensionarClase(ref _clase);
+        Utilidades.OrdenarClase(_clase, "Faltas");
+        Console.WriteLine("-- CLASE ORDENADA POR FALTAS:");
+        foreach (var persona in _clase) 
+            if (persona != null) 
+                if (persona?.Tipo != Persona.TipoPersona.Profesor)
+                    Console.WriteLine($"- {persona}");
     }
 
     public void ListarPorRol() {
@@ -55,7 +63,6 @@ public class ServicioClase {
         Utilidades.ImprimirDatosPorRol(_clase, Persona.TipoPersona.Profesor);
         Console.WriteLine("\n--  🤓   ALUMNOS");
         Utilidades.ImprimirDatosPorRol(_clase, Persona.TipoPersona.Alumno);
-        Console.WriteLine();
     }
 
     public void ActualizarPersona() {
@@ -69,14 +76,16 @@ public class ServicioClase {
         var isInClase = Utilidades.IsDniInClase(_clase, dni, ref posicion);
         if (isInClase) {
             Console.WriteLine("✅  Persona encontrada.\n");
+            
             var confirmacion = Utilidades.ValidarDato("¿Desea eliminarla? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
             if (confirmacion != "S") return;
             _clase[posicion] = null;
-            Utilidades.RedimensionarSiEsNecesario(ref _clase);
-            Console.WriteLine($"✅  Persona de DNI {dni} dada de baja.\n");
+            
+            _clase = Utilidades.RedimensionarClase(ref _clase);
+            Console.WriteLine($"✅  Persona de DNI {dni} dada de baja.");
             Log.Information("✅ Persona eliminada.");
             return;
         }
-        Console.WriteLine("❌  No existe ninguna persona para el DNI facilitado.\n");
+        Console.WriteLine("❌  No existe ninguna persona para el DNI facilitado.");
     }
 }
