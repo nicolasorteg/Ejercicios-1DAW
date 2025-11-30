@@ -1,19 +1,26 @@
 ﻿using System.Text;
-using Gestion.Models;
+using Gestion.Enums;
 using Gestion.Utils;
 using Serilog;
 
+const string RegexOpcionMenuPrincipal = @"^[0-8]$";
+
+// config daw's template
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("Logs/log.txt").CreateLogger();
 Console.Title = "Gestión 1º DAW";
 Console.OutputEncoding = Encoding.UTF8;
 Console.Clear();
-Main(args);
-Console.WriteLine("\n👋 Presiona una tecla para salir...");
+Main();
+Console.WriteLine("👋 Presiona una tecla para salir...");
 Console.ReadKey();
 return;
 
-
-void Main(string[] args) {
+void Main() {
     Log.Debug("Iniciando el Main...");
-    Utilidades.ImprimirMenuPrincipal();
+    int opcionElegida;
+    do {
+        Utilidades.ImprimirMenuPrincipal();
+        opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", RegexOpcionMenuPrincipal));
+        Utilidades.ValidarOpcion(opcionElegida);
+    } while (opcionElegida != (int)OpcionMenu.Salir);
 }
