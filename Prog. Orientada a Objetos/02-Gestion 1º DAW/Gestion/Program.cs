@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Gestion.Models;
+using Gestion.Utils;
 using Serilog;
 
 Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("Logs/log.txt").CreateLogger();
@@ -14,4 +15,5 @@ return;
 
 void Main(string[] args) {
     Log.Debug("Iniciando el Main...");
+    Utilidades.ImprimirMenuPrincipal();
 }
