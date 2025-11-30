@@ -18,19 +18,21 @@ public static class Utilidades {
         Console.WriteLine($"{(int)OpcionMenu.ActualizarPersona}.- Actualizar Persona.");
         Console.WriteLine($"{(int)OpcionMenu.BorrarPersona}.- Borrar Persona.");
         Console.WriteLine($"{(int)OpcionMenu.Salir}.- Salir.");
+        Console.WriteLine("--------------------------");
     }
+
     
-    public static void ValidarOpcion(int opcion) {
+    public static void ValidarOpcion(int opcion, ServicioClase clase) {
         switch (opcion) {
             case (int)OpcionMenu.Salir: Log.Debug("Saliendo de la Aplicación..."); break;
-            case (int)OpcionMenu.CrearPersona: ServicioClase.CrearPersona(); break;
-            case (int)OpcionMenu.VerClase: ServicioClase.VerClase(); break;
-            case (int)OpcionMenu.OrdenarPorNota: ServicioClase.OrdenarPorNota(); break;
-            case (int)OpcionMenu.OrdenarPorEdad: ServicioClase.OrdenarPorEdad(); break;
-            case (int)OpcionMenu.OrdenarPorFaltas: ServicioClase.OrdenarPorFaltas(); break;
-            case (int)OpcionMenu.ListarPorRol: ServicioClase.ListarPorRol(); break;
-            case (int)OpcionMenu.ActualizarPersona: ServicioClase.ActualizarPersona(); break;
-            case (int)OpcionMenu.BorrarPersona: ServicioClase.BorrarPersona(); break;
+            case (int)OpcionMenu.CrearPersona: clase.CrearPersona(); break;
+            case (int)OpcionMenu.VerClase: clase.VerClase(); break;
+            case (int)OpcionMenu.OrdenarPorNota: clase.OrdenarPorNota(); break;
+            case (int)OpcionMenu.OrdenarPorEdad: clase.OrdenarPorEdad(); break;
+            case (int)OpcionMenu.OrdenarPorFaltas: clase.OrdenarPorFaltas(); break;
+            case (int)OpcionMenu.ListarPorRol: clase.ListarPorRol(); break;
+            case (int)OpcionMenu.ActualizarPersona: clase.ActualizarPersona(); break;
+            case (int)OpcionMenu.BorrarPersona: clase.BorrarPersona(); break;
             default: Console.WriteLine("Error en la lectura."); Log.Error("Validación de opción ha fallado."); break;
         }
     }

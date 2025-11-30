@@ -13,5 +13,10 @@ public record Persona {
     public required int Edad { get; set; }
     public required TipoPersona Tipo { get; set; }
     public required DatosAcademicos? Datos { get; set; }
-    public required bool IsDelegado { get; set; }
+
+    public override string ToString() {
+        var resultado = $"Dni: {this.Dni}  |  Nombre: {this.Nombre}  |  Edad: {this.Edad}  |  Rol:  {this.Tipo}";
+        if (this.Tipo == TipoPersona.Alumno) resultado += $"  |  Faltas: {this.Datos?.Faltas}  |  Retrasos: {this.Datos?.Retrasos}";
+        return resultado;
+    }
 }

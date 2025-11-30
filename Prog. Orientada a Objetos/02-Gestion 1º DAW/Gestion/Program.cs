@@ -18,10 +18,11 @@ return;
 
 void Main() {
     Log.Debug("Iniciando el Main...");
+    var clase = new ServicioClase();
     int opcionElegida;
     do {
         Utilidades.ImprimirMenuPrincipal();
         opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", RegexOpcionMenuPrincipal));
-        Utilidades.ValidarOpcion(opcionElegida);
+        Utilidades.ValidarOpcion(opcionElegida, clase);
     } while (opcionElegida != (int)OpcionMenu.Salir);
 }
