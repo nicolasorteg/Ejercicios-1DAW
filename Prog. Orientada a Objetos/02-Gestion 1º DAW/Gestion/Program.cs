@@ -23,6 +23,6 @@ void Main() {
     do {
         Utilidades.ImprimirMenuPrincipal();
         opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", RegexOpcionMenuPrincipal));
-        Utilidades.ValidarOpcion(opcionElegida, clase);
+        Utilidades.ValidarOpcionMenuPrincipal(opcionElegida, clase);
     } while (opcionElegida != (int)OpcionMenu.Salir);
 }
