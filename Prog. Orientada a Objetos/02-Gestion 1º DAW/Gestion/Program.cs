@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Gestion.Enums;
+using Gestion.Services;
 using Gestion.Utils;
 using Serilog;
 
