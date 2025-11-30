@@ -1,4 +1,5 @@
-﻿using Gestion.Models;
+﻿using System.Reflection.Metadata.Ecma335;
+using Gestion.Models;
 using Gestion.Utils;
 using Serilog;
 
@@ -62,6 +63,20 @@ public class ServicioClase {
     }
 
     public void BorrarPersona() {
-        throw new NotImplementedException();
+        Log.Debug("Borrando persona...");
+        var dni = Utilidades.ValidarDato("- DNI de persona a eliminar: ", Utilidades.RegexId);
+        var posicion = -1;
+        var isInClase = Utilidades.IsDniInClase(_clase, dni, ref posicion);
+        if (isInClase) {
+            Console.WriteLine("✅  Persona encontrada.\n");
+            var confirmacion = Utilidades.ValidarDato("¿Desea eliminarla? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
+            if (confirmacion != "S") return;
+            _clase[posicion] = null;
+            Utilidades.RedimensionarSiEsNecesario(ref _clase);
+            Console.WriteLine($"✅  Persona de DNI {dni} dada de baja.\n");
+            Log.Information("✅ Persona eliminada.");
+            return;
+        }
+        Console.WriteLine("❌  No existe ninguna persona para el DNI facilitado.\n");
     }
 }

@@ -7,7 +7,9 @@ using Serilog;
 namespace Gestion.Utils;
 
 public static class Utilidades {
-    
+    public static readonly string RegexId = @"^[0-9]{8}[A-Z]$"; 
+    public static readonly string RegexConfirmacion = @"^[sSnN]$"; 
+
     public static void ImprimirMenuPrincipal() {
         Console.WriteLine("--- 🏫 GESTIÓN 1º DAW ---");
         Console.WriteLine($"{(int)OpcionMenu.CrearPersona}.- Crear Persona.");
@@ -61,5 +63,23 @@ public static class Utilidades {
         foreach (var persona in clase)
             if (persona is {} personaValida)
                 if (personaValida.Tipo == tipoPersona) Console.WriteLine($"- {personaValida}");
+    }
+
+    public static bool IsDniInClase(Persona?[] clase, string dni, ref int posicion) {
+        for (var i = 0; i < clase.Length; i++) {
+            if (clase[i] is { } personaValida) {
+                if (personaValida.Dni == dni) {
+                    Console.WriteLine(personaValida);
+                    posicion = i;
+                    Log.Information($"Persona encontrada con DNI {dni}");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void RedimensionarSiEsNecesario(ref Persona?[] clase) {
+        // redimensiona epicamente
     }
 }
