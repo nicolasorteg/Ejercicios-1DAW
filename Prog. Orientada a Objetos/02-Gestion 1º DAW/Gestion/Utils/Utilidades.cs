@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Gestion.Enums;
 using Gestion.Models;
 using Gestion.Services;
@@ -10,12 +9,13 @@ namespace Gestion.Utils;
 public static class Utilidades {
     public static readonly string RegexDni = @"^[0-9]{8}[A-Z]$";
     public static readonly string RegexConfirmacion = @"^[sSnN]$";
-    public static readonly string RegexNombre = @"^[A-Za-z]{3,}$";
-    public static readonly string RegexEdad = @"^\d{1,}$";
-    public static readonly string RegexAsistencia = @"^\d{1,}$";
-    public static readonly string RegexNotaProg = @"^([0-9]|10)([,][0-9]+)?"; 
-    public static readonly string RegexOpcionMenuActualizacion = @$"^[{(int)OpcionMenuActualizacion.Salir}-{(int)OpcionMenuActualizacion.NotaProg}]$";
-    public static CultureInfo LocaleEs = new("es-ES");
+    private static readonly string RegexNombre = @"^[A-Za-z]{3,}$";
+    private static readonly string RegexEdad = @"^\d{1,}$";
+    private static readonly string RegexAsistencia = @"^\d{1,}$";
+    private static readonly string RegexNotaProg = @"^([0-9]|10)([,][0-9]+)?";
+    private static readonly string RegexRol = @"^(Profesor|Alumno)$";
+    public static readonly string RegexOpcionMenuActualizacionAlumno = @$"^[{(int)OpcionMenuActualizacionAlumno.Salir}-{(int)OpcionMenuActualizacionAlumno.NotaProg}]$";
+    public static readonly string RegexOpcionMenuActualizacionProfesor = @$"^[{(int)OpcionMenuActualizacionProfesor.Salir}-{(int)OpcionMenuActualizacionAlumno.Edad}]$";
 
     public static void InicializarDatos(Persona?[] clase) {
         Log.Debug("Inicializando Personas...");
@@ -40,14 +40,22 @@ public static class Utilidades {
         Console.WriteLine("--------------------------");
     }
     
-    public static void ImprimirMenuActualizacion() {
+    public static void ImprimirMenuActualizacionAlumno() {
         Console.WriteLine("\n-- MENÚ ACTUALIZACIÓN:");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.Nombre}.- Nombre.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.Edad}.- Edad.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.Faltas}.- Faltas.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.Retrasos}.- Retrasos.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.NotaProg}.- Nota programación.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacion.Salir}.- Nota programación.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Nombre}.- Nombre.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Edad}.- Edad.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Faltas}.- Faltas.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Retrasos}.- Retrasos.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.NotaProg}.- Nota programación.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Salir}.- Salir.");
+        Console.WriteLine("------------------------");
+    }
+    
+    public static void ImprimirMenuActualizacionProfesor() {
+        Console.WriteLine("\n-- MENÚ ACTUALIZACIÓN:");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Nombre}.- Nombre.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Edad}.- Edad.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Salir}.- Salir.");
         Console.WriteLine("------------------------");
     }
     
@@ -87,15 +95,15 @@ public static class Utilidades {
     }
 
     public static Persona?[] EliminarNulos(ref Persona?[] clase) {
-        Log.Debug("Redimensionando la clase...");
+        Log.Debug("Eliminando nulos de la clase...");
         var numerosPersonas = 0;
         foreach (var persona in clase) {
             if (persona != null) numerosPersonas++;
         }
         var personas = new Persona?[numerosPersonas];
         var index = 0;
-        for (var i = 0;  i < clase.Length; i++) {
-            if (clase[i] is { } personaValida)
+        foreach (var persona in clase) {
+            if (persona is { } personaValida)
                 personas[index++] = personaValida;
         }
         return personas;
@@ -127,19 +135,52 @@ public static class Utilidades {
             if (!swapped) return;
         }
     }
-
-    public static string PedirNombre() {
-        return ValidarDato("- Introduce el nombre:", RegexNombre);
-    }
+    
+    public static string PedirDni() => ValidarDato("- Introduce el DNI:", RegexDni);
+    public static string PedirNombre() => ValidarDato("- Introduce el nombre:", RegexNombre);
     public static int PedirEdad() {
-        return int.Parse(ValidarDato("- Introduce la edad:", RegexEdad));
-    }
+        var isEdadOk = false;
+        int edad;
+        do {
+            edad = int.Parse(ValidarDato("- Introduce la edad:", RegexEdad));
+            if (edad >= 0 && edad <= 100) {
+                isEdadOk = true;
+            } else Console.WriteLine("🔴  Edad incorrecta. Introduce una edad 0-100.");
+        } while (!isEdadOk);
+        return edad;
+    } 
+    public static Persona.TipoPersona PedirRol() {
+        var isRolOk = false;
+        Persona.TipoPersona rol;
+        do {
+            if (Enum.TryParse(ValidarDato("- Introduce el rol (Profesor/Alumno): ", RegexRol), out rol)) {
+                isRolOk = true;
+            } else Console.WriteLine("🔴  Rol desconocido. Recuerda que solo puede ser Profesor o Alumno");
+        } while (!isRolOk);
+        return rol;
+    } 
     public static int PedirFaltas() {
-        return int.Parse(ValidarDato("- Introduce las faltas:", RegexAsistencia));
-    }
-    public static int PedirRetrasos() {
-        return int.Parse(ValidarDato("- Introduce los retrasos:", RegexAsistencia));
-    }
+        var isFaltasOk = false;
+        int faltas;
+        do {
+            faltas =  int.Parse(ValidarDato("- Introduce las faltas:", RegexAsistencia));
+            if (faltas >= 0 && faltas <= 1000) {
+                isFaltasOk = true;
+            } else Console.WriteLine("🔴  Faltas incorrectas. Introduce un valor entre 0-1000.");
+        } while (!isFaltasOk);
+        return faltas;
+    } 
+    public static int PedirRetrasos(){
+        var isRetrasosOk = false;
+        int retrasos;
+        do {
+            retrasos =   int.Parse(ValidarDato("- Introduce los retrasos:", RegexAsistencia));
+            if (retrasos >= 0 && retrasos <= 1000) {
+                isRetrasosOk = true;
+            } else Console.WriteLine("🔴  Retrasos incorrectos. Introduce un valor entre 0-1000.");
+        } while (!isRetrasosOk);
+        return retrasos;
+    } 
     public static double PedirNotaProg() {
         var isNotaOk = false;
         double nota;
@@ -168,5 +209,20 @@ public static class Utilidades {
         } while (!isDatoOk);
         Console.WriteLine();
         return input;
+    }
+
+    public static Persona?[] AñadirEspacio(Persona?[] clase) {
+        Log.Debug("Añadiendo nulos a la clase...");
+        var numerosPersonas = 0;
+        foreach (var persona in clase) {
+            if (persona != null) numerosPersonas++;
+        }
+        var personas = new Persona?[numerosPersonas + 1];
+        var index = 0;
+        foreach (var persona in clase) {
+            if (persona is { } personaValida)
+                personas[index++] = personaValida;
+        }
+        return personas;
     }
 }

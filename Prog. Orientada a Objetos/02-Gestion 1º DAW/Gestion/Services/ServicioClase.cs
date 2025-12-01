@@ -17,7 +17,30 @@ public class ServicioClase {
 
 
     public void CrearPersona() {
-        throw new NotImplementedException();
+        Log.Debug("Creando persona...");
+        var dni = Utilidades.PedirDni();
+        var nombre = Utilidades.PedirNombre();
+        var edad = Utilidades.PedirEdad();
+        var rol = Utilidades.PedirRol();
+        var faltas = 0;
+        var retrasos = 0;
+        var notaProg = 0.0;
+        if (rol == Persona.TipoPersona.Alumno) {
+            faltas = Utilidades.PedirFaltas();
+            retrasos = Utilidades.PedirRetrasos();
+            notaProg = Utilidades.PedirNotaProg();
+        }
+        var nuevaPersona = new Persona { Dni = dni, Nombre = nombre, Edad = edad, Tipo = rol, Datos = new DatosAcademicos{Faltas = faltas, Retrasos = retrasos, NotaProgramacion = notaProg}};
+        Console.WriteLine(nuevaPersona);
+        var confirmacionNombre = Utilidades.ValidarDato($"¿Desea guardar a esta persona? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
+        if (confirmacionNombre != "S") return;
+        
+        _clase = Utilidades.AñadirEspacio(_clase);
+        for (var i = 0; i < _clase.Length; i++) {
+            if (_clase[i] != null) continue;
+            _clase[i] = nuevaPersona;
+            Console.WriteLine($"✅  Persona guardada.");
+        }
     }
 
     public void VerClase() {
@@ -75,61 +98,68 @@ public class ServicioClase {
             return;  
         }
         var personaActualizacion = _clase[posicion];
+
+        int opcionElegida;
+        if (personaActualizacion!.Tipo == Persona.TipoPersona.Alumno) {
+            Utilidades.ImprimirMenuActualizacionAlumno();
+            opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", Utilidades.RegexOpcionMenuActualizacionAlumno));
+        } else {
+            Utilidades.ImprimirMenuActualizacionProfesor();
+            opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", Utilidades.RegexOpcionMenuActualizacionProfesor));
+        }
         
-        Utilidades.ImprimirMenuActualizacion();
-        var opcionElegida = int.Parse(Utilidades.ValidarDato("- Introduzca la opción: ", Utilidades.RegexOpcionMenuActualizacion));
         switch (opcionElegida) {
-            case (int)OpcionMenuActualizacion.Salir: break;
-            case (int)OpcionMenuActualizacion.Nombre:
+            case (int)OpcionMenuActualizacionAlumno.Salir: break;
+            case (int)OpcionMenuActualizacionAlumno.Nombre:
                 var nombre = Utilidades.PedirNombre();
                 var confirmacionNombre = Utilidades.ValidarDato($"¿Desea actualizar el nombre a {nombre}? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
                 if (confirmacionNombre != "S") return;
-                personaActualizacion?.Nombre = nombre;
-                Console.WriteLine($"✅ Nombre actualizado correctamente:\n{personaActualizacion}");
+                personaActualizacion.Nombre = nombre;
+                Console.WriteLine($"✅ Nombre actualizado correctamente\n{personaActualizacion}");
                 break;
             
-            case (int)OpcionMenuActualizacion.Edad:
+            case (int)OpcionMenuActualizacionAlumno.Edad:
                 var edad = Utilidades.PedirEdad();
                 var confirmacionEdad = Utilidades.ValidarDato($"¿Desea actualizar la edad a {edad}? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
                 if (confirmacionEdad != "S") return;
-                personaActualizacion?.Edad = edad;
-                Console.WriteLine($"✅ Edad actualizada correctamente:\n{personaActualizacion}");
+                personaActualizacion.Edad = edad;
+                Console.WriteLine($"✅  Edad actualizada correctamente\n{personaActualizacion}");
                 break;
             
-            case (int)OpcionMenuActualizacion.Faltas:
+            case (int)OpcionMenuActualizacionAlumno.Faltas:
                 var faltas = Utilidades.PedirFaltas();
                 var confirmacionFaltas = Utilidades.ValidarDato($"¿Desea actualizar las faltas a {faltas}? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
                 if (confirmacionFaltas != "S") return;
-                if (personaActualizacion != null && personaActualizacion.Datos.HasValue) {
+                if (personaActualizacion.Datos.HasValue) {
                     var datos = personaActualizacion.Datos.Value; 
                     datos.Faltas = faltas; 
                     personaActualizacion.Datos = datos;
                 }
-                Console.WriteLine($"✅ Faltas actualizadas correctamente:\n{personaActualizacion}");
+                Console.WriteLine($"✅  Faltas actualizadas correctamente\n{personaActualizacion}");
                 break;
             
-            case (int)OpcionMenuActualizacion.Retrasos:
+            case (int)OpcionMenuActualizacionAlumno.Retrasos:
                 var retrasos = Utilidades.PedirRetrasos();
                 var confirmacionRetrasos = Utilidades.ValidarDato($"¿Desea actualizar el nombre a {retrasos}? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
                 if (confirmacionRetrasos != "S") return;
-                if (personaActualizacion != null && personaActualizacion.Datos.HasValue) {
+                if (personaActualizacion.Datos.HasValue) {
                     var datos = personaActualizacion.Datos.Value; 
                     datos.Retrasos = retrasos; 
                     personaActualizacion.Datos = datos;
                 }
-                Console.WriteLine($"✅ Retrasos actualizados correctamente:\n{personaActualizacion}");
+                Console.WriteLine($"✅  Retrasos actualizados correctamente\n{personaActualizacion}");
                 break;
             
-            case (int)OpcionMenuActualizacion.NotaProg:
+            case (int)OpcionMenuActualizacionAlumno.NotaProg:
                 var nota = Utilidades.PedirNotaProg();
                 var confirmacionNota = Utilidades.ValidarDato($"¿Desea actualizar la nota a {nota}? (s/n)", Utilidades.RegexConfirmacion).ToUpper();
                 if (confirmacionNota != "S") return;
-                if (personaActualizacion != null && personaActualizacion.Datos.HasValue) {
+                if (personaActualizacion.Datos.HasValue) {
                     var datos = personaActualizacion.Datos.Value; 
                     datos.NotaProgramacion = nota; 
                     personaActualizacion.Datos = datos;
                 }
-                Console.WriteLine($"✅ Nota actualizada correctamente:\n{personaActualizacion}");
+                Console.WriteLine($"✅  Nota actualizada correctamente\n{personaActualizacion}");
                 break;
         }
     }
