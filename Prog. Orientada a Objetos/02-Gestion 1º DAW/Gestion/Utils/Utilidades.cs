@@ -53,9 +53,9 @@ public static class Utilidades {
     
     public static void ImprimirMenuActualizacionProfesor() {
         Console.WriteLine("\n-- MENÚ ACTUALIZACIÓN:");
-        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Nombre}.- Nombre.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Edad}.- Edad.");
-        Console.WriteLine($"{(int)OpcionMenuActualizacionAlumno.Salir}.- Salir.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionProfesor.Nombre}.- Nombre.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionProfesor.Edad}.- Edad.");
+        Console.WriteLine($"{(int)OpcionMenuActualizacionProfesor.Salir}.- Salir.");
         Console.WriteLine("------------------------");
     }
     
