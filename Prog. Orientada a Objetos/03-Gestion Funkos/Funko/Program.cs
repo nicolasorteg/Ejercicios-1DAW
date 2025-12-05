@@ -1,8 +1,10 @@
 ﻿using System.Text;
+using Funko.Utils;
+using Microsoft.VisualBasic.CompilerServices;
 using Serilog;
 
 // daw's template
-Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("logs/cine_debug-.log", rollingInterval: RollingInterval.Day).CreateLogger();
+Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("Logs/log.log", rollingInterval: RollingInterval.Day).CreateLogger();
 Console.Title = "Gestión Funko";
 Console.OutputEncoding = Encoding.UTF8;
 Console.Clear();
@@ -12,5 +14,7 @@ Console.ReadKey();
 return;
 
 void Main() {
-    
+    Log.Information("dsdasds");
+    Console.WriteLine("-- 🦸 GESTION DE FUNKOS 🦸 --");
+    Utilities.ImprimirMenuPrincipal();
 }
