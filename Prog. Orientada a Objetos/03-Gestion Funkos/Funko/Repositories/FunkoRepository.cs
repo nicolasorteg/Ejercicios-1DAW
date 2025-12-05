@@ -27,9 +27,6 @@ public class FunkoRepository {
         var funkosIniciales = FunkosFactory.DemoFunkos();
         foreach (var funko in funkosIniciales)
             Save(funko);
-        
-        foreach (var f in _catalogo)
-            Console.WriteLine(f);
     }
     
     private static int GetNextId() {

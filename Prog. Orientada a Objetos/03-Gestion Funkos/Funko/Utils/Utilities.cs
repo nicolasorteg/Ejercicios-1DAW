@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using Funko.Enums;
 using Serilog;
 
 namespace Funko.Utils;
@@ -25,6 +26,12 @@ public static class Utilities {
     }
 
     public static void ImprimirMenuPrincipal() {
-        Console.WriteLine("imprime");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.VerFunkos}.- Ver Catálogo");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.ObtenerFunkoPorId}.- Buscar Funko");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.OrdenarFunkos}.- Ordenar Funkos");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.CrearFunko}.- Crear Funko");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.ActualizarFunko}.- Actualizar Funko");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.EliminarFunko}.- Eliminar Funko");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.Salir}.- Salir");
     }
 }
