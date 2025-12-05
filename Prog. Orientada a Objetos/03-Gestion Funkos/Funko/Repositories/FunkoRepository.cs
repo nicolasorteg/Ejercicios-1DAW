@@ -43,4 +43,21 @@ public class FunkoRepository {
         }
         return nuevoConId;
     }
+
+    public FunkoPop[] GetAll() => ObtenerCatalogoCompacto();
+
+    private FunkoPop[] ObtenerCatalogoCompacto() {
+        var numFunkos = 0;
+        foreach (var f in _catalogo) {
+            if (f != null) numFunkos++;
+        }
+
+        var catalogoCompacto = new FunkoPop[numFunkos];
+        var index = 0;
+        foreach (var f in _catalogo) {
+            if (f is {} funkoValido)
+                catalogoCompacto[index++] = funkoValido;
+        }
+        return catalogoCompacto;
+    }
 }

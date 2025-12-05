@@ -5,6 +5,7 @@ using Funko.Repositories;
 using Funko.Services;
 using Funko.Utils;
 using Funko.Validators;
+using Microsoft.VisualBasic.CompilerServices;
 using Serilog;
 
 // daw's template
@@ -21,14 +22,14 @@ void Main() {
     var service = new FunkoService(FunkoRepository.GetInstance(), new FunkoValidator());
     OpcionMenuPrincipal opcion;
     do {
-        Console.WriteLine("-- 🦸 GESTION DE FUNKOS 🦸 --");
+        Console.WriteLine("\n-- 🦸 GESTION DE FUNKOS 🦸 --");
         Utilities.ImprimirMenuPrincipal();
         opcion = (OpcionMenuPrincipal)int.Parse(Utilities.ValidarDato("- Opción elegida -> ", FunkoValidator.RegexOpcionMenuPrincipal));
         switch (opcion) {
             case (int)OpcionMenuPrincipal.Salir: break;
             case OpcionMenuPrincipal.VerFunkos: VerFunkos(service); break;
             case OpcionMenuPrincipal.ObtenerFunkoPorId: VerFunkoPorId(service); break;
-            case OpcionMenuPrincipal.OrdenarFunkos: OrdenarFUnkos(service); break;
+            case OpcionMenuPrincipal.OrdenarFunkos: OrdenarFunkos(service); break;
             case OpcionMenuPrincipal.CrearFunko: CrearFunko(service); break;
             case OpcionMenuPrincipal.ActualizarFunko: ActualizarFunko(service); break;
             case OpcionMenuPrincipal.EliminarFunko: EliminarFunko(service); break;
@@ -40,14 +41,25 @@ void Main() {
 }
 
 
-void VerFunkos(FunkoService service) {
-    Console.WriteLine("No");
+void VerFunkos(FunkoService service, TipoOrdenamiento ordenamiento = TipoOrdenamiento.Id) {
+    Log.Debug("Mostrando Funkos...");
+    var catalogo = service.GetAllFunkos(ordenamiento);
+    Utilities.ImprimirCatalogo(catalogo);
 }
 void VerFunkoPorId(FunkoService service) {
     Console.WriteLine("No");
 }
-void OrdenarFUnkos(FunkoService service) {
-    Console.WriteLine("No");
+void OrdenarFunkos(FunkoService service) {
+    Log.Debug("Ordenando Funkos...");
+    Utilities.ImprimirMenuOrdenacion();
+    var opcion = (OpcionMenuOrdenacion)int.Parse(Utilities.ValidarDato("- Opción elegida ->", FunkoValidator.RegexOpcionMenuOrdenacion));
+    switch (opcion) {
+        case OpcionMenuOrdenacion.Salir: break;
+        case OpcionMenuOrdenacion.NombreAsc: Utilities.ImprimirCatalogo(service.GetAllFunkos(TipoOrdenamiento.NombreAsc)); break;
+        case OpcionMenuOrdenacion.NombreDesc: Utilities.ImprimirCatalogo(service.GetAllFunkos(TipoOrdenamiento.NombreDesc)); break;
+        case OpcionMenuOrdenacion.PrecioAsc: Utilities.ImprimirCatalogo(service.GetAllFunkos(TipoOrdenamiento.PrecioAsc)); break;
+        case OpcionMenuOrdenacion.PrecioDesc: Utilities.ImprimirCatalogo(service.GetAllFunkos(TipoOrdenamiento.PrecioDesc)); break;
+    }
 }
 
 void CrearFunko(FunkoService service) {
