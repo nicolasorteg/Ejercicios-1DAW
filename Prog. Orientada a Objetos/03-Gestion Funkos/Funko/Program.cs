@@ -1,5 +1,8 @@
 ﻿using System.Text;
+using Funko.Repositories;
+using Funko.Services;
 using Funko.Utils;
+using Funko.Validators;
 using Microsoft.VisualBasic.CompilerServices;
 using Serilog;
 
@@ -14,7 +17,7 @@ Console.ReadKey();
 return;
 
 void Main() {
-    Log.Information("dsdasds");
+    var service = new FunkoService(FunkoRepository.GetInstance(), new FunkoValidator());
     Console.WriteLine("-- 🦸 GESTION DE FUNKOS 🦸 --");
     Utilities.ImprimirMenuPrincipal();
 }

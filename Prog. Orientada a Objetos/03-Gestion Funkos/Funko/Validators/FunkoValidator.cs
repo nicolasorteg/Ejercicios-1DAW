@@ -2,8 +2,6 @@
 namespace Funko.Validators;
 
 public class FunkoValidator {
-    private const int PrecioMinimo = 10;
-    private const int PrecioMaximo = 100;
     public static readonly string RegexConfirmacion = @"^[sSnN]$";
     public static readonly string RegexDni = @"^[0-9]{8}[A-Z]$";
     public static readonly string RegexNombre = @"^[A-Za-z]{2,}$";
