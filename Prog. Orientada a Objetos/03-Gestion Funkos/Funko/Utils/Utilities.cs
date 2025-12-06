@@ -1,7 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Funko.Enums;
 using Funko.Models;
-using Serilog;
 
 namespace Funko.Utils;
 
@@ -9,19 +8,11 @@ public static class Utilities {
     
     public static string ValidarDato(string msg, string rgx) {
         string input;
-        var isDatoOk = false;
         var regex = new Regex(rgx);
         do {
             Console.Write($"{msg} ");
             input = Console.ReadLine()?.Trim() ?? "-1";
-            if (regex.IsMatch(input)) {
-                Log.Information("✅ Dato leído correctamente.");
-                isDatoOk = true;
-            } else {
-                Log.Warning("⚠️ No es un dato válido para este campo.");
-                Console.WriteLine("🔴  Dato introducido inválido.");
-            }
-        } while (!isDatoOk);
+        } while (!regex.IsMatch(input));
         Console.WriteLine();
         return input;
     }
@@ -47,7 +38,6 @@ public static class Utilities {
     }
 
     public static void ImprimirCatalogo(FunkoPop[] catalogo) {
-        foreach(var f in catalogo)
-            Console.WriteLine(f);
+        foreach(var f in catalogo) Console.WriteLine(f);
     }
 }

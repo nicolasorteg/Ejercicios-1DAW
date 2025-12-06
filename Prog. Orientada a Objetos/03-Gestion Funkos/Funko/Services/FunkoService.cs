@@ -14,6 +14,7 @@ public class FunkoService(FunkoRepository repository, FunkoValidator validator) 
         return funkos;
     }
 
+    
     private static void OrdenarCatalogo(FunkoPop[] funkos, TipoOrdenamiento ordenamiento) {
         if (funkos.Length <= 1) return;
         for (var i = 0; i < funkos.Length - 1; i++) {
@@ -39,4 +40,12 @@ public class FunkoService(FunkoRepository repository, FunkoValidator validator) 
             }
         }
     }
+    /// <summary>
+    /// Se encarga de llamar al repository para que busque en el catálogo
+    /// el Funko con el ID pasado
+    /// </summary>
+    /// <param name="id">Identificador del Funko</param>
+    /// <returns>O el Funko encontrado o nulo en caso de que no esté</returns>
+    public FunkoPop? GetFunkoById(int id) => repository.GetById(id);
+    public FunkoPop? DeleteFunko(int id) => repository.Delete(id);
 }

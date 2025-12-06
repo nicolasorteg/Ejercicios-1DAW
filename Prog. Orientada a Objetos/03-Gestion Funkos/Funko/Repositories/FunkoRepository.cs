@@ -1,5 +1,4 @@
-﻿using System.Xml.Linq;
-using Funko.Config;
+﻿using Funko.Config;
 using Funko.Factories;
 using Funko.Models;
 using Serilog;
@@ -59,5 +58,23 @@ public class FunkoRepository {
                 catalogoCompacto[index++] = funkoValido;
         }
         return catalogoCompacto;
+    }
+
+    public FunkoPop? GetById(int id) {
+        foreach (var funko in _catalogo)
+            if (funko?.Id == id)
+                return funko;
+        return null;
+    }
+
+    public FunkoPop? Delete(int id) {
+        for (var i = 0; i < _catalogo.Length; i++)
+            if (_catalogo[i]?.Id == id) {
+                var funko = _catalogo[i];
+                _catalogo[i] = null;
+                ObtenerCatalogoCompacto();
+                return funko;
+            }
+        return null;
     }
 }

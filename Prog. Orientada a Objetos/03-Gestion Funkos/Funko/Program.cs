@@ -5,7 +5,6 @@ using Funko.Repositories;
 using Funko.Services;
 using Funko.Utils;
 using Funko.Validators;
-using Microsoft.VisualBasic.CompilerServices;
 using Serilog;
 
 // daw's template
@@ -46,9 +45,13 @@ void VerFunkos(FunkoService service, TipoOrdenamiento ordenamiento = TipoOrdenam
     var catalogo = service.GetAllFunkos(ordenamiento);
     Utilities.ImprimirCatalogo(catalogo);
 }
+
+
 void VerFunkoPorId(FunkoService service) {
     Console.WriteLine("No");
 }
+
+
 void OrdenarFunkos(FunkoService service) {
     Log.Debug("Ordenando Funkos...");
     Utilities.ImprimirMenuOrdenacion();
@@ -62,15 +65,34 @@ void OrdenarFunkos(FunkoService service) {
     }
 }
 
+
 void CrearFunko(FunkoService service) {
     Console.WriteLine("No");
 }
 void ActualizarFunko(FunkoService service) {
     Console.WriteLine("No");
 }
+
+
 void EliminarFunko(FunkoService service) {
-    Console.WriteLine("No");
+    Log.Debug("Eliminando Funko...");
+    
+    var idIntroducido = int.Parse(Utilities.ValidarDato("- ID del Funko a Eliminar: ", FunkoValidator.RegexId));
+    var funko = service.GetFunkoById(idIntroducido);
+    if (funko == null) {
+        Console.WriteLine($"🔎❌  No se ha encontrado ningún Funko de ID {idIntroducido}");
+        return;
+    }
+    Console.WriteLine($"🔎✅  Funko encontrado:\n-----------------------\n{funko}");
+    
+    var confirmacion = Utilities.ValidarDato("- ¿Desea eliminarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
+    if (confirmacion == "s") {
+        var funkoEliminado = service.DeleteFunko(funko.Id);
+        if (funkoEliminado == null) 
+            Console.WriteLine("❌  Fallo inesperado en el borrado.");
+        Console.WriteLine("🗑️✅  Funko eliminado.");
+    }
+    else {
+        Console.WriteLine("❌  Eliminación cancelada.");
+    }
 }
-
-
-

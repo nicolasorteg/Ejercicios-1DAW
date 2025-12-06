@@ -9,8 +9,8 @@ public record FunkoPop {
     public required decimal Precio { get; init; }
 
     public override string ToString() {
-        return Id < 10 ? 
-            $"{Id}   |  Nombre: {Nombre}  |  Categoria: {Categoria}  |  Precio: {Precio:F2}" : 
-            $"{Id}  |  Nombre: {Nombre}  |  Categoria: {Categoria}  |  Precio: {Precio:F2}";
+        return Id < 10
+            ? $"{Id}   |  Nombre: {Nombre}  |  Categoria: {Categoria}  |  Precio: {Precio:F2}"
+            : $"{Id}  |  Nombre: {Nombre}  |  Categoria: {Categoria}  |  Precio: {Precio:F2}";
     }
 }
