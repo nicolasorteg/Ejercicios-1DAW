@@ -6,7 +6,6 @@ using Funko.Validators;
 namespace Funko.Services;
 
 public class FunkoService(FunkoRepository repository, FunkoValidator validator) {
-    public FunkoValidator Validator { get; } = validator;
 
     public FunkoPop[] GetAllFunkos(TipoOrdenamiento ordenamiento) {
         var funkos = repository.GetAll();
@@ -20,20 +19,17 @@ public class FunkoService(FunkoRepository repository, FunkoValidator validator) 
         for (var i = 0; i < funkos.Length - 1; i++) {
             for (var j = 0; j < funkos.Length - i - 1; j++) {
                 var debeIntercambiar = false;
-                if (ordenamiento == TipoOrdenamiento.Id) {
-                    if (funkos[j].Id > funkos[j+1].Id) debeIntercambiar = true;
-                    
-                } else if (ordenamiento == TipoOrdenamiento.NombreAsc) {
-                    if (string.Compare(funkos[j].Nombre, funkos[j+1].Nombre, StringComparison.Ordinal) > 0) debeIntercambiar = true;
-                    
-                } else if (ordenamiento == TipoOrdenamiento.NombreDesc) {
-                    if (string.Compare(funkos[j].Nombre, funkos[j+1].Nombre, StringComparison.Ordinal) < 0) debeIntercambiar = true;
-                    
-                }else if (ordenamiento == TipoOrdenamiento.PrecioAsc) {
-                    if (funkos[j].Precio > funkos[j+1].Precio) debeIntercambiar = true;
-                    
-                } else if (ordenamiento == TipoOrdenamiento.PrecioDesc) {
-                    if (funkos[j].Precio < funkos[j+1].Precio) debeIntercambiar = true;
+                switch (ordenamiento) {
+                    case TipoOrdenamiento.NombreAsc: if (string.Compare(funkos[j].Nombre, funkos[j+1].Nombre, StringComparison.Ordinal) > 0) debeIntercambiar = true; 
+                        break;
+                    case TipoOrdenamiento.NombreDesc: if (string.Compare(funkos[j].Nombre, funkos[j+1].Nombre, StringComparison.Ordinal) < 0) debeIntercambiar = true; 
+                        break;
+                    case TipoOrdenamiento.PrecioAsc: if (funkos[j].Precio > funkos[j + 1].Precio) debeIntercambiar = true;
+                        break;
+                    case TipoOrdenamiento.PrecioDesc: if (funkos[j].Precio < funkos[j+1].Precio) debeIntercambiar = true;
+                        break;
+                    default: if (funkos[j].Id > funkos[j+1].Id) debeIntercambiar = true;
+                        break;
                 }
                 if (debeIntercambiar) // si se cumple, swap
                     (funkos[j], funkos[j+1]) = (funkos[j+1], funkos[j]);
@@ -48,4 +44,9 @@ public class FunkoService(FunkoRepository repository, FunkoValidator validator) 
     /// <returns>O el Funko encontrado o nulo en caso de que no esté</returns>
     public FunkoPop? GetFunkoById(int id) => repository.GetById(id);
     public FunkoPop? DeleteFunko(int id) => repository.Delete(id);
+
+    public void SaveFunko(FunkoPop funko) {
+        var funkoValidado = validator.Validate(funko);
+        repository.Save(funkoValidado);
+    } 
 }

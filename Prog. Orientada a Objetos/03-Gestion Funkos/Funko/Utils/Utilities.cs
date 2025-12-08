@@ -1,6 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.RegularExpressions;
+using Funko.Config;
 using Funko.Enums;
 using Funko.Models;
+using Funko.Validators;
 
 namespace Funko.Utils;
 
@@ -37,7 +40,41 @@ public static class Utilities {
         Console.WriteLine("---------------------");
     }
 
+    public static void ImprimirMenuActualizar() {
+        Console.WriteLine("---------------------");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Nombre}.- Nombre.");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Categoria}.- Categoria.");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Precio}.- Precio.");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Salir}.- Salir");
+        Console.WriteLine("---------------------");
+    }
+
     public static void ImprimirCatalogo(FunkoPop[] catalogo) {
         foreach(var f in catalogo) Console.WriteLine(f);
+    }
+
+    public static string PedirNombre() => ValidarDato("- Introduce el Nombre: ", FunkoValidator.RegexNombre);
+    public static FunkoPop.Tipo PedirRol() {
+        var isRolOk = false;
+        FunkoPop.Tipo rol;
+        do {
+            if (Enum.TryParse(ValidarDato("- Introduce el rol (Superheroe/Anime/Disney): ", FunkoValidator.RegexRol), out rol)) {
+                isRolOk = true;
+            } else Console.WriteLine("🔴  Rol desconocido. Intente de nuevo.");
+        } while (!isRolOk);
+        return rol;
+    } 
+    public static decimal PedirPrecio() {
+        var isPrecioOk = false;
+        decimal precio;
+        do {
+            precio = decimal.Parse(ValidarDato("- Introduce el Precio: ", FunkoValidator.RegexPrecio));
+            if (precio < Configuracion.PrecioMinimo || precio > Configuracion.PrecioMaximo) {
+                Console.WriteLine(
+                    $"Precio inválido. Precio mínimo = {Configuracion.PrecioMinimo}  |  Precio máximo = {Configuracion.PrecioMaximo}");
+            } else isPrecioOk = true;
+        } while (!isPrecioOk);
+
+        return precio;
     }
 }

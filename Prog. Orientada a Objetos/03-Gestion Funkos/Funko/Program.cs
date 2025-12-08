@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Funko.Enums;
+using Funko.Models;
 using Funko.Repositories;
 using Funko.Services;
 using Funko.Utils;
@@ -73,10 +74,20 @@ void OrdenarFunkos(FunkoService service) {
 
 
 void CrearFunko(FunkoService service) {
-    Console.WriteLine("No");
+    Log.Debug("Creando funko...");
+    var nombre = Utilities.PedirNombre();
+    var categoria = Utilities.PedirRol();
+    var precio = Utilities.PedirPrecio();
+    var nuevoFunko = new FunkoPop{Categoria = categoria, Nombre = nombre, Precio = precio};
+    Console.WriteLine(nuevoFunko);
+    var confirmacion = Utilities.ValidarDato("- ¿Desea guardarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
+    if (confirmacion == "s") service.SaveFunko(nuevoFunko);
 }
 void ActualizarFunko(FunkoService service) {
-    Console.WriteLine("No");
+    Log.Debug("Actulizando datos del Funko...");
+    Utilities.ImprimirMenuOrdenacion();
+    var opcion = (OpcionMenuOrdenacion)int.Parse(Utilities.ValidarDato("- Opción elegida ->", FunkoValidator.RegexOpcionMenuActualizacion));
+
 }
 
 

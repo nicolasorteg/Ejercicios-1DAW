@@ -32,8 +32,9 @@ public class FunkoRepository {
         return ++_idCounter;
     }
 
-    private FunkoPop Save(FunkoPop funko) {
+    public FunkoPop Save(FunkoPop funko) {
         var nuevoConId = funko with { Id = GetNextId() };
+        _catalogo = AñadirUnEspacio();
         for (var i = 0; i < _catalogo.Length; i++) {
             if (_catalogo[i] == null) {
                 _catalogo[i] = nuevoConId;
@@ -58,6 +59,16 @@ public class FunkoRepository {
                 catalogoCompacto[index++] = funkoValido;
         }
         return catalogoCompacto;
+    }
+
+    private FunkoPop[] AñadirUnEspacio() {
+        var nuevoCatalogo = new FunkoPop[ObtenerCatalogoCompacto().Length + 1];
+        var index = 0;
+        foreach (var f in _catalogo) {
+            if (f is { } funkoValido)
+                nuevoCatalogo[index++] = funkoValido;
+        }
+        return nuevoCatalogo;
     }
 
     public FunkoPop? GetById(int id) {
