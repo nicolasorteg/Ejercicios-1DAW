@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text;
+﻿using System.Text;
 using Funko.Enums;
 using Funko.Repositories;
 using Funko.Services;
@@ -48,7 +47,14 @@ void VerFunkos(FunkoService service, TipoOrdenamiento ordenamiento = TipoOrdenam
 
 
 void VerFunkoPorId(FunkoService service) {
-    Console.WriteLine("No");
+    Log.Debug("Buscando por ID...");
+    var idIntroducido = int.Parse(Utilities.ValidarDato("- ID del Funko: ", FunkoValidator.RegexId));
+    var funko = service.GetFunkoById(idIntroducido);
+    if (funko == null) {
+        Console.WriteLine($"🔎❌  No se ha encontrado ningún Funko de ID {idIntroducido}");
+        return;
+    }
+    Console.WriteLine($"🔎✅  Funko encontrado:\n-----------------------\n{funko}");
 }
 
 
