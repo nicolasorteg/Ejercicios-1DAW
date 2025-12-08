@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text;
+﻿using System.Text;
 using Funko.Enums;
 using Funko.Models;
 using Funko.Repositories;
@@ -40,12 +39,9 @@ void Main() {
     } while (opcion != OpcionMenuPrincipal.Salir);
 }
 
-
 void VerFunkos(FunkoService service, TipoOrdenamiento ordenamiento = TipoOrdenamiento.Id) {
     Log.Debug("Mostrando Funkos...");
-    var catalogo = service.GetAllFunkos(ordenamiento);
-    Utilities.ImprimirCatalogo(catalogo);
-    Console.WriteLine(catalogo.Length);
+    Utilities.ImprimirCatalogo(service.GetAllFunkos(ordenamiento));
 }
 
 
@@ -100,7 +96,8 @@ void ActualizarFunko(FunkoService service) {
     Utilities.ImprimirMenuActualizar();
     var opcion = (OpcionMenuActualizar)int.Parse(Utilities.ValidarDato("- Opción elegida ->", FunkoValidator.RegexOpcionMenuActualizacion));
     switch (opcion) {
-        case OpcionMenuActualizar.Salir: break;
+        case OpcionMenuActualizar.Salir: 
+        default: break;
         case OpcionMenuActualizar.Nombre:
             var nombre = Utilities.PedirNombre();
             var nuevoFunkoN = funko with { Nombre = nombre };

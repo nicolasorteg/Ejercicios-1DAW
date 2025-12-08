@@ -32,7 +32,11 @@ public class FunkoRepository {
         return ++_idCounter;
     }
 
-    public FunkoPop Save(FunkoPop funko) {
+    /// <summary>
+    /// Guarda el funko pasado en el catalogo
+    /// </summary>
+    /// <param name="funko">Funko a guardar</param>
+    public void Save(FunkoPop funko) {
         var nuevoConId = funko with { Id = GetNextId() };
         _catalogo = AñadirUnEspacio();
         for (var i = 0; i < _catalogo.Length; i++) {
@@ -41,12 +45,17 @@ public class FunkoRepository {
                 break;
             } 
         }
-        Console.WriteLine(_catalogo.Length);
-        return nuevoConId;
     }
-
+    /// <summary>
+    /// Obtiene el listado de todos los Funkos
+    /// </summary>
+    /// <returns>Lista de Funkos</returns>
     public FunkoPop[] GetAll() => ObtenerCatalogoCompacto();
 
+    /// <summary>
+    /// Obtiene el listado de funkos extrayendolos del catálogo
+    /// </summary>
+    /// <returns>Lista de Funkos</returns>
     private FunkoPop[] ObtenerCatalogoCompacto() {
         var numFunkos = 0;
         foreach (var f in _catalogo) {
@@ -62,6 +71,11 @@ public class FunkoRepository {
         return catalogoCompacto;
     }
 
+    /// <summary>
+    /// Añade un espacio nulo al catálogo
+    /// para poder introducir otro Funko
+    /// </summary>
+    /// <returns>Catálogo con un espacio extra</returns>
     private FunkoPop[] AñadirUnEspacio() {
         var nuevoCatalogo = new FunkoPop[ObtenerCatalogoCompacto().Length + 1];
         var index = 0;
@@ -72,13 +86,23 @@ public class FunkoRepository {
         return nuevoCatalogo;
     }
 
+    /// <summary>
+    /// Busca un ID en el catálogo
+    /// </summary>
+    /// <param name="id">Identificar a Buscar</param>
+    /// <returns>El funko encontrado o Nulo si no está</returns>
     public FunkoPop? GetById(int id) {
         foreach (var funko in _catalogo)
             if (funko?.Id == id)
                 return funko;
         return null;
     }
-
+    
+    /// <summary>
+    /// Elimina un Funko de ID pasado
+    /// </summary>
+    /// <param name="id">Identificar a Eliminar</param>
+    /// <returns>El funko eliminado o nulo si falla el borrado</returns>
     public FunkoPop? Delete(int id) {
         for (var i = 0; i < _catalogo.Length; i++)
             if (_catalogo[i]?.Id == id) {
@@ -90,6 +114,11 @@ public class FunkoRepository {
         return null;
     }
 
+    /// <summary>
+    /// Actualiza un Funko con los datos
+    /// de otro Funko pasado
+    /// </summary>
+    /// <param name="funko">Funko actualizado</param>
     public void Update(FunkoPop funko) {
         for (var i = 0; i < _catalogo.Length; i++) {
             if (_catalogo[i]?.Id != funko.Id) continue;
