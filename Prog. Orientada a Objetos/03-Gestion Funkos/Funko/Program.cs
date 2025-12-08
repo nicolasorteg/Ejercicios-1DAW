@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Runtime.CompilerServices;
+using System.Text;
 using Funko.Enums;
 using Funko.Models;
 using Funko.Repositories;
@@ -44,6 +45,7 @@ void VerFunkos(FunkoService service, TipoOrdenamiento ordenamiento = TipoOrdenam
     Log.Debug("Mostrando Funkos...");
     var catalogo = service.GetAllFunkos(ordenamiento);
     Utilities.ImprimirCatalogo(catalogo);
+    Console.WriteLine(catalogo.Length);
 }
 
 
@@ -83,11 +85,53 @@ void CrearFunko(FunkoService service) {
     var confirmacion = Utilities.ValidarDato("- ¿Desea guardarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
     if (confirmacion == "s") service.SaveFunko(nuevoFunko);
 }
+
+
 void ActualizarFunko(FunkoService service) {
     Log.Debug("Actulizando datos del Funko...");
-    Utilities.ImprimirMenuOrdenacion();
-    var opcion = (OpcionMenuOrdenacion)int.Parse(Utilities.ValidarDato("- Opción elegida ->", FunkoValidator.RegexOpcionMenuActualizacion));
-
+    var idIntroducido = int.Parse(Utilities.ValidarDato("- ID del Funko a Actualizar: ", FunkoValidator.RegexId));
+    var funko = service.GetFunkoById(idIntroducido);
+    if (funko == null) {
+        Console.WriteLine($"🔎❌  No se ha encontrado ningún Funko de ID {idIntroducido}");
+        return;
+    }
+    Console.WriteLine($"🔎✅  Funko encontrado:\n-----------------------\n{funko}");
+    
+    Utilities.ImprimirMenuActualizar();
+    var opcion = (OpcionMenuActualizar)int.Parse(Utilities.ValidarDato("- Opción elegida ->", FunkoValidator.RegexOpcionMenuActualizacion));
+    switch (opcion) {
+        case OpcionMenuActualizar.Salir: break;
+        case OpcionMenuActualizar.Nombre:
+            var nombre = Utilities.PedirNombre();
+            var nuevoFunkoN = funko with { Nombre = nombre };
+            Console.WriteLine(nuevoFunkoN);
+            var confirmacion = Utilities.ValidarDato("- ¿Desea actualizarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
+            if (confirmacion == "s") {
+                service.UpdateFunko(nuevoFunkoN);
+                Console.WriteLine("✅  Funko actualizado.");
+            }
+            break;
+        case OpcionMenuActualizar.Categoria:
+            var categoria = Utilities.PedirRol();
+            var nuevoFunkoC = funko with { Categoria = categoria };
+            Console.WriteLine(nuevoFunkoC);
+            var confirmacionCategoria = Utilities.ValidarDato("- ¿Desea actualizarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
+            if (confirmacionCategoria == "s") {
+                service.UpdateFunko(nuevoFunkoC);
+                Console.WriteLine("✅  Funko actualizado.");
+            }
+            break;
+        case OpcionMenuActualizar.Precio:
+            var precio = Utilities.PedirPrecio();
+            var nuevoFunkoP = funko with { Precio = precio };
+            Console.WriteLine(nuevoFunkoP);
+            var confirmacionPrecio = Utilities.ValidarDato("- ¿Desea actualizarlo? (s/n)", FunkoValidator.RegexConfirmacion).ToLower();
+            if (confirmacionPrecio == "s") {
+                service.UpdateFunko(nuevoFunkoP);
+                Console.WriteLine("✅  Funko actualizado.");
+            }
+            break;
+    }
 }
 
 

@@ -41,6 +41,7 @@ public class FunkoRepository {
                 break;
             } 
         }
+        Console.WriteLine(_catalogo.Length);
         return nuevoConId;
     }
 
@@ -87,5 +88,13 @@ public class FunkoRepository {
                 return funko;
             }
         return null;
+    }
+
+    public void Update(FunkoPop funko) {
+        for (var i = 0; i < _catalogo.Length; i++) {
+            if (_catalogo[i]?.Id != funko.Id) continue;
+            _catalogo[i] = funko;
+            return;
+        }
     }
 }

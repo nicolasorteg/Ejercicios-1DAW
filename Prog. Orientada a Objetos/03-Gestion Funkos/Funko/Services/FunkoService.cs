@@ -48,5 +48,10 @@ public class FunkoService(FunkoRepository repository, FunkoValidator validator) 
     public void SaveFunko(FunkoPop funko) {
         var funkoValidado = validator.Validate(funko);
         repository.Save(funkoValidado);
-    } 
+    }
+
+    public void UpdateFunko(FunkoPop funko) {
+        var funkoValidado = validator.Validate(funko);
+        repository.Update(funkoValidado);
+    }
 }
