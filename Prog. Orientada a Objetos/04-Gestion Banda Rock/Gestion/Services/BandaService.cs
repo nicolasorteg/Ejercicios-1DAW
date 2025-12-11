@@ -29,7 +29,7 @@ public class BandaService(BandaRepository repository, BandaValidator validator) 
 
     public Musico? DeleteMusico(int id) => repository.Delete(id);
 
-    public void UpdateFunko(Musico musico) {
+    public void UpdateMusico(Musico musico) {
         var musicoValidado = validator.Validate(musico);
         repository.Update(musicoValidado);
     }

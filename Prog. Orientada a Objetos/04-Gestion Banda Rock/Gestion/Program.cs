@@ -125,12 +125,12 @@ void Actualizar(BandaService service) {
         default: break;
         case OpcionMenuActualizar.Nombre:
             var nombre = Utilities.PedirNombre();
-            var nuevoFunkoN = musico with { Nombre = nombre };
-            Console.WriteLine(nuevoFunkoN);
+            var nuevoMusicoN = musico with { Nombre = nombre };
+            Console.WriteLine(nuevoMusicoN);
             var confirmacion = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
             if (confirmacion == "s") {
-                service.UpdateFunko(nuevoFunkoN);
-                Console.WriteLine("✅  Funko actualizado.");
+                service.UpdateMusico(nuevoMusicoN);
+                Console.WriteLine("✅  Músico actualizado.");
             }
             break;
         case OpcionMenuActualizar.TiempoBanda:
@@ -139,7 +139,7 @@ void Actualizar(BandaService service) {
             Console.WriteLine(nuevoMusicoT);
             var confirmacionCategoria = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
             if (confirmacionCategoria == "s") {
-                service.UpdateFunko(nuevoMusicoT);
+                service.UpdateMusico(nuevoMusicoT);
                 Console.WriteLine("✅  Músico actualizado.");
             }
             break;

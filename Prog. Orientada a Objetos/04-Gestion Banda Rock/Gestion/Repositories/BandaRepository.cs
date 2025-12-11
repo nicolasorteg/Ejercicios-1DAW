@@ -21,7 +21,6 @@ public class BandaRepository {
     }
 
     private void InitMiembros() {
-        Log.Debug("Inicializando Funkos...");
         var miembrosIniciales = MusicoFactory.DemoMiembros();
         foreach (var m in miembrosIniciales) Save(m);
     }
