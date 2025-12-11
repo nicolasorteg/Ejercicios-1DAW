@@ -8,7 +8,7 @@ public sealed record Guitarrista: Musico, ICantanteGuitarrista {
         Console.WriteLine("El guitarrista toca un solo espectacular 🎸");
     }
     public void Cantar() {
-        Console.WriteLine("El guitarrista comienza a cantar 🎤");
+        Console.WriteLine("El guitarrista comienza a cantar los coros 🎤");
     }
     public override string ToString() => base.ToString();
 }

@@ -34,6 +34,9 @@ void Main() {
             case OpcionMenuPrincipal.Crear: Crear(service); break;
             case OpcionMenuPrincipal.Actualizar: Actualizar(service); break;
             case OpcionMenuPrincipal.Borrar: Borrar(service); break;
+            case OpcionMenuPrincipal.TocarGuitarra: TocarGuitarra(service); break;
+            case OpcionMenuPrincipal.HacerSolo: HacerSolo(service); break;
+            case OpcionMenuPrincipal.Cantar: Cantar(service); break;
             default: // si se entra aquí ha fallado la validacion de la opcion
                 Console.WriteLine($"⚠️ Opción inválida. Introduzca una de las {(int)OpcionMenuPrincipal.Salir} opciones posibles.");
                 break;
@@ -158,4 +161,29 @@ void Borrar(BandaService service) {
     else {
         Console.WriteLine("❌  Eliminación cancelada.");
     }
+}
+
+void TocarGuitarra(BandaService service) {
+    var musico = Utilities.GetMusico(service);
+    if (musico == null) return;
+    if (musico is not IGuitarra guitarrista) {
+        Console.WriteLine("🎸🔴  El músico seleccionado no puede tocar la guitarra.");
+        
+    } else guitarrista.TocarGuitarra();
+}
+void HacerSolo(BandaService service) {
+    var musico = Utilities.GetMusico(service);
+    if (musico == null) return;
+    if (musico is not Guitarrista guitarrista) {
+        Console.WriteLine("🎸🔴  El músico seleccionado no puede hacer un solo.");
+        
+    } else guitarrista.TocarGuitarra();
+}
+void Cantar(BandaService service) {
+    var musico = Utilities.GetMusico(service);
+    if (musico == null) return;
+    if (musico is not IMicrofono cantante) {
+        Console.WriteLine("🎤🔴  El músico seleccionado no puede cantar.");
+        
+    } else cantante.Cantar();
 }

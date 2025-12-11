@@ -17,11 +17,15 @@ public static class Utilities {
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Crear}.-  Crear Músico.");
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Actualizar}.-  Actualizar Músico.");
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Borrar}.-  Borrar Músico.");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.TocarGuitarra}.-  Tocar Guitarra.");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.HacerSolo}.-  Hacer Solo de Guitarra.");
+        Console.WriteLine($"{(int)OpcionMenuPrincipal.Cantar}.-  Cantar.");
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Salir}.-  Salir.");
         Console.WriteLine("--------------------------------");
     }
 
     public static void ImprimirMenuActualizar() {
+        Console.WriteLine("-- Datos actualizables:");
         Console.WriteLine($"{(int)OpcionMenuActualizar.Nombre}.-  Nombre.");
         Console.WriteLine($"{(int)OpcionMenuActualizar.TiempoBanda}.-  Tiempo en Banda.");
         Console.WriteLine($"{(int)OpcionMenuActualizar.Salir}.-  Salir.");

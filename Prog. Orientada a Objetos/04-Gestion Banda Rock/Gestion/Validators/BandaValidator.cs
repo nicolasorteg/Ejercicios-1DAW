@@ -7,7 +7,7 @@ namespace Gestion.Validators;
 
 public class BandaValidator {
     public static readonly string RegexConfirmacion = @"^[sSnN]$";
-    public static readonly string RegexOpcionMenuPrincipal = @$"^[{(int)OpcionMenuPrincipal.Salir}-{(int)OpcionMenuPrincipal.Borrar}]$";
+    public static readonly string RegexOpcionMenuPrincipal = @$"^[{(int)OpcionMenuPrincipal.Salir}-{(int)OpcionMenuPrincipal.HacerSolo}]|[{(int)OpcionMenuPrincipal.Cantar}]$";
     public static readonly string RegexOpcionMenuActualizacion = @$"^[{(int)OpcionMenuActualizar.Salir}-{(int)OpcionMenuActualizar.TiempoBanda}]$";
     public static readonly string RegexId = @"^\d{1,}$";
     public static readonly string RegexNombre = @"^[A-Za-z\s]{3,}$";
