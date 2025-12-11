@@ -1,6 +1,6 @@
 ﻿namespace Gestion.Models;
 
-public class Guitarrista: Musico, ICantanteGuitarrista {
+public sealed record Guitarrista: Musico, ICantanteGuitarrista {
     public void TocarGuitarra() {
         Console.WriteLine("El guitarrista toca la guitarra 🎸");
     }

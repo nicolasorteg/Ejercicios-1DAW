@@ -13,13 +13,4 @@
       <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Config\" />
-      <Folder Include="Factories\" />
-      <Folder Include="Repositories\" />
-      <Folder Include="Services\" />
-      <Folder Include="Utils\" />
-      <Folder Include="Validators\" />
-    </ItemGroup>
-
 </Project>

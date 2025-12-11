@@ -1,6 +1,6 @@
 ﻿namespace Gestion.Models;
 
-public sealed class Bajista: Musico {
+public sealed record Bajista: Musico {
     public void TocarBajo() {
         Console.WriteLine("Toca el bajo con estilo 🎼");
     }
