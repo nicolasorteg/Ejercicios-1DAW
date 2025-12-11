@@ -7,4 +7,5 @@ public sealed record Cantante: Musico, ICantanteGuitarrista {
     public void Cantar() {
         Console.WriteLine("El cantante comienza a cantar 🎤");
     }
+    public override string ToString() => base.ToString();
 }

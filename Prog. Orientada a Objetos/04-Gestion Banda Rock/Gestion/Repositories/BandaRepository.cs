@@ -64,4 +64,5 @@ public class BandaRepository {
         return musicosCompacto;
     }
 
+    public Musico[] GetAll() => ObtenerCatalogoCompacto();
 }

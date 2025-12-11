@@ -7,4 +7,5 @@ public sealed record Bajista: Musico {
     public void HacerSlapBase() {
         Console.WriteLine("El bajista hace Slap Base 🔊");
     }
+    public override string ToString() => base.ToString();
 }

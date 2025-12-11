@@ -42,7 +42,7 @@ void Main() {
 
 
 void VerBanda(BandaService service) {
-    throw new NotImplementedException();
+    Utilities.ImprimirBanda(service.GetAllMusicos());
 }
 
 void VerPorId(BandaService service) {

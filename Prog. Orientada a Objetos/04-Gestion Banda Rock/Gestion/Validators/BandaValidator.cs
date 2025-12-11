@@ -1,6 +1,5 @@
 ﻿using System.Text.RegularExpressions;
 using Gestion.Enum;
-using Serilog;
 
 namespace Gestion.Validators;
 
