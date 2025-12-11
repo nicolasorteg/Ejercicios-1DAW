@@ -177,7 +177,7 @@ void HacerSolo(BandaService service) {
     if (musico is not Guitarrista guitarrista) {
         Console.WriteLine("🎸🔴  El músico seleccionado no puede hacer un solo.");
         
-    } else guitarrista.TocarGuitarra();
+    } else guitarrista.RealizarSolo();
 }
 void Cantar(BandaService service) {
     var musico = Utilities.GetMusico(service);
@@ -187,3 +187,5 @@ void Cantar(BandaService service) {
         
     } else cantante.Cantar();
 }
+
+// asi se haria con todos los metodos, tocar bateria, hacer slap base, etc.
