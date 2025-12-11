@@ -65,4 +65,53 @@ public class BandaRepository {
     }
 
     public Musico[] GetAll() => ObtenerCatalogoCompacto();
+
+    public Musico? GetById(int id) {
+        foreach (var m in _miembros)
+            if (m?.Id == id)
+                return m;
+        return null;
+    }
+
+    public ICantanteGuitarrista[] GetGuitarristas() {
+        Musico?[] musicos = ObtenerCatalogoCompacto();
+        for (var i = 0; i < musicos.Length; i++) {
+            if (musicos[i] is not ICantanteGuitarrista) {
+                musicos[i] = null;
+            }
+        }
+
+        var numGuitarristas = 0;
+        foreach (var g in musicos)
+            if (g != null) numGuitarristas++;
+        
+        var guitarristas = new ICantanteGuitarrista[numGuitarristas];
+        var index = 0;
+        foreach (var g in musicos) {
+            if (g is ICantanteGuitarrista guitarristaValido)
+                guitarristas[index++] = guitarristaValido;
+        }
+        return guitarristas;
+    }
+
+    public Bajista[] GetBajistas() {
+        Musico?[] musicos = ObtenerCatalogoCompacto();
+        for (var i = 0; i < musicos.Length; i++) {
+            if (musicos[i] is not Bajista) {
+                musicos[i] = null;
+            }
+        }
+
+        var numBajistas = 0;
+        foreach (var g in musicos)
+            if (g != null) numBajistas++;
+        
+        var bajistas = new Bajista[numBajistas];
+        var index = 0;
+        foreach (var g in musicos) {
+            if (g is Bajista guitarristaValido)
+                bajistas[index++] = guitarristaValido;
+        }
+        return bajistas;
+    }
 }

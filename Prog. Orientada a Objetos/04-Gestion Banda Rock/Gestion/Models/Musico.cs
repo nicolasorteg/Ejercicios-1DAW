@@ -6,7 +6,7 @@ public abstract record Musico {
     public required int TiempoEnBanda { get; init; }
     public override string ToString() {
         return Id < 10
-            ? $"ID: {Id}   |  Nombre: {Nombre}  |  Tiempo en la Banda: {TiempoEnBanda}"
-            : $"ID: {Id}  |  Nombre: {Nombre}  |  Tiempo en la Banda: {TiempoEnBanda}";
+            ? $"ID: {Id}  |  Tipo: {GetType().Name}  |  Nombre: {Nombre}  |  Tiempo en la Banda: {TiempoEnBanda} años"
+            : $"ID: {Id} |  Nombre: {Nombre}  |  Tiempo en la Banda: {TiempoEnBanda} años";
     }
 }

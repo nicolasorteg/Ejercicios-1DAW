@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Gestion.Enum;
+using Gestion.Models;
 using Gestion.Repositories;
 using Gestion.Services;
 using Gestion.Utils;
@@ -42,19 +43,32 @@ void Main() {
 
 
 void VerBanda(BandaService service) {
-    Utilities.ImprimirBanda(service.GetAllMusicos());
+    Utilities.ImprimirMusicos(service.GetAllMusicos());
 }
 
 void VerPorId(BandaService service) {
-    throw new NotImplementedException();
+    var idIntroducido = int.Parse(BandaValidator.ValidarDato("- ID del Músico: ", BandaValidator.RegexId));
+    var musico = service.GetMusicoById(idIntroducido);
+    if (musico == null) {
+        Console.WriteLine($"🔎❌  No se ha encontrado ningún Músico de ID {idIntroducido}");
+        return;
+    }
+    Console.WriteLine($"🔎✅  Músico encontrado:\n-----------------------\n{musico}");
 }
 
 void VerGuitarristas(BandaService service) {
-    throw new NotImplementedException();
+    Utilities.ImprimirGuitarristas(service.GetAllGuitarristas());
 }
 
 void VerSlapBase(BandaService service) {
-    throw new NotImplementedException();
+    var nombre = Utilities.PedirNombre();
+    var tiempoBanda = Utilities.PedirTiempo();
+    var tipoMusico = Utilities.PedirRol();
+    var nuevoMusico = new tipoMusico{Nombre = nombre, TiempoEnBanda = tiempoBanda};
+
+    Console.WriteLine(nuevoMusico);
+    var confirmacion = BandaValidator.ValidarDato("- ¿Desea guardarlo? (s/n)", BandaValidator.RegexConfirmacion).ToLower();
+    if (confirmacion == "s") service.SaveMusico(nuevoMusico);
 }
 
 void Crear(BandaService service) {
