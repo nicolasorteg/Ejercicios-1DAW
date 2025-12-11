@@ -1,6 +1,7 @@
 ﻿using Gestion.Config;
 using Gestion.Enum;
 using Gestion.Models;
+using Gestion.Services;
 using Gestion.Validators;
 
 namespace Gestion.Utils;
@@ -17,6 +18,13 @@ public static class Utilities {
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Actualizar}.-  Actualizar Músico.");
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Borrar}.-  Borrar Músico.");
         Console.WriteLine($"{(int)OpcionMenuPrincipal.Salir}.-  Salir.");
+        Console.WriteLine("--------------------------------");
+    }
+
+    public static void ImprimirMenuActualizar() {
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Nombre}.-  Nombre.");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.TiempoBanda}.-  Tiempo en Banda.");
+        Console.WriteLine($"{(int)OpcionMenuActualizar.Salir}.-  Salir.");
     }
 
     public static void ImprimirMusicos(Musico[] musicos) {
@@ -38,14 +46,26 @@ public static class Utilities {
             tiempo = int.Parse(BandaValidator.ValidarDato("- Introduce el Tiempo: ", BandaValidator.RegexTiempoEnBanda));
             if (tiempo < Configuration.AñosMinimos || tiempo > Configuration.AñosMaximos) {
                 Console.WriteLine(
-                    $"Precio inválido. Precio mínimo = {Configuration.AñosMinimos}  |  Precio máximo = {Configuration.AñosMaximos}");
+                    $"Años inválidos. Años mínimos = {Configuration.AñosMinimos}  |  Años máximos = {Configuration.AñosMaximos}");
             } else isTiempoOk = true;
         } while (!isTiempoOk);
 
         return tiempo;
     }
 
-    public static object PedirRol() {
-        throw new NotImplementedException();
+    public static string PedirRol() {
+        Console.WriteLine("Tipos disponibles: Bajista | Baterista | Guitarrista | Cantante");
+        return BandaValidator.ValidarDato("- Introduce el Rol: ", BandaValidator.RegexRol);
+    }
+
+    public static Musico? GetMusico(BandaService service) {
+        var idIntroducido = int.Parse(BandaValidator.ValidarDato("- ID del Musico: ", BandaValidator.RegexId));
+        var musico = service.GetMusicoById(idIntroducido);
+        if (musico == null) {
+            Console.WriteLine($"🔎❌  No se ha encontrado ningún Músico de ID {idIntroducido}");
+            return musico;
+        }
+        Console.WriteLine($"🔎✅  Músico encontrado:\n-----------------------\n{musico}\n");
+        return musico;
     }
 }

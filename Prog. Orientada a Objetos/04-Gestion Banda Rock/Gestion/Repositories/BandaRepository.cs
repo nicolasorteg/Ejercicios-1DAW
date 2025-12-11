@@ -114,4 +114,23 @@ public class BandaRepository {
         }
         return bajistas;
     }
+
+    public Musico? Delete(int id) {
+        for (var i = 0; i < _miembros.Length; i++)
+            if (_miembros[i]?.Id == id) {
+                var musico = _miembros[i];
+                _miembros[i] = null;
+                ObtenerCatalogoCompacto();
+                return musico;
+            }
+        return null;
+    }
+
+    public void Update(Musico musico) {
+        for (var i = 0; i < _miembros.Length; i++) {
+            if (_miembros[i]?.Id != musico.Id) continue;
+            _miembros[i] = musico;
+            return;
+        }
+    }
 }

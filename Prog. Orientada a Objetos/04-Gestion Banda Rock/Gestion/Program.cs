@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Gestion.Config;
 using Gestion.Enum;
 using Gestion.Models;
 using Gestion.Repositories;
@@ -61,24 +62,100 @@ void VerGuitarristas(BandaService service) {
 }
 
 void VerSlapBase(BandaService service) {
-    var nombre = Utilities.PedirNombre();
-    var tiempoBanda = Utilities.PedirTiempo();
-    var tipoMusico = Utilities.PedirRol();
-    var nuevoMusico = new tipoMusico{Nombre = nombre, TiempoEnBanda = tiempoBanda};
-
-    Console.WriteLine(nuevoMusico);
-    var confirmacion = BandaValidator.ValidarDato("- ¿Desea guardarlo? (s/n)", BandaValidator.RegexConfirmacion).ToLower();
-    if (confirmacion == "s") service.SaveMusico(nuevoMusico);
+    Utilities.ImprimirBajistas(service.GetAllBajistas());
 }
 
+
 void Crear(BandaService service) {
-    throw new NotImplementedException();
+    var nombre = Utilities.PedirNombre();
+    var tiempoBanda = Utilities.PedirTiempo();
+    var rolMusico = Utilities.PedirRol();
+    
+    switch (rolMusico) {
+        case "Baterista":
+            var nuevoBaterista = new Baterista { Nombre = nombre, TiempoEnBanda = tiempoBanda };
+            Console.WriteLine(nuevoBaterista);
+            var confirmacionBt = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacionBt == "s") {
+                service.SaveMusico(nuevoBaterista);
+                Console.WriteLine("✅  Baterista guardado.");
+            }
+            break;
+        case "Bajista":
+            var nuevoBajista = new Bajista { Nombre = nombre, TiempoEnBanda = tiempoBanda };
+            Console.WriteLine(nuevoBajista);
+            var confirmacionBj = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacionBj == "s") {
+                service.SaveMusico(nuevoBajista);
+                Console.WriteLine("✅  Bajista guardado.");
+            }
+            break;
+        case "Guitarrista":
+            var nuevoGuitarrista = new Guitarrista { Nombre = nombre, TiempoEnBanda = tiempoBanda };
+            Console.WriteLine(nuevoGuitarrista);
+            var confirmacionG = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacionG == "s") {
+                service.SaveMusico(nuevoGuitarrista);
+                Console.WriteLine("✅  Guitarrista guardado.");
+            }
+            break;
+        case "Cantante":
+            var nuevoCantante = new Cantante { Nombre = nombre, TiempoEnBanda = tiempoBanda };
+            Console.WriteLine(nuevoCantante);
+            var confirmacionC = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacionC == "s") {
+                service.SaveMusico(nuevoCantante);
+                Console.WriteLine("✅  Cantante guardado.");
+            }
+            break;
+    }
 }
 
 void Actualizar(BandaService service) {
-    throw new NotImplementedException();
+    var musico = Utilities.GetMusico(service);
+    if (musico == null) return;
+    
+    Utilities.ImprimirMenuActualizar();
+    var opcion = (OpcionMenuActualizar)int.Parse(BandaValidator.ValidarDato("- Opción elegida ->", BandaValidator.RegexOpcionMenuActualizacion));
+    switch (opcion) {
+        case OpcionMenuActualizar.Salir: 
+        default: break;
+        case OpcionMenuActualizar.Nombre:
+            var nombre = Utilities.PedirNombre();
+            var nuevoFunkoN = musico with { Nombre = nombre };
+            Console.WriteLine(nuevoFunkoN);
+            var confirmacion = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacion == "s") {
+                service.UpdateFunko(nuevoFunkoN);
+                Console.WriteLine("✅  Funko actualizado.");
+            }
+            break;
+        case OpcionMenuActualizar.TiempoBanda:
+            var tiempo = Utilities.PedirTiempo();
+            var nuevoMusicoT = musico with { TiempoEnBanda = tiempo };
+            Console.WriteLine(nuevoMusicoT);
+            var confirmacionCategoria = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+            if (confirmacionCategoria == "s") {
+                service.UpdateFunko(nuevoMusicoT);
+                Console.WriteLine("✅  Músico actualizado.");
+            }
+            break;
+    }
 }
 
 void Borrar(BandaService service) {
-    throw new NotImplementedException();
+    var musico = Utilities.GetMusico(service);
+    if (musico == null) return;
+    var confirmacion = BandaValidator.ValidarDato(Configuration.MensajeConfirmacion, BandaValidator.RegexConfirmacion).ToLower();
+    if (confirmacion == "s") {
+        var musicoEliminado = service.DeleteMusico(musico.Id);
+        if (musicoEliminado == null) {
+            Console.WriteLine("❌  Fallo inesperado en el borrado.");
+            return;
+        }
+        Console.WriteLine("🗑️✅  Músico eliminado.");
+    }
+    else {
+        Console.WriteLine("❌  Eliminación cancelada.");
+    }
 }
