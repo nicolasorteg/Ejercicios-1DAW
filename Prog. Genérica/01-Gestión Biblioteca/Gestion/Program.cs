@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Gestion.Models;
 using Serilog;
 
 // daw's template
@@ -12,5 +13,6 @@ ReadKey();
 return;
 
 void Main() {
-    
+   
+
 }
