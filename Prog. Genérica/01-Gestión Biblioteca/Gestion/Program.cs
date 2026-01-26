@@ -1,5 +1,7 @@
 ﻿using System.Text;
+using Gestion.Enums;
 using Gestion.Models;
+using Gestion.Utils;
 using Serilog;
 
 // daw's template
@@ -13,6 +15,10 @@ ReadKey();
 return;
 
 void Main() {
-   
-
+   WriteLine("-- Gestión Biblioteca --");
+   OpcionMenuPrincipal opcion;
+   do {
+      Utilities.ImrimirMenuPrincipal();
+      //opcion
+   }
 }
