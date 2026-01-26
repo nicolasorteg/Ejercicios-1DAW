@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Gestion.Config;
 using Gestion.Enums;
 using Gestion.Models;
 using Gestion.Utils;
@@ -19,6 +20,6 @@ void Main() {
    OpcionMenuPrincipal opcion;
    do {
       Utilities.ImrimirMenuPrincipal();
-      //opcion
-   }
+      opcion = (OpcionMenuPrincipal)int.Parse(Utilities.ValidarDatoRegex("- Opción elegida ->", Configuration.RegexMenuPrincipal));
+   } while (opcion != OpcionMenuPrincipal.Salir);
 }
