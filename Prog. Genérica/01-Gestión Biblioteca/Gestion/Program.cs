@@ -21,5 +21,17 @@ void Main() {
    do {
       Utilities.ImrimirMenuPrincipal();
       opcion = (OpcionMenuPrincipal)int.Parse(Utilities.ValidarDatoRegex("- Opción elegida ->", Configuration.RegexMenuPrincipal));
+      switch (opcion) {
+         case OpcionMenuPrincipal.Salir: break;
+         /*case OpcionMenuPrincipal.VerTodos: VerBiblioteca(service); break;
+         case OpcionMenuPrincipal.ListarEstado: ListarEstado(service); break;
+         case OpcionMenuPrincipal.BuscarId: BuscarId(service); break;
+         case OpcionMenuPrincipal.OrdenarPaginas: OrdenarPorPaginas(service); break;
+         case OpcionMenuPrincipal.Crear: Crear(service); break;
+         case OpcionMenuPrincipal.Actualizar: Actualizar(service); break;*/
+         default: // si se entra aquí ha fallado la validacion de la opcion
+            Console.WriteLine($"⚠️ Opción inválida. Introduzca una de las {(int)OpcionMenuPrincipal.Actualizar} opciones posibles.");
+            break;
+      }
    } while (opcion != OpcionMenuPrincipal.Salir);
 }
