@@ -1,4 +1,5 @@
 ﻿using Dir.Configuration;
+using Dir.Services;
 using Dir.Validators;
 
 Console.WriteLine("Iniciando comando Dir con Validación...");
@@ -19,4 +20,3 @@ DirConfiguration.MapearArgumentosAConfig(args);
 
 // comando
 DirService.Run();
-return;
