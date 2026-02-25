@@ -40,8 +40,6 @@ public static class DirService {
             return;
         }
 
-        var finalResult = sb.ToString();
-
         // si hay fichero se imprime en el fichero, si no en la consola
         if (!string.IsNullOrEmpty(DirConfiguration.FileOutputPath)) {
             try {
@@ -52,7 +50,7 @@ public static class DirService {
                 WriteLine($"Error escribiendo fichero: {ex.Message}");
             }
         } else {
-            WriteLine(finalResult);
+            WriteLine(sb.ToString());
         }
     }
 }
