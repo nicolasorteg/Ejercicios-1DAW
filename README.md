@@ -4,4 +4,4 @@ Este repositorio almacena una colección de ejercicios realizados durante **1º 
 - **C#** (.NET) -> Lenguaje principal de los ejercicios.
 - Git/Github -> Control de versiones y organización del trabajo.
 
-Último ejercicio [aquí](https://github.com/nicolasorteg/Ejercicios-1DAW/tree/main/Prog.%20Orientada%20a%20Objetos/04-Gestion%20Banda%20Rock).
+Último ejercicio [aquí](https://github.com/nicolasorteg/Ejercicios-1DAW/tree/main/LINQ/Gesti%C3%B3n%20Empresa%20H%C3%A9roes).
