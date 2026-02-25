@@ -43,7 +43,7 @@ public static class DirService {
         // si hay fichero se imprime en el fichero, si no en la consola
         if (!string.IsNullOrEmpty(DirConfiguration.FileOutputPath)) {
             try {
-                File.WriteAllText(DirConfiguration.FileOutputPath, finalResult);
+                File.WriteAllText(DirConfiguration.FileOutputPath, sb.ToString());
                 WriteLine($"Salida guardada en: {DirConfiguration.FileOutputPath}");
             }
             catch (Exception ex) {
