@@ -14,7 +14,7 @@ public static class DirService {
         var sb = new StringBuilder();
         var di = new DirectoryInfo(DirConfiguration.DirectoryPath);
 
-        // cabecera hecha con gemini parecida a windows
+        // cabecera parecida a windows
         sb.AppendLine($" Directorio de {di.FullName}\n");
         sb.AppendLine($"{"Mode",-18} {"LastWriteTime",-10} {"Length",10} Name");
         sb.AppendLine(new string('-', 60));
