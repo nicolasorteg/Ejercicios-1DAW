@@ -14,7 +14,7 @@ public static class DirConfiguration {
     /// </summary>
     /// <param name="strings"></param>
     public static void MapearArgumentosAConfig(string[] strings) {
-        DirectoryPath = Path.GetFullPath(strings[0]);
+        DirectoryPath = Path.GetFullPath(strings[0]); // creo que funciona sin el getfullpath
         if (strings.Length > 1) {
             FileOutputPath = strings[1];
         }
