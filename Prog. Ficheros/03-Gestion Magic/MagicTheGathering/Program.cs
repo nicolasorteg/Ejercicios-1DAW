@@ -1,3 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿using System.Text;
+using Serilog;
 
-Console.WriteLine("Hello, World!");
+// daw's template
+Log.Logger = new LoggerConfiguration().MinimumLevel.Debug().WriteTo.File("Logs/log.log", rollingInterval: RollingInterval.Day).CreateLogger();
+Title = "Gestión Magic";
+OutputEncoding = Encoding.UTF8;
+Clear();
+Main();
+WriteLine("\n👋 Presiona una tecla para salir...");
+ReadKey();
+return;
+
+void Main() {
+    
+}
