@@ -11,4 +11,10 @@
         <Using Include="System.Console" Static="True" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="Data\pokemon_data.csv">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
