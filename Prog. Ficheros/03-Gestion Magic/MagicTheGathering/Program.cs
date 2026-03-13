@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using MagicTheGathering.Models;
 using Serilog;
 
 // daw's template
